@@ -10,20 +10,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" type="text/css" href="style.css">
         <title>Новая книга</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
     <header>
         <nav>
-            <ul>
-                <li><a href="/login">
-                        Авторизация</a></li>
+            <ul>                
                 <li><a href="/my-profile">Мой профиль</a></li>
                 <li><a href="/">Библиотека</a></li>
                 <li><a href="/find-book">Поиск книги</a></li>
                 <li><a href="/order-board">Доска заказов</a></li>
-                <li><a href="/sign-in">Выход</a></li>
+                <li><a href="/logout">Выход</a></li>
             </ul>
         </nav>
     </header>
@@ -43,7 +41,7 @@
                 <label>Дом</label>
                 <input type="text" name="house">
                 <label>Доступ</label>
-                <input type="number" name="access" required>
+                <input type="number" name="access" min="2" max="4" required>
             </div>
             <input type="submit" value="Добавить новую книгу">
         </form>
