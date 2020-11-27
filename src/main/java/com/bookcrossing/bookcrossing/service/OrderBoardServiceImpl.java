@@ -64,8 +64,8 @@ public class OrderBoardServiceImpl implements OrderBoardService {
     @Override
     public List<OrderBoard> findOrderBoard(OrderBoard order_board) {
         return namedParameterJdbcTemplate
-                .query("SELECT author, title FROM order_board WHERE author = :author"
-                        + " AND title = :title",
+                .query("SELECT author, title FROM order_board WHERE UPPER(author) = UPPER(:author)"
+                        + " AND UPPER(title) = UPPER(:title)",
                         new MapSqlParameterSource()
                         .addValue("author", order_board.getAuthor())
                         .addValue("title", order_board.getName()), order_boardRowMapper);
