@@ -22,6 +22,14 @@ import java.util.List;
 @Service
 public class BookServiceImpl implements BookService {
 
+    @Override
+    public List<Book> findByReader(String readerId) {
+        return namedParameterJdbcTemplate
+                .query("SELECT * FROM book WHERE reader = :reader",
+                        new MapSqlParameterSource().addValue("reader", readerId),
+                        bookRowMapper);
+    }
+
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     private final BookRowMapper bookRowMapper;
@@ -37,11 +45,12 @@ public class BookServiceImpl implements BookService {
     public Book save(Book book) {
         if (book.getBCID() == null) {
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            namedParameterJdbcTemplate.update("INSERT INTO book (author, title, access, status, country, city, street,"
-                    + " house) VALUES (:author, :title, :access, :status, :country, :city, :street, :house)",
+            namedParameterJdbcTemplate.update("INSERT INTO book (author, title, reader, access, status, country, city, street,"
+                    + " house) VALUES (:author, :title, :reader, :access, :status, :country, :city, :street, :house)",
                     new MapSqlParameterSource()
                             .addValue("author", book.getAuthor())
                             .addValue("title", book.getName())
+                            .addValue("reader", book.getReader())
                             .addValue("access", book.getAccess())
                             .addValue("status", book.getStatus())
                             .addValue("country", book.getCountry())
@@ -51,12 +60,14 @@ public class BookServiceImpl implements BookService {
                     keyHolder);
             book.setBCID(keyHolder.getKey().intValue());
         } else {
-            namedParameterJdbcTemplate.update("UPDATE book SET author = :author, title = :title, access = :access,"
-                    + " status = :status, country = :country, city = :city, street = :street, house = :house WHERE bcid = :bcid",
+            namedParameterJdbcTemplate.update("UPDATE book SET author = :author, title = :title, reader = :reader,"
+                    + " access = :access, status = :status, country = :country, city = :city, street = :street,"
+                    + " house = :house WHERE bcid = :bcid",
                     new MapSqlParameterSource()
                             .addValue("bcid", book.getBCID())
                             .addValue("author", book.getAuthor())
                             .addValue("title", book.getName())
+                            .addValue("reader", book.getReader())
                             .addValue("access", book.getAccess())
                             .addValue("status", book.getStatus())
                             .addValue("country", book.getCountry())
@@ -99,10 +110,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> findBook(Book book) {
         return namedParameterJdbcTemplate
-                .query("SELECT bcid, author, title FROM book WHERE author = :author"
-                        + " AND title = :title",
+                .query("SELECT *  FROM book WHERE UPPER(author) = UPPER(:author)"
+                        + " AND UPPER(title) = UPPER(:title)",
                         new MapSqlParameterSource()
                                 .addValue("author", book.getAuthor())
-                                .addValue("title", book.getName()), bookRowMapper);
+                                .addValue("title", book.getName()), 
+                        bookRowMapper);
     }
 }
