@@ -1,0 +1,188 @@
+body{
+    background-color:silver;
+}
+a:link,a:visited{
+    color:black;
+    text-decoration: none;
+}
+a:hover{
+    color:black;
+    text-decoration: none;
+    background-color:silver;
+}
+a{
+    font-size: 12pt; 
+    font-family:"Comic Sans MS";
+    display:inline-block;
+    padding:10px 30px;
+    text-transform:uppercase;
+}
+label{
+    font-size: 16pt; 
+    font-family: "Comic Sans MS"; 
+}
+input{
+    padding:5px;
+    font-size: 16pt; 
+    font-family: "Comic Sans MS";
+}
+.CurrentPage{
+     background-color:silver;
+}
+h1{
+    font-family:"Comic Sans MS";
+    text-align: center;
+}
+.divAll {
+    display: flex;
+    flex-direction: column;
+}
+.send {
+    text-align: center;
+    vertical-align: center;
+    font-family: "Comic Sans MS";
+    font-size: 20px;
+    padding: 15px;
+    margin: 5px;
+    text-transform: uppercase;
+    color: grey;
+    font-weight: bold;
+    background-color: black;
+    cursor: pointer;
+    border: 3px solid;
+    border-radius: 20px;
+}
+.send:link,.send:visited{
+    color:grey;
+    text-decoration: none;
+}
+.send:hover{
+    color:grey;
+    text-decoration: none;
+    background-color:black;
+}
+ul {
+    background-color: grey;
+}
+li {
+    display: inline-block;
+}
+table {
+    font-family: "Comic Sans MS";
+    border-collapse: collapse;
+    width: 100%; 
+    margin-bottom: 10px;
+}
+td {
+    border: 1px solid grey;
+    text-align: left;
+    padding: 8px;
+    background-color: #dddddd;
+}
+.OrderBoardTd{
+    width: 30%;
+}
+th {
+    text-align: left;
+    background-color: grey;
+    padding: 8px;
+    width: 25%;
+}
+.LogInInput{
+    border-radius: 20px; 
+}
+.LogInLabel{
+    font-size:20px;
+    color: black;
+}
+.LogInForm{
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    top: 10%;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 30px;
+    margin: 30px;
+    padding: 20px;
+    background-color: grey;
+}
+.LogInP{
+    text-align: center;
+    font-family: "Comic Sans MS";
+    font-size: 20px;
+}
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .5);
+    opacity: 0;
+    pointer-events: none;
+}
+ .modal:target {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-dialog {
+    position: relative;
+    width: 30%;
+    margin: 30px auto;
+}
+.modal-content {
+    position: relative;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 3px;
+    font-size: 20px;
+    font-family: "Comic Sans MS";
+}
+.modal-header {
+    display: flex;
+    padding: 3px;
+    border-bottom: 2px solid grey;
+    justify-content: space-between;
+}
+.modal-title {
+    font-size: 20px;
+    font-family: "Comic Sans MS";
+}
+.close {
+    float: right;
+    font-size: 24px;
+    text-shadow: 0 1px 0 black;
+    opacity: .5;
+    text-decoration: none;
+}
+.close:focus,.close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-body {
+    position: relative;
+    padding: 15px;
+    overflow: auto;
+}
+.MyProfileSpan{
+    font-size: 16pt;
+    font-family: "Comic Sans MS";
+}
+.MyProfileTd{
+    border: 1px solid grey;
+    text-align: left;
+    padding: 8px;
+    width: 25%;
+    background-color: #dddddd;
+}
+.MyProfileTh{
+    text-align: left;
+    background-color: grey;
+    padding: 8px;
+    width: 25%;
+}
+.SignInA{
+   color:grey;
+}
