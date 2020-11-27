@@ -41,13 +41,14 @@ public class ReaderServiceImpl implements ReaderService {
                 String Id = new String(chars) + Integer.toString(newId);
                 reader.setId(Id);
                 KeyHolder keyHolder = new GeneratedKeyHolder();
-                namedParameterJdbcTemplate.update("INSERT INTO reader (id, login, name, password) "
-                        + "VALUES (:id, :login, :name, :password)",
+                namedParameterJdbcTemplate.update("INSERT INTO reader (id, login, name, password, role) "
+                        + "VALUES (:id, :login, :name, :password, :role)",
                         new MapSqlParameterSource()
                                 .addValue("id", reader.getId())
                                 .addValue("login", reader.getLogin())
-                                .addValue("name", reader.getReaderName())
-                                .addValue("password", reader.getPassword()),
+                                .addValue("name", reader.getName())
+                                .addValue("password", reader.getPassword())
+                                .addValue("role", reader.getRole()),
                          keyHolder);
             } else {
                 reader = null;
@@ -58,7 +59,7 @@ public class ReaderServiceImpl implements ReaderService {
                     new MapSqlParameterSource()
                             .addValue("id", reader.getId())
                             .addValue("login", reader.getLogin())
-                            .addValue("name", reader.getReaderName())
+                            .addValue("name", reader.getName())
                             .addValue("password", reader.getPassword()));
         }
         return reader;
