@@ -1,0 +1,4 @@
+com\bookcrossing\bookcrossing\BookCrossingApplicationTests.class
+com\bookcrossing\bookcrossing\service\ReaderServiceTest.class
+com\bookcrossing\bookcrossing\service\OrderBoardServiceTest.class
+com\bookcrossing\bookcrossing\service\BookServiceTest.class
