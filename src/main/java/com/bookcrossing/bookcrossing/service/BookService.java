@@ -18,6 +18,7 @@ public interface BookService {
     List<Book> findAll();
 
     Book findById(Integer BCID);
+    List<Book> findByReader(String readerId);
     
     List<Book> findBook(Book book);
 
