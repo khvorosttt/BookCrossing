@@ -6,20 +6,18 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="Content-Type" content="text/html">
-        <title>Библиотека</title>
+        <title>Поиск книги</title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
     <header>
         <nav>
             <ul>
-                <li><a href="/login">
-                        Авторизация</a></li>
                 <li><a href="/my-profile">Мой профиль</a></li>
                 <li><a href="/">Библиотека</a></li>
                 <li><a href="/find-book" class="CurrentPage">Поиск книги</a></li>
                 <li><a href="/order-board">Доска заказов</a></li>
-                <li><a href="/sign-in">Выход</a></li>
+                <li><a href="/logout">Выход</a></li>
             </ul>
         </nav>
     </header>
@@ -43,8 +41,8 @@
                     <td>${book.BCID}</td>
                     <td>${book.author}</td>
                     <td>${book.name}</td>
-                    <td><a href="/">Добавить</a>
-                        <a href="//book-${book.BCID}-info">Просмотреть</a></td>
+                    <td><a href="/edit-${book.BCID}">Добавить</a>
+                        <a href="/book-${book.BCID}-info">Просмотреть</a></td>
                 </tr>
             </c:forEach>
         </table>
