@@ -9,8 +9,17 @@ public class Reader {
 
     private String login;
     private String id;
-    private String readerName;
+    private String name;
     private String password;
+    private String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public String getLogin(){
         return login;
@@ -24,11 +33,11 @@ public class Reader {
     public void setId(String id){
         this.id=id;
     }
-    public String getReaderName(){
-        return readerName;
+    public String getName(){
+        return name;
     }
-    public void setReaderName(String readerName){
-        this.readerName=readerName;
+    public void setName(String name){
+        this.name=name;
     }
     public String getPassword(){
         return password;
