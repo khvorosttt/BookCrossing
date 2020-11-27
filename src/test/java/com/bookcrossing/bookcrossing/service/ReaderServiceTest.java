@@ -28,8 +28,9 @@ public class ReaderServiceTest {
         assertNotNull(reader);
         assertEquals(firstReader.getId(), reader.getId());
         assertEquals(firstReader.getLogin(), reader.getLogin());
-        assertEquals(firstReader.getReaderName(), reader.getReaderName());
+        assertEquals(firstReader.getName(), reader.getName());
         assertEquals(firstReader.getPassword(), reader.getPassword());
+        assertEquals(firstReader.getRole(), reader.getRole());
     }
     
     @Test
@@ -40,8 +41,9 @@ public class ReaderServiceTest {
         assertNotNull(reader);
         assertEquals(firstReader.getId(), reader.getId());
         assertEquals(firstReader.getLogin(), reader.getLogin());
-        assertEquals(firstReader.getReaderName(), reader.getReaderName());
+        assertEquals(firstReader.getName(), reader.getName());
         assertEquals(firstReader.getPassword(), reader.getPassword());
+        assertEquals(firstReader.getRole(), reader.getRole());
     }
     
     @Test
@@ -50,7 +52,8 @@ public class ReaderServiceTest {
         Reader reader = new Reader();
         reader.setLogin("d_reader@mail.com");
         reader.setPassword("11111111");
-        reader.setReaderName("Deleted reader");        
+        reader.setName("Deleted reader");
+        reader.setRole("user");
         reader = readerService.save(reader);
         int countBefore = readerService.count();
         // delete book
@@ -75,7 +78,8 @@ public class ReaderServiceTest {
         Reader reader = new Reader();
         reader.setLogin("a_reader@mail.com");
         reader.setPassword("11111111");
-        reader.setReaderName("Added reader");
+        reader.setName("Added reader");
+        reader.setRole("user");
         reader = readerService.save(reader);
         // verify
         int countAfter = readerService.count();
@@ -83,8 +87,9 @@ public class ReaderServiceTest {
         Reader storedReader = readerService.findById(reader.getId());
         assertEquals(reader.getId(), storedReader.getId());
         assertEquals(reader.getLogin(), storedReader.getLogin());
-        assertEquals(reader.getReaderName(), storedReader.getReaderName());
+        assertEquals(reader.getName(), storedReader.getName());
         assertEquals(reader.getPassword(), storedReader.getPassword());
+        assertEquals(reader.getRole(), storedReader.getRole());
     }
     
     @Test
@@ -93,7 +98,8 @@ public class ReaderServiceTest {
         Reader reader = new Reader();
         reader.setLogin(findFirstReader().getLogin());
         reader.setPassword("11111111");
-        reader.setReaderName("NotAdded reader");
+        reader.setName("NotAdded reader");
+        reader.setRole("user");
         reader = readerService.save(reader);
         int countAfter = readerService.count();
         assertTrue(countBefore == countAfter);
@@ -105,13 +111,15 @@ public class ReaderServiceTest {
         Reader reader = findFirstReader();
         reader.setLogin("u_reader@mail.com");
         reader.setPassword("updateupdate");
-        reader.setReaderName("Update reader");
+        reader.setName("Update reader");
+        reader.setRole("user");
         Reader readerUpdated = readerService.save(reader);
         Reader storedReader = readerService.findById(readerUpdated.getId());
         assertEquals(readerUpdated.getId(), storedReader.getId());
         assertEquals(readerUpdated.getLogin(), storedReader.getLogin());
-        assertEquals(readerUpdated.getReaderName(), storedReader.getReaderName());
+        assertEquals(readerUpdated.getName(), storedReader.getName());
         assertEquals(readerUpdated.getPassword(), storedReader.getPassword());
+        assertEquals(readerUpdated.getRole(), storedReader.getRole());
     }
     
     private Reader findFirstReader() {
