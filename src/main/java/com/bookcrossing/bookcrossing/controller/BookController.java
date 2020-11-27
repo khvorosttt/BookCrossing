@@ -45,7 +45,7 @@ public class BookController {
         return "book";
     }
 
-    @RequestMapping("/add-{id}")
+    @GetMapping("/add-{id}")
     public String addBook(Model model, @PathVariable(value = "id") int id) {
         Book book = bookService.findById(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
