@@ -81,7 +81,7 @@ public class BookController {
         book.setHouse(house);
         book.setAccess(access);
         book.setStatus(true);
-        book=bookService.save(book);
+        bookService.save(book);
         OrderBoard order_board = new OrderBoard();
         order_board.setAutor(author);
         order_board.setName(name);
@@ -123,7 +123,7 @@ public class BookController {
         if (book.getReader().equals(reader.getId())) {
             book.setReader(null);
             book.setStatus(true);
-            book=bookService.save(book);
+            bookService.save(book);
         }
         return "redirect:/my-profile";
     }
