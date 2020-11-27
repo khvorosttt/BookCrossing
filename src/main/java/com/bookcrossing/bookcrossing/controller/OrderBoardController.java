@@ -5,7 +5,9 @@
  */
 package com.bookcrossing.bookcrossing.controller;
 ;
+import com.bookcrossing.bookcrossing.domain.Book;
 import com.bookcrossing.bookcrossing.domain.OrderBoard;
+import com.bookcrossing.bookcrossing.service.BookService;
 import com.bookcrossing.bookcrossing.service.OrderBoardService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class OrderBoardController {
     
     @Autowired
     private OrderBoardService order_boardService;
+    @Autowired
+    private BookService bookService;
+    
     
     @GetMapping("/order-board")
     public String getOrderBoardPage(Model model) {
@@ -31,8 +36,15 @@ public class OrderBoardController {
     public String addNewOrderBoard(@RequestParam(value = "author") String author,
             @RequestParam(value = "name") String name) {
         OrderBoard order_board = new OrderBoard();
+        Book book=new Book();
         order_board.setAutor(author);
+        book.setAutor(author);
         order_board.setName(name);
+        book.setName(name);
+        List<Book> books = bookService.findBook(book);
+        if(books.size()>0){
+            return "redirect:/book-"+books.get(0).getBCID()+"-info";
+        }
         order_boardService.save(order_board);
         return "redirect:/order-board";
     }
