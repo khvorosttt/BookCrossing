@@ -18,8 +18,9 @@ public class ReaderRowMapper implements RowMapper<Reader> {
         Reader reader = new Reader();
         reader.setLogin(rs.getString("login"));
         reader.setId(rs.getString("id"));
-        reader.setReaderName(rs.getString("name"));
+        reader.setName(rs.getString("name"));
         reader.setPassword(rs.getString("password"));
+        reader.setRole(rs.getString("role"));
         return reader;
     }
 }
