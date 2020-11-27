@@ -6,20 +6,18 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="Content-Type" content="text/html">
-        <title>Доска заказов</title>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Доска заказов</title>
     </head>
     <body>
     <header>
         <nav>
             <ul>
-                <li><a href="/login">
-                        Авторизация</a></li>
                 <li><a href="/my-profile">Мой профиль</a></li>
                 <li><a href="/">Библиотека</a></li>
                 <li><a href="/find-book">Поиск книги</a></li>
                 <li><a href="/order-board" class="CurrentPage">Доска заказов</a></li>
-                <li><a href="/sign-in">Выход</a></li>
+                <li><a href="/logout">Выход</a></li>
             </ul>
         </nav>
     </header>
@@ -27,9 +25,9 @@
         <h1>Доска заказов</h1>
         <form form action="/order-board" method="POST">
             <label>Автор</label>
-            <input type="text" name="author">
+            <input type="text" name="author" required>
             <label>Название</label>
-            <input type="text" name="name">
+            <input type="text" name="name" required>
             <input type="submit" value="Добавить">
         </form>
         <table>
