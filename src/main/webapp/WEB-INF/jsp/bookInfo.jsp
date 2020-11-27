@@ -13,13 +13,11 @@
     <header>
         <nav>
             <ul>
-                <li><a href="/login">
-                        Авторизация</a></li>
                 <li><a href="/my-profile">Мой профиль</a></li>
                 <li><a href="/">Библиотека</a></li>
                 <li><a href="/find-book">Поиск книги</a></li>
                 <li><a href="/order-board">Доска заказов</a></li>
-                <li><a href="/sign-in">Выход</a></li>
+                <li><a href="/logout">Выход</a></li>
             </ul>
         </nav>
     </header>
