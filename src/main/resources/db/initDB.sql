@@ -9,10 +9,12 @@ CREATE TABLE reader (
   PRIMARY KEY (login)
 );
 
+CREATE SEQUENCE book_bcid;
+
 DROP TABLE IF EXISTS book;
 
 CREATE TABLE book (
-  bcid      INTEGER NOT NULL AUTO_INCREMENT,
+  bcid      INTEGER NOT NULL DEFAULT NEXTVAL('book_bcid'),
   author    VARCHAR(255) NOT NULL,
   title     VARCHAR(255) NOT NULL,
   access INT CHECK( access>1 and access<5 and NOT NULL),
