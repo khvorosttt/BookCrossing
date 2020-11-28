@@ -12,7 +12,7 @@ CREATE TABLE reader (
 DROP TABLE IF EXISTS book;
 
 CREATE TABLE book (
-  bcid VARCHAR(10) NOT NULL,
+  bcid INT NOT NULL,
   author VARCHAR(255) NOT NULL,
   title VARCHAR(255) NOT NULL,
   access INT CHECK( access>1 and access<5 and NOT NULL),
