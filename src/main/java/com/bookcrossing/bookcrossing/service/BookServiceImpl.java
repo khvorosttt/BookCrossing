@@ -46,19 +46,20 @@ public class BookServiceImpl implements BookService {
         if (book.getBCID() == null) {
             book.setBCID(count()+1);
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            namedParameterJdbcTemplate.update("INSERT INTO book (bcid, Author, Title,Access, Status, Reader, Country, City, Street, House) VALUES (:bcid, :author, :title,2,0, '0000000003', 'Беларусь', 'Брест', 'Гоголя', '48')",
+            namedParameterJdbcTemplate.update("INSERT INTO book (author, title, reader, access, status, country, city, street, house) "
+                    + "VALUES (:author, :title, :reader, :access, :status, :country, :city, :street, :house)",
                     new MapSqlParameterSource()
-                            .addValue("bcid", book.getBCID())
                             .addValue("author", book.getAuthor())
                             .addValue("title", book.getName())
                             .addValue("reader", book.getReader())
                             .addValue("access", book.getAccess())
-                            .addValue("status", book.getStatus())
+                            .addValue("status", book.getStatus()? 1 : 0)
                             .addValue("country", book.getCountry())
                             .addValue("city", book.getCity())
                             .addValue("street", book.getStreet())
                             .addValue("house", book.getHouse()),
                     keyHolder);
+            book.setBCID(keyHolder.getKey().intValue());
         } else {
             namedParameterJdbcTemplate.update("UPDATE book SET author = :author, title = :title, reader = :reader,"
                     + " access = :access, status = :status, country = :country, city = :city, street = :street,"
