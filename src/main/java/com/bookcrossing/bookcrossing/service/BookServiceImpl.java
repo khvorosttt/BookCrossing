@@ -43,30 +43,12 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book save(Book book) {
-        if (book.getBCID() == null) {
-            book.setBCID(count() + 1);
-            KeyHolder keyHolder = new GeneratedKeyHolder();
+        KeyHolder keyHolder = new GeneratedKeyHolder();
             namedParameterJdbcTemplate.update("INSERT INTO book (author, title) VALUES (:author, :title)",
                     new MapSqlParameterSource()
                             .addValue("author", book.getAuthor())
                             .addValue("title", book.getName())
                     , keyHolder);
-        } else {
-            namedParameterJdbcTemplate.update("UPDATE book SET author = :author, title = :title, reader = :reader,"
-                    + " access = :access, status = :status, country = :country, city = :city, street = :street,"
-                    + " house = :house WHERE bcid = :bcid",
-                    new MapSqlParameterSource()
-                            .addValue("bcid", book.getBCID())
-                            .addValue("author", book.getAuthor())
-                            .addValue("title", book.getName())
-                            .addValue("reader", book.getReader())
-                            .addValue("access", book.getAccess())
-                            .addValue("status", book.getStatus())
-                            .addValue("country", book.getCountry())
-                            .addValue("city", book.getCity())
-                            .addValue("street", book.getStreet())
-                            .addValue("house", book.getHouse()));
-        }
         return book;
     }
 
@@ -106,7 +88,7 @@ public class BookServiceImpl implements BookService {
                         + " AND UPPER(title) = UPPER(:title)",
                         new MapSqlParameterSource()
                                 .addValue("author", book.getAuthor())
-                                .addValue("title", book.getName()),
+                                .addValue("title", book.getName()), 
                         bookRowMapper);
     }
 }
