@@ -14,7 +14,7 @@ CREATE SEQUENCE book_bcid;
 DROP TABLE IF EXISTS book;
 
 CREATE TABLE book (
-  bcid      SERIAL NOT NULL DEFAULT,
+  bcid      SERIAL,
   author    VARCHAR(255) NOT NULL,
   title     VARCHAR(255) NOT NULL,
   access INT CHECK( access>1 and access<5 and NOT NULL),
