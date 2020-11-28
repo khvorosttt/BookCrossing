@@ -44,7 +44,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book save(Book book) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-            namedParameterJdbcTemplate.update("INSERT INTO book (author, title) VALUES (:author, :title)",
+            namedParameterJdbcTemplate.update("INSERT INTO order_board (author, title) VALUES (:author, :title)",
                     new MapSqlParameterSource()
                             .addValue("author", book.getAuthor())
                             .addValue("title", book.getName())
