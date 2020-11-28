@@ -57,7 +57,7 @@ public class BookServiceImpl implements BookService {
                             .addValue("city", book.getCity())
                             .addValue("street", book.getStreet())
                             .addValue("house", book.getHouse()),
-                    keyHolder);
+                    keyHolder,new String[]{"bcid"});
             book.setBCID(keyHolder.getKey().intValue());
         } else {
             namedParameterJdbcTemplate.update("UPDATE book SET author = :author, title = :title, reader = :reader,"
