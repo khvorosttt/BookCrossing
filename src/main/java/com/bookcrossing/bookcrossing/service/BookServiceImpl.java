@@ -44,10 +44,12 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book save(Book book) {
         if (book.getBCID() == null) {
+            book.setBCID(count()+1);
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            namedParameterJdbcTemplate.update("INSERT INTO book (author, title, reader, access, status, country, city, street, house) "
-                    + "VALUES (:author, :title, :reader, :access, :status, :country, :city, :street, :house)",
+            namedParameterJdbcTemplate.update("INSERT INTO book (bcid, author, title, reader, access, status, country, city, street, house) "
+                    + "VALUES (:bcid, :author, :title, :reader, :access, :status, :country, :city, :street, :house)",
                     new MapSqlParameterSource()
+                            .addValue("bcid", book.getBCID())
                             .addValue("author", book.getAuthor())
                             .addValue("title", book.getName())
                             .addValue("reader", book.getReader())
@@ -58,7 +60,6 @@ public class BookServiceImpl implements BookService {
                             .addValue("street", book.getStreet())
                             .addValue("house", book.getHouse()),
                     keyHolder);
-            book.setBCID(keyHolder.getKey().intValue());
         } else {
             namedParameterJdbcTemplate.update("UPDATE book SET author = :author, title = :title, reader = :reader,"
                     + " access = :access, status = :status, country = :country, city = :city, street = :street,"
