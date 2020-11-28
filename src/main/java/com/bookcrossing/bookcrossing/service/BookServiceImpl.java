@@ -46,7 +46,7 @@ public class BookServiceImpl implements BookService {
         if (book.getBCID() == null) {
             book.setBCID(count()+1);
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            namedParameterJdbcTemplate.update("INSERT INTO book (bcid, Author, Title,Access, Status, Reader, Country, City, Street, House) VALUES (:bcid, :author, :title,2,0, :reader, :country, :city, :street, :house)",
+            namedParameterJdbcTemplate.update("INSERT INTO book (bcid, Author, Title,Access, Status, Reader, Country, City, Street, House) VALUES (:bcid, :author, :title, :access,0, :reader, :country, :city, :street, :house)",
                     new MapSqlParameterSource()
                             .addValue("bcid", book.getBCID())
                             .addValue("author", book.getAuthor())
