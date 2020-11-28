@@ -5,16 +5,14 @@ CREATE TABLE reader (
   name VARCHAR(255) NOT NULL,
   role VARCHAR(50) NOT NULL,
   login VARCHAR(20) NOT NULL,
-  password VARCHAR(20) CHECK(Length(password)>7 and Length(password)<17),
+  password VARCHAR(20) CHECK(Length(password)>7 and Length(password)<21),
   PRIMARY KEY (login)
 );
-
-CREATE SEQUENCE book_bcid;
 
 DROP TABLE IF EXISTS book;
 
 CREATE TABLE book (
-  bcid      SERIAL,
+  bcid      INT NOT NULL,
   author    VARCHAR(255) NOT NULL,
   title     VARCHAR(255) NOT NULL,
   access INT CHECK( access>1 and access<5 and NOT NULL),
