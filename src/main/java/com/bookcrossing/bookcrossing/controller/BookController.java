@@ -75,7 +75,7 @@ public class BookController {
         book.setCountry(country);
         book.setCity(city);
         book.setStreet(street);
-        if(house.isEmpty()&&house.charAt(0)=='-'){
+        if(!house.isEmpty()&&house.charAt(0)=='-'){
             house=house.substring(1);
         }
         book.setHouse(house);
