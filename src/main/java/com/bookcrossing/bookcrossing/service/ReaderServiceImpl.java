@@ -49,7 +49,7 @@ public class ReaderServiceImpl implements ReaderService {
                                 .addValue("name", reader.getName())
                                 .addValue("password", reader.getPassword())
                                 .addValue("role", reader.getRole()),
-                         keyHolder,new String[]{"bcid"});
+                         keyHolder);
             } else {
                 reader = null;
             }
