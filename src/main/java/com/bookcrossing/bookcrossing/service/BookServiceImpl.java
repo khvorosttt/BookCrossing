@@ -69,7 +69,7 @@ public class BookServiceImpl implements BookService {
                             .addValue("title", book.getName())
                             .addValue("reader", book.getReader())
                             .addValue("access", book.getAccess())
-                            .addValue("status", book.getStatus())
+                            .addValue("status", book.getStatus() ? 1 : 0)
                             .addValue("country", book.getCountry())
                             .addValue("city", book.getCity())
                             .addValue("street", book.getStreet())
