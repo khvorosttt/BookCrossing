@@ -4,11 +4,11 @@ INSERT INTO reader (id, name, login, password, role) VALUES ('0000000003', 'read
 INSERT INTO reader (id, name, login, password, role) VALUES ('0000000004', 'reader4', 'reader4@mail.com','24681357', 'user');
 INSERT INTO reader (id, name, login, password, role) VALUES ('0000000005', 'reader5', 'reader5@mail.com','q1w2e3r4t5y6u7i8', 'user');
 
-INSERT INTO book (Author, Title,Access, Status, Reader, Country, City, Street, House) VALUES ('Лермонтов М.Ю.', 'Герой нашего времени',2,0, '0000000001', 'Беларусь', 'Брест', 'Гоголя', '48');
-INSERT INTO book (Author, Title,Access, Status, Reader, Country, City, Street, House) VALUES ('Тургенев И.С.', 'Отцы и дети',2,0, '0000000002', 'Беларусь', 'Брест', 'Гоголя', '48');
-INSERT INTO book (Author, Title,Access, Status, Country, City, Street, House) VALUES ('Шекспир В.', 'Ромео и Джульетта',2,1, 'Беларусь', 'Брест', 'Гоголя', '48');
-INSERT INTO book (Author, Title,Access, Status, Reader, Country, City, Street, House) VALUES ('Шекспир В.', 'Отелло',2,0, '0000000004', 'Беларусь', 'Брест', 'Гоголя', '48');
-INSERT INTO book (Author, Title,Access, Status, Reader, Country, City, Street, House) VALUES ('Грин Д.', 'Виноваты звёзды',2,0, '0000000003', 'Беларусь', 'Брест', 'Гоголя', '48');
+INSERT INTO book (bcid, Author, Title,Access, Status, Reader, Country, City, Street, House) VALUES (1,'Лермонтов М.Ю.', 'Герой нашего времени',2,0, '0000000001', 'Беларусь', 'Брест', 'Гоголя', '48');
+INSERT INTO book (bcid, Author, Title,Access, Status, Reader, Country, City, Street, House) VALUES (2,'Тургенев И.С.', 'Отцы и дети',2,0, '0000000002', 'Беларусь', 'Брест', 'Гоголя', '48');
+INSERT INTO book (bcid, Author, Title,Access, Status, Country, City, Street, House) VALUES (3,'Шекспир В.', 'Ромео и Джульетта',2,1, 'Беларусь', 'Брест', 'Гоголя', '48');
+INSERT INTO book (bcid, Author, Title,Access, Status, Reader, Country, City, Street, House) VALUES (4,'Шекспир В.', 'Отелло',2,0, '0000000004', 'Беларусь', 'Брест', 'Гоголя', '48');
+INSERT INTO book (bcid, Author, Title,Access, Status, Reader, Country, City, Street, House) VALUES (5,'Грин Д.', 'Виноваты звёзды',2,0, '0000000003', 'Беларусь', 'Брест', 'Гоголя', '48');
 
 
 INSERT INTO order_board (Author, Title) VALUES ('Кинг С.', 'Сияние');
