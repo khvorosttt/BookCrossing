@@ -81,7 +81,7 @@ public class BookController {
         book.setHouse(house);
         book.setAccess(access);
         book.setStatus(true);
-        /*bookService.save(book);*/
+        bookService.save(book);
         OrderBoard order_board = new OrderBoard();
         order_board.setAutor(author);
         order_board.setName(name);
