@@ -12,9 +12,9 @@ CREATE TABLE reader (
 DROP TABLE IF EXISTS book;
 
 CREATE TABLE book (
-  bcid      INT NOT NULL,
-  author    VARCHAR(255) NOT NULL,
-  title     VARCHAR(255) NOT NULL,
+  bcid VARCHAR(10) NOT NULL,
+  author VARCHAR(255) NOT NULL,
+  title VARCHAR(255) NOT NULL,
   access INT CHECK( access>1 and access<5 and NOT NULL),
   status INT CHECK(status<2 and NOT NULL),
   reader VARCHAR(255) NULL,
@@ -22,8 +22,7 @@ CREATE TABLE book (
   city VARCHAR(128) NOT NULL,
   street VARCHAR(128) NOT NULL,
   house VARCHAR(5) NULL,
-  PRIMARY KEY (bcid),
-  FOREIGN KEY (reader) REFERENCES reader(Id)
+  PRIMARY KEY (bcid)
 );
 
 DROP TABLE IF EXISTS order_board;
