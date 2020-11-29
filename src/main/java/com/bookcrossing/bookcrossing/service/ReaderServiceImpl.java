@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 public class ReaderServiceImpl implements ReaderService {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
     private final ReaderRowMapper readerRowMapper;
 
     @Autowired
