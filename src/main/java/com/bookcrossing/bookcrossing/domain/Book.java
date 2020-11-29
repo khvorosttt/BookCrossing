@@ -11,12 +11,12 @@ import java.util.List;
  * @author Lenovo
  */
 public class Book {
+    
     private Integer BCID;
     private String author;
     private String name;
     private String reader;
     private int access;
-    List<String> words;
     private boolean status = true;
     private String country;
     private String city;
@@ -61,10 +61,6 @@ public class Book {
 
     public void setStatus(boolean status) {
         this.status = status;
-    }
-
-    public void addWord(String word) {
-        words.add(word);
     }
 
     public int getAccess() {
@@ -118,7 +114,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book [autor=" + author + ", name=" + name + ", reader=" + reader + ", access" + access + ", status" + status + "]";
+        return "Книга [autor=" + author + ", name=" + name + ", reader=" + reader + ", access" + access + ", status" + status + "]";
     }
 
 
