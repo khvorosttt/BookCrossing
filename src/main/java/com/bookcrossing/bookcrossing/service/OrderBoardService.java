@@ -13,6 +13,7 @@ import java.util.List;
  * @author Lenovo
  */
 public interface OrderBoardService {
+    
     OrderBoard save(OrderBoard order_board);
 
     List<OrderBoard> findAll();
