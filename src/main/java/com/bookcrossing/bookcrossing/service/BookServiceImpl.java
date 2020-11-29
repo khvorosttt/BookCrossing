@@ -21,19 +21,10 @@ import java.util.List;
  */
 @Service
 public class BookServiceImpl implements BookService {
-
-    @Override
-    public List<Book> findByReader(String readerId) {
-        return namedParameterJdbcTemplate
-                .query("SELECT * FROM book WHERE reader = :reader",
-                        new MapSqlParameterSource().addValue("reader", readerId),
-                        bookRowMapper);
-    }
-
+    
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
     private final BookRowMapper bookRowMapper;
-
+    
     @Autowired
     public BookServiceImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate,
             BookRowMapper bookRowMapper) {
@@ -46,23 +37,25 @@ public class BookServiceImpl implements BookService {
         if (book.getBCID() == null) {
             book.setBCID(count()+1);
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            namedParameterJdbcTemplate.update("INSERT INTO book (bcid, Author, Title,Access, Status, Reader, Country, City, Street, House) VALUES (:bcid, :author, :title, :access,:status, :reader, :country, :city, :street, :house)",
+            namedParameterJdbcTemplate.update("INSERT INTO book (bcid, Author, Title,Access, Status, "
+                    + "Reader, Country, City, Street, House) VALUES (:bcid, :author, :title, :access,"
+                    + ":status, :reader, :country, :city, :street, :house)",
                     new MapSqlParameterSource()
                             .addValue("bcid", book.getBCID())
                             .addValue("author", book.getAuthor())
                             .addValue("title", book.getName())
                             .addValue("reader", book.getReader())
                             .addValue("access", book.getAccess())
-                            .addValue("status", (book.getStatus() ? 1 : 0))
+                            .addValue("status", book.getStatus() ? 1 : 0)
                             .addValue("country", book.getCountry())
                             .addValue("city", book.getCity())
                             .addValue("street", book.getStreet())
                             .addValue("house", book.getHouse()),
                     keyHolder);
         } else {
-            namedParameterJdbcTemplate.update("UPDATE book SET author = :author, title = :title, reader = :reader,"
-                    + " access = :access, status = :status, country = :country, city = :city, street = :street,"
-                    + " house = :house WHERE bcid = :bcid",
+            namedParameterJdbcTemplate.update("UPDATE book SET author = :author, title = :title,"
+                    + " reader = :reader, access = :access, status = :status, country = :country,"
+                    + " city = :city, street = :street, house = :house WHERE bcid = :bcid",
                     new MapSqlParameterSource()
                             .addValue("bcid", book.getBCID())
                             .addValue("author", book.getAuthor())
@@ -77,20 +70,20 @@ public class BookServiceImpl implements BookService {
         }
         return book;
     }
-
+    
     @Override
     public void delete(Book book) {
         namedParameterJdbcTemplate.update("DELETE FROM book WHERE bcid = :bcid",
                 new MapSqlParameterSource()
                         .addValue("bcid", book.getBCID()));
     }
-
+    
     @Override
     public List<Book> findAll() {
         return namedParameterJdbcTemplate
                 .query("SELECT * FROM book", bookRowMapper);
     }
-
+    
     @Override
     public Book findById(Integer id) {
         return namedParameterJdbcTemplate
@@ -98,14 +91,14 @@ public class BookServiceImpl implements BookService {
                         new MapSqlParameterSource().addValue("bcid", id),
                         bookRowMapper);
     }
-
+    
     @Override
-    public int count() {
+    public List<Book> findByReader(String readerId) {
         return namedParameterJdbcTemplate
-                .queryForObject("SELECT count(*) FROM book",
-                        new MapSqlParameterSource(),
-                        Integer.class);
-    }
+                .query("SELECT * FROM book WHERE reader = :reader",
+                        new MapSqlParameterSource().addValue("reader", readerId),
+                        bookRowMapper);
+    }     
 
     @Override
     public List<Book> findBook(Book book) {
@@ -117,4 +110,12 @@ public class BookServiceImpl implements BookService {
                                 .addValue("title", book.getName()), 
                         bookRowMapper);
     }
+    
+    @Override
+    public int count() {
+        return namedParameterJdbcTemplate
+                .queryForObject("SELECT count(*) FROM book",
+                        new MapSqlParameterSource(),
+                        Integer.class);
+    }    
 }
