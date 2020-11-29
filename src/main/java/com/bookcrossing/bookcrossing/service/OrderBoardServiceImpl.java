@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OrderBoardServiceImpl implements OrderBoardService {
+    
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
     OrderBoardRowMapper order_boardRowMapper;
 
     @Autowired
@@ -27,6 +27,7 @@ public class OrderBoardServiceImpl implements OrderBoardService {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.order_boardRowMapper = order_boardRowMapper;
     }
+    
     @Override
     public OrderBoard save(OrderBoard order_board) {
         if(namedParameterJdbcTemplate
@@ -52,15 +53,7 @@ public class OrderBoardServiceImpl implements OrderBoardService {
         return namedParameterJdbcTemplate
                 .query("SELECT author, title FROM order_board", order_boardRowMapper);
     }
-
-    @Override
-    public int count() {
-        return namedParameterJdbcTemplate
-                .queryForObject("SELECT count(*) FROM order_board",
-                        new MapSqlParameterSource(),
-                        Integer.class);
-    }
-
+    
     @Override
     public List<OrderBoard> findOrderBoard(OrderBoard order_board) {
         return namedParameterJdbcTemplate
@@ -79,4 +72,11 @@ public class OrderBoardServiceImpl implements OrderBoardService {
                         .addValue("title", order_board.getName()));
     }
     
+    @Override
+    public int count() {
+        return namedParameterJdbcTemplate
+                .queryForObject("SELECT count(*) FROM order_board",
+                        new MapSqlParameterSource(),
+                        Integer.class);
+    }    
 }
