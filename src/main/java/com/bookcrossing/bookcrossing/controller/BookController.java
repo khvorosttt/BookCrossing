@@ -17,10 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.List;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,7 +28,6 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
-
     @Autowired
     private OrderBoardService order_boardService;
     @Autowired
@@ -39,7 +35,6 @@ public class BookController {
 
     @GetMapping("/")
     public String getBookPage(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         List<Book> books = bookService.findAll();
         model.addAttribute("bookList", books);
         return "book";
@@ -55,7 +50,7 @@ public class BookController {
             book.setStatus(false);
             bookService.save(book);
         }
-        return "redirect:/";
+        return "redirect:/"; 
     }
 
     @GetMapping("/add-new-book")
@@ -69,22 +64,22 @@ public class BookController {
             @RequestParam(value = "street") String street, @RequestParam(value = "house") String house,
             @RequestParam(value = "access") int access) {
         Book book = new Book();
-        book.setAutor(author);
-        book.setName(name);
+        book.setAutor(author.trim());
+        book.setName(name.trim());
         book.setReader(null);
-        book.setCountry(country);
-        book.setCity(city);
-        book.setStreet(street);
+        book.setCountry(country.trim());
+        book.setCity(city.trim());
+        book.setStreet(street.trim());
         if(!house.isEmpty()&&house.charAt(0)=='-'){
             house=house.substring(1);
         }
-        book.setHouse(house);
+        book.setHouse(house.trim());
         book.setAccess(access);
         book.setStatus(true);
         bookService.save(book);
         OrderBoard order_board = new OrderBoard();
-        order_board.setAutor(author);
-        order_board.setName(name);
+        order_board.setAutor(author.trim());
+        order_board.setName(name.trim());
         List<OrderBoard> findBook = order_boardService.findOrderBoard(order_board);
         if (findBook.size() > 0) {
             order_boardService.delete(findBook.get(0));
@@ -99,10 +94,11 @@ public class BookController {
     }
 
     @PostMapping("/find-book")
-    public String getFindBook(Model model, @RequestParam(value = "author") String author, @RequestParam(value = "name") String name) {
+    public String getFindBook(Model model, @RequestParam(value = "author") String author,
+            @RequestParam(value = "name") String name) {
         Book book = new Book();
-        book.setAutor(author);
-        book.setName(name);
+        book.setAutor(author.trim());
+        book.setName(name.trim());
         List<Book> books = bookService.findBook(book);
         model.addAttribute("bookList", books);
         return "findBook";
@@ -161,19 +157,18 @@ public class BookController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Reader reader = readerService.findByLogin(user.getUsername());
         Book book = bookService.findById(id);
-        book.setAutor(author);
-        book.setName(name);
-        book.setReader(reader.getId());
-        book.setCountry(country);
-        book.setCity(city);
-        book.setStreet(street);
+        book.setAutor(author.trim());
+        book.setName(name.trim());
+        book.setCountry(country.trim());
+        book.setCity(city.trim());
+        book.setStreet(street.trim());
         if(house.isEmpty()&&house.charAt(0)=='-'){
             house=house.substring(1);
         }
-        book.setHouse(house);
+        book.setHouse(house.trim());
         book.setAccess(access);
         book.setStatus(false);
-        book=bookService.save(book);
+        bookService.save(book);
         return "redirect:/";
     }
 }
