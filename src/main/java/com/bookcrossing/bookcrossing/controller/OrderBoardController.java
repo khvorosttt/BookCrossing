@@ -37,10 +37,10 @@ public class OrderBoardController {
             @RequestParam(value = "name") String name) {
         OrderBoard order_board = new OrderBoard();
         Book book=new Book();
-        order_board.setAutor(author);
-        book.setAutor(author);
-        order_board.setName(name);
-        book.setName(name);
+        order_board.setAutor(author.trim());
+        book.setAutor(author.trim());
+        order_board.setName(name.trim());
+        book.setName(name.trim());
         List<Book> books = bookService.findBook(book);
         if(books.size()>0){
             return "redirect:/book-"+books.get(0).getBCID()+"-info";
