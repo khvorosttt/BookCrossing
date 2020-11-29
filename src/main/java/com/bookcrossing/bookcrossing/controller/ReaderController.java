@@ -51,7 +51,7 @@ public class ReaderController {
     public String addNewReader(@RequestParam(value = "name") String name, @RequestParam(value = "login") String login,
                              @RequestParam(value = "pass") String pass, Model model) {
         Reader reader = new Reader();
-        reader.setLogin(login);
+        reader.setLogin(login.trim());
         reader.setName(name);
         reader.setPassword(pass);
         reader.setRole("user");
