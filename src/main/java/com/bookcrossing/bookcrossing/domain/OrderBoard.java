@@ -10,6 +10,7 @@ package com.bookcrossing.bookcrossing.domain;
  * @author Lenovo
  */
 public class OrderBoard {
+    
     private String author;
     private String name;
     
