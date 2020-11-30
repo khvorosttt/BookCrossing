@@ -19,9 +19,9 @@
             </c:if>
             <div class="divAll">
                 <label>Имя</label>
-                <input class="LogInInput" type="text" name="name" tabindex="1" placeholder="Имя" required>
+                <input class="LogInInput" type="text" name="name" tabindex="1" maxlength="255" placeholder="Имя" required>
                 <label class="LogInLabel">Логин</label>
-                <input class="LogInInput" type="text" name="login" placeholder="Логин" required>
+                <input class="LogInInput" type="text" name="login" maxlength="20" placeholder="Логин" required>
                 <label class="LogInLabel">Пароль</label>
                 <input class="LogInInput" type="password" name="pass" id="pass" minlength="8" maxlength="20" placeholder="Пароль" required>
                 <label class="LogInLabel">Повторите пароль</label>
