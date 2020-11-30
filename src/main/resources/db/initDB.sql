@@ -17,7 +17,7 @@ CREATE TABLE book (
   title VARCHAR(255) NOT NULL,
   access INT NOT NULL,
   status INT NOT NULL,
-  reader VARCHAR(255) NULL,
+  reader VARCHAR(10) NULL,
   country VARCHAR(128) NOT NULL,
   city VARCHAR(128) NOT NULL,
   street VARCHAR(128) NOT NULL,
