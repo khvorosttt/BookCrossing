@@ -30,17 +30,17 @@
         <form action="/edit-${book.BCID}" method="POST">
             <div class="divAll">
                 <label>Автор</label>
-                <input type="text" name="author" required>
+                <input type="text" name="author" maxlength="255" required>
                 <label>Название</label>
-                <input type="text" name="name" required>
+                <input type="text" name="name" maxlength="255" required>
                 <label>Страна</label>
-                <input type="text" name="country" required>
+                <input type="text" name="country" maxlength="128" required>
                 <label>Город</label>
-                <input type="text" name="city" required>
+                <input type="text" name="city" maxlength="128" required>
                 <label>Улица</label>
-                <input type="text" name="street" required>
+                <input type="text" name="street" maxlength="128" required>
                 <label>Дом</label>
-                <input type="text" name="house">
+                <input type="text" name="house" maxlength="5">
                 <label>Доступ</label>
                 <input type="number" name="access" min="2" max="4" required>
                 <button class="send" type="submit">Сохранить</button>
