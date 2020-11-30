@@ -25,9 +25,9 @@
         <h1>Доска заказов</h1>
         <form form action="/order-board" method="POST">
             <label>Автор</label>
-            <input type="text" name="author" required>
+            <input type="text" name="author" maxlength="255" required>
             <label>Название</label>
-            <input type="text" name="name" required>
+            <input type="text" name="name" maxlength="255" required>
             <input type="submit" value="Добавить">
         </form>
         <table>
