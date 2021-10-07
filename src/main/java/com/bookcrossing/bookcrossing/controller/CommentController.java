@@ -50,8 +50,8 @@ public class CommentController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Reader reader = readerService.findByLogin(user.getUsername());
         comment.setId_user(reader.getId());
-        Date date = new Date();
-        comment.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
+        //Date date = new Date();
+        //comment.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
         comment.setTextComment(textComment);
         Comment saved = commentService.save(comment);
         comments=commentService.findByBook(book);
