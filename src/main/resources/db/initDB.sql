@@ -22,6 +22,8 @@ CREATE TABLE book (
   city VARCHAR(128) NOT NULL,
   street VARCHAR(128) NOT NULL,
   house VARCHAR(5) NULL,
+  genre INT NOT NULL,
+  tags VARCHAR(120),
   PRIMARY KEY (bcid)
 );
 
@@ -29,6 +31,31 @@ DROP TABLE IF EXISTS order_board;
 
 CREATE TABLE order_board (
   Author VARCHAR(255) NOT NULL,
-  Title VARCHAR(255) NOT NULL
+  Title VARCHAR(255) NOT NULL,
+  Name VARCHAR(255) NOT NULL
 );
 
+DROP TABLE IF EXISTS message;
+
+CREATE TABLE message
+(
+    Id_message INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    Id_sender VARCHAR(10) NOT NULL,
+    Id_recipient VARCHAR(10) NOT NULL,
+    date_time date NOT NULL,
+    textMessage VARCHAR(500) NOT NULL,
+    Is_read INT NOT NULL,
+    PRIMARY KEY (Id_message)
+);
+
+DROP TABLE IF EXISTS comment;
+
+CREATE TABLE comment
+(
+    Id_comment INT NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    Id_user VARCHAR(10) NOT NULL,
+    Id_book INT NOT NULL,
+    textComment VARCHAR(1000) NOT NULL,
+    date_time date NOT NULL,
+    PRIMARY KEY (Id_comment)
+);
