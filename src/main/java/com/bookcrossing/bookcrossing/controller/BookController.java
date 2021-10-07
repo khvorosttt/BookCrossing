@@ -115,7 +115,7 @@ public class BookController {
         model.addAttribute("book", book);
         List<Comment> comments=new ArrayList<Comment>();
         comments=commentService.findByBook(book);
-        model.addAttribute("comments", comments);
+        //model.addAttribute("comments", comments);
         return "bookInfo";
     }
     
