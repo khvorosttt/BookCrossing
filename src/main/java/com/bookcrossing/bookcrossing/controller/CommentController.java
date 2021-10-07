@@ -57,7 +57,7 @@ public class CommentController {
         comments=commentService.findByBook(book);
         model.addAttribute("book", book);
         model.addAttribute("comments", comments);
-        return "bookInfo";*/
-    }
+        return "bookInfo";
+    }*/
     
 }
