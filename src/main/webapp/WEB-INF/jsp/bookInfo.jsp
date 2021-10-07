@@ -21,16 +21,32 @@
             </ul>
         </nav>
     </header>
-<section>
+    <section>
         <div class="divAll">
-          <a href="/">Возврат</a>
-          <label>Автор: ${book.author}</label>
-          <label>Название: ${book.name}</label>
-          <label>Адрес: ${book.country}, г. ${book.city}, ул. ${book.street} ${book.house}</label>
-          <label>Доступ: ${book.access}</label>
-          <label>Статус: ${book.status}</label>
+            <a href="/">Возврат</a>
+            <label>Автор: ${book.author}</label>
+            <label>Название: ${book.name}</label>
+            <label>Адрес: ${book.country}, г. ${book.city}, ул. ${book.street} ${book.house}</label>
+            <label>Доступ: ${book.access}</label>
+            <label>Статус: ${book.status}</label>
         </div>
+
+        <table>
+            <tr>
+                <th>Комментарии</th>
+            </tr>
+            <tr><input type="text" name="textComment" maxlength="1000" required>
+            <form action="/edit-${book.BCID}" method="POST">
+                                <a href="/book-${book.BCID}-info">Комментировать</a>
+                            </form></tr>
+            <c:forEach var="comment" items="${comments}">
+                <tr>
+                    <td>${comment.id_user}   ${comment.date_time}
+                        <p>${comment.textComment}</p></td>
+                </tr>
+            </c:forEach>
+        </table>
     </section>
-  </body>
+</body>
 
 </html>
