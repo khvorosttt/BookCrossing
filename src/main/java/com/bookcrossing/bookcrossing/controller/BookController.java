@@ -33,8 +33,8 @@ public class BookController {
     private OrderBoardService order_boardService;
     @Autowired
     private ReaderService readerService;
-    @Autowired
-    private CommentService commentService;
+    //@Autowired
+    //private CommentService commentService;
 
     @GetMapping("/")
     public String getBookPage(Model model) {
