@@ -11,6 +11,7 @@ import com.bookcrossing.bookcrossing.domain.Reader;
 import com.bookcrossing.bookcrossing.service.BookService;
 import com.bookcrossing.bookcrossing.service.CommentService;
 import com.bookcrossing.bookcrossing.service.ReaderService;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,14 +44,14 @@ public class CommentController {
     @PostMapping("/book-{id}-info")
     public String setBookInfo(@PathVariable("id") int id, Model model, @RequestParam(value = "textComment") String textComment) {
         Book book = bookService.findById(id);
-        List<Comment> comments = new ArrayList<>();
+        List<Comment> comments = new ArrayList<Comment>();
         Comment comment = new Comment();
         comment.setId_book(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Reader reader = readerService.findByLogin(user.getUsername());
         comment.setId_user(reader.getId());
         Date date = new Date();
-        comment.setDate_Time((java.sql.Date) date);
+        comment.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
         comment.setTextComment(textComment);
         Comment saved = commentService.save(comment);
         comments=commentService.findByBook(book);
