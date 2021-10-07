@@ -9,7 +9,6 @@ import com.bookcrossing.bookcrossing.domain.Book;
 import com.bookcrossing.bookcrossing.domain.OrderBoard;
 import com.bookcrossing.bookcrossing.domain.Reader;
 import com.bookcrossing.bookcrossing.service.BookService;
-import com.bookcrossing.bookcrossing.service.CommentService;
 import com.bookcrossing.bookcrossing.service.OrderBoardService;
 import com.bookcrossing.bookcrossing.service.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +32,6 @@ public class BookController {
     private OrderBoardService order_boardService;
     @Autowired
     private ReaderService readerService;
-    //@Autowired
-    //private CommentService commentService;
 
     @GetMapping("/")
     public String getBookPage(Model model) {
