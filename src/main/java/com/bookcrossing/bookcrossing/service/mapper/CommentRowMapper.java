@@ -17,11 +17,11 @@ import org.springframework.jdbc.core.RowMapper;
 public class CommentRowMapper implements RowMapper<Comment> {
 
     @Override
-    public Comment mapRow(ResultSet rs, int i) throws SQLException {
+    public Comment mapRow(ResultSet rs, int rowNum) throws SQLException {
         Comment comment = new Comment();
-        comment.setId_comment(rs.getInt("id_comment"));
-        comment.setId_user(rs.getString("id_user"));
-        comment.setId_book(rs.getInt("id_book"));
+        comment.setId_comment(rs.getInt("Id_comment"));
+        comment.setId_user(rs.getString("Id_user"));
+        comment.setId_book(rs.getInt("Id_book"));
         comment.setTextComment(rs.getString("textComment"));
         comment.setDate_Time(rs.getDate("date_time"));
         return comment;
