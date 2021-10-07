@@ -35,7 +35,7 @@ public class CommentServiceImpl implements CommentService {
         if (comment.getId_comment() == null) {
             comment.setId_comment(count()+1);
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            namedParameterJdbcTemplate.update("INSERT INTO comment (id_comment, id_user, id_book, textComment,"
+            namedParameterJdbcTemplate.update("INSERT INTO comment (Id_comment, Id_user, Id_book, textComment,"
                     + " date_time) VALUES (:id_comment, :id_user, :id_book, :textComment,"
                     + ":date_time)",
                     new MapSqlParameterSource()
@@ -46,8 +46,8 @@ public class CommentServiceImpl implements CommentService {
                             .addValue("date_time", comment.getDate_Time()),
                     keyHolder);
         } else {
-            namedParameterJdbcTemplate.update("UPDATE comment SET id_comment = :id_comment,"
-                    + "id_user = :id_user, id_book=:idbook, textComment = :textComment, date_time = :date_time",
+            namedParameterJdbcTemplate.update("UPDATE comment SET Id_comment = :id_comment,"
+                    + "Id_user = :id_user, Id_book=:idbook, textComment = :textComment, date_time = :date_time",
                     new MapSqlParameterSource()
                             .addValue("id_comment", comment.getId_comment())
                             .addValue("id_user", comment.getId_user())
@@ -61,20 +61,20 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> findAll() {
         return namedParameterJdbcTemplate
-                .query("SELECT id_comment, id_user, id_book, textComment, date_time FROM comment", commentRowMapper);
+                .query("SELECT Id_comment, Id_user, Id_book, textComment, date_time FROM comment", commentRowMapper);
     }
 
     @Override
     public List<Comment> findByBook(Book book) {
         return namedParameterJdbcTemplate
-                .query("SELECT * FROM comment WHERE id_book = :id_book",
+                .query("SELECT * FROM comment WHERE Id_book = :id_book",
                         new MapSqlParameterSource().addValue("id_book", book.getBCID()),
                         commentRowMapper);
     }
 
     @Override
     public void delete(Comment comment) {
-        namedParameterJdbcTemplate.update("DELETE FROM comment WHERE id_comment = :id_comment",
+        namedParameterJdbcTemplate.update("DELETE FROM comment WHERE Id_comment = :id_comment",
                 new MapSqlParameterSource()
                         .addValue("id_comment", comment.getId_comment()));
     }
