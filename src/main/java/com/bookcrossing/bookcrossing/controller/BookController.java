@@ -6,11 +6,14 @@
 package com.bookcrossing.bookcrossing.controller;
 
 import com.bookcrossing.bookcrossing.domain.Book;
+import com.bookcrossing.bookcrossing.domain.Comment;
 import com.bookcrossing.bookcrossing.domain.OrderBoard;
 import com.bookcrossing.bookcrossing.domain.Reader;
 import com.bookcrossing.bookcrossing.service.BookService;
+import com.bookcrossing.bookcrossing.service.CommentService;
 import com.bookcrossing.bookcrossing.service.OrderBoardService;
 import com.bookcrossing.bookcrossing.service.ReaderService;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +35,8 @@ public class BookController {
     private OrderBoardService order_boardService;
     @Autowired
     private ReaderService readerService;
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/")
     public String getBookPage(Model model) {
@@ -108,6 +113,9 @@ public class BookController {
     public String getBookInfo(@PathVariable("id") int id, Model model) {
         Book book = bookService.findById(id);
         model.addAttribute("book", book);
+        List<Comment> comments=new ArrayList<Comment>();
+        comments=commentService.findByBook(book);
+        model.addAttribute("comments", comments);
         return "bookInfo";
     }
     
