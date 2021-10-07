@@ -44,7 +44,7 @@ public class CommentController {
     @PostMapping("/book-{id}-info")
     public String setBookInfo(@PathVariable("id") int id, Model model, @RequestParam(value = "textComment") String textComment) {
         Book book = bookService.findById(id);
-        List<Comment> comments = new ArrayList<>();
+        List<Comment> comments = new ArrayList<Comment>();
         Comment comment = new Comment();
         comment.setId_book(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
