@@ -32,14 +32,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CommentController {
     
-    @Autowired
-    private BookService bookService;
+    //@Autowired
+    //private BookService bookService;
     
-    @Autowired
-    private ReaderService readerService;
+    //@Autowired
+    //private ReaderService readerService;
     
-    @Autowired
-    private CommentService commentService;
+    //@Autowired
+    //private CommentService commentService;
     
     /*@PostMapping("/book-{id}-info")
     public String setBookInfo(@PathVariable("id") int id, Model model, @RequestParam(value = "textComment") String textComment) {
