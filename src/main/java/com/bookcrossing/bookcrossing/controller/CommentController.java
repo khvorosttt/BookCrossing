@@ -41,23 +41,23 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
     
-    @PostMapping("/book-{id}-info")
+    /*@PostMapping("/book-{id}-info")
     public String setBookInfo(@PathVariable("id") int id, Model model, @RequestParam(value = "textComment") String textComment) {
         Book book = bookService.findById(id);
-        //List<Comment> comments = new ArrayList<Comment>();
-        //Comment comment = new Comment();
-        //comment.setId_book(id);
+        List<Comment> comments = new ArrayList<>();
+        Comment comment = new Comment();
+        comment.setId_book(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Reader reader = readerService.findByLogin(user.getUsername());
-        //comment.setId_user(reader.getId());
-        //Date date = new Date();
-        //comment.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
-        //comment.setTextComment(textComment);
-        //Comment saved = commentService.save(comment);
-        //comments=commentService.findByBook(book);
+        comment.setId_user(reader.getId());
+        Date date = new Date();
+        comment.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
+        comment.setTextComment(textComment);
+        Comment saved = commentService.save(comment);
+        comments=commentService.findByBook(book);
         model.addAttribute("book", book);
-        //model.addAttribute("comments", comments);
-        return "bookInfo";
+        model.addAttribute("comments", comments);
+        return "bookInfo";*/
     }
     
 }
