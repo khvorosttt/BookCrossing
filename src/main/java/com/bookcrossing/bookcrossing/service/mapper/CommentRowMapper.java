@@ -9,11 +9,13 @@ import com.bookcrossing.bookcrossing.domain.Comment;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Lenovo
  */
+@Component
 public class CommentRowMapper implements RowMapper<Comment> {
 
     @Override
