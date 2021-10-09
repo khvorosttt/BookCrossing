@@ -43,8 +43,8 @@
             </tr>
             <c:forEach var="comment" items="${comments}">
                 <tr>
-                    ${comment.Id_user}   ${comment.date_time}
-                ${comment.textComment}
+                    ${book.BCID}   ${book.BCID}
+                ${book.BCID}
                 </tr>
             </c:forEach>
         </table>
