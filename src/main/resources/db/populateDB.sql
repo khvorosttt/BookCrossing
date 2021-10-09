@@ -18,8 +18,10 @@ INSERT INTO book (bcid, Author, Title,Access, Status, Country, City, Street, Hou
 INSERT INTO book (bcid, Author, Title,Access, Status, Country, City, Street, House, genre) VALUES (12,'Шекспир В.', 'Гамлет',2,1, 'Беларусь', 'Брест', 'Гоголя', '48', 1);
 INSERT INTO book (bcid, Author, Title,Access, Status, Country, City, Street, House, genre) VALUES (13,'Шекспир В.', 'Укрощение строптивой',2,1, 'Беларусь', 'Брест', 'Гоголя', '48', 1);
 
-INSERT INTO order_board (Author, Title, Name) VALUES ('Кинг С.', 'Сияние', '0000000001');
-INSERT INTO order_board (Author, Title, Name) VALUES ('Достоевский Ф.М.', 'Преступление и наказание', '0000000001');
-INSERT INTO order_board (Author, Title, Name) VALUES ('Пушкин А.С.', 'Руслан и Людмила', '0000000001');
-INSERT INTO order_board (Author, Title, Name) VALUES ('Пушкин А.С.', 'Евгений Онегин', '0000000001');
-INSERT INTO order_board (Author, Title, Name) VALUES ('Толстой Л.Н.', 'Война и мир', '0000000001');
+INSERT INTO order_board (Author, Title, Reader) VALUES ('Кинг С.', 'Сияние', '0000000001');
+INSERT INTO order_board (Author, Title, Reader) VALUES ('Достоевский Ф.М.', 'Преступление и наказание', '0000000001');
+INSERT INTO order_board (Author, Title, Reader) VALUES ('Пушкин А.С.', 'Руслан и Людмила', '0000000001');
+INSERT INTO order_board (Author, Title, Reader) VALUES ('Пушкин А.С.', 'Евгений Онегин', '0000000001');
+INSERT INTO order_board (Author, Title, Reader) VALUES ('Толстой Л.Н.', 'Война и мир', '0000000001');
+
+INSERT INTO comment (Id_comment, Id_user, Id_book, textComment, date_time) VALUES (1, '0000000002', 1, 'Классная книга',CURRENT_DATE);
