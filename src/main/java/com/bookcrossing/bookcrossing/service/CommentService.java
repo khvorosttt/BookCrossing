@@ -23,5 +23,7 @@ public interface CommentService {
     
     void delete(Comment comment);
     
+    Comment findById(Integer id_comment);
+    
     int count();
 }
