@@ -14,6 +14,12 @@ class BookServiceTest {
 
     @Autowired
     BookService bookService;
+    @Autowired
+    private OrderBoardService order_boardService;
+    @Autowired
+    private ReaderService readerService;
+    @Autowired
+    private CommentService commentService;
 
     @Test
     void shouldFindAll() {
@@ -52,6 +58,7 @@ class BookServiceTest {
         book.setCity("Sample city");
         book.setStreet("Sample street");
         book.setAccess(2);
+        book.setGenre(0);
         book = bookService.save(book);
         // verify
         int countAfter = bookService.count();
@@ -104,6 +111,7 @@ class BookServiceTest {
         book.setCity("Sample city");
         book.setStreet("Sample street");
         book.setAccess(2);
+        book.setGenre(0);
         book = bookService.save(book);
         int countBefore = bookService.count();
         // delete book
