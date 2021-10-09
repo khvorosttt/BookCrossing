@@ -41,8 +41,8 @@
                             </form></tr>
             <c:forEach var="comment" items="${comments}">
                 <tr>
-                   <th> ${comment.Id_user}   ${comment.date_time}
-                       <p>${comment.textComment}</p></th>
+                    ${comment.Id_user}   ${comment.date_time}
+                       <p>${comment.textComment}</p>
                 </tr>
             </c:forEach>
         </table>
