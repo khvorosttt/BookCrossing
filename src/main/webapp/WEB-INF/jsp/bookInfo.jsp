@@ -41,7 +41,7 @@
             </tr>
             <c:forEach var="comment" items="${comments}">
                 <tr>
-                    ${comment.getId_user}   ${book.BCID}
+                    ${comment.Id_user}   ${book.BCID}
                     ${book.BCID}
                 </tr>
             </c:forEach>
