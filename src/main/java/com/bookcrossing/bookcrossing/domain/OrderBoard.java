@@ -11,8 +11,17 @@ package com.bookcrossing.bookcrossing.domain;
  */
 public class OrderBoard {
     
+    private String reader;
     private String author;
     private String name;
+    
+    public String getReader(){
+        return reader;
+    }
+    
+    public void setReader(String reader){
+        this.reader=reader;
+    }
     
     public String getName() {
         return name;
