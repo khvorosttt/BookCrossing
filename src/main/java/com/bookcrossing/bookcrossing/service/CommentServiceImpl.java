@@ -63,7 +63,7 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> findAll() {
         return namedParameterJdbcTemplate
-                .query("SELECT Id_comment, Id_user, Id_book, textComment, date_time FROM comment", commentRowMapper);
+                .query("SELECT * FROM comment", commentRowMapper);
     }
 
     @Override
@@ -79,6 +79,14 @@ public class CommentServiceImpl implements CommentService {
         namedParameterJdbcTemplate.update("DELETE FROM comment WHERE Id_comment = :id_comment",
                 new MapSqlParameterSource()
                         .addValue("id_comment", comment.getId_comment()));
+    }
+    
+    @Override
+    public Comment findById(Integer id_comment) {
+        return namedParameterJdbcTemplate
+                .queryForObject("SELECT * FROM comment WHERE id_comment = :id_comment",
+                        new MapSqlParameterSource().addValue("id_comment", id_comment),
+                        commentRowMapper);
     }
 
     @Override
