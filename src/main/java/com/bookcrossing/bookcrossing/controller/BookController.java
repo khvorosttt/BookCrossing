@@ -115,6 +115,8 @@ public class BookController {
         model.addAttribute("book", book);
         List<Comment> comments=commentService.findAll();
         model.addAttribute("commentList", comments);
+        /*List<Book> books = bookService.findAll();
+        model.addAttribute("bookList", books);*/
         return "bookInfo";
     }
     
