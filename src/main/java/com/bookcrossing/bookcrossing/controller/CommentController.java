@@ -45,6 +45,7 @@ public class CommentController {
     public String setBookInfo(@PathVariable("id") int id, Model model, @RequestParam(value = "textComment") String textComment) {
         Book book = bookService.findById(id);
         Comment comment = new Comment();
+        comment.setId_comment(5);
         comment.setId_book(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Reader reader = readerService.findByLogin(user.getUsername());
