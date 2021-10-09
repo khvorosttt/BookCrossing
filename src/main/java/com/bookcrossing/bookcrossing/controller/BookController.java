@@ -110,11 +110,11 @@ public class BookController {
     }
 
     @GetMapping("/book-{id}-info")
-    public String getBookInfo(@PathVariable("id") int id, Model model1, Model model2) {
+    public String getBookInfo(@PathVariable("id") int id, Model model) {
         Book book = bookService.findById(id);
-        model1.addAttribute("book", book);
-        List<Comment> comments=commentService.findByBook(book);
-        model2.addAttribute("comments", comments);
+        model.addAttribute("book", book);
+        List<Comment> comments=commentService.findAll;
+        model.addAttribute("comments", comments);
         return "bookInfo";
     }
     
