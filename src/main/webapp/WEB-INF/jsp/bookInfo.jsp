@@ -42,7 +42,7 @@
             <c:forEach var="comment" items="${commentList}">
                 <tr>
                     <td>
-                        ${comment.id_user} ${comment.textComment}
+                        ${comment.id_user} <br>${comment.textComment}
                     </td>
                 </tr>
             </c:forEach>
