@@ -61,7 +61,7 @@
                                 <a href="/add-${book.BCID}">Добавить</a>
                             </form>
                         </sec:authorize>
-                        <a href="/book-${book.BCID}-info">Просмотреть</a></td></td>
+                        <a href="/book-${book.BCID}-info">Просмотреть</a></td>
                 </tr>
             </c:forEach>
         </table>
