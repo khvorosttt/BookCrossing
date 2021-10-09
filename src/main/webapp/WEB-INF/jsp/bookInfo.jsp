@@ -40,11 +40,11 @@
                 <input type="text" name="textComment" maxlength="1000" required>
                 <button class="send" type="submit">Комментировать</button>
             </form>
-        </tr>
+            </tr>
             <c:forEach var="comment" items="${comments}">
                 <tr>
                     ${comment.Id_user}   ${comment.date_time}
-                       <p>${comment.textComment}</p>
+                ${comment.textComment}
                 </tr>
             </c:forEach>
         </table>
