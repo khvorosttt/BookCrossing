@@ -39,11 +39,11 @@
             <tr>
                 <th>Комментарии</th>
             </tr>
-            <c:forEach var="comment" items="${commentList}">
+            <c:forEach var="comment" items="${bookList}">
                 <tr>
                     <td>
-                        ${comment.Id_user}   ${book.BCID}
-                        ${book.BCID}
+                        ${comment.BCID}   ${book.name}
+                        ${book.author}
                     </td>
                 </tr>
             </c:forEach>
