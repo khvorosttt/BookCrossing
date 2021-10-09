@@ -41,7 +41,7 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
     
-    @PostMapping("/book-{id}-info")
+    @PostMapping("/edit-{id}")
     public String setBookInfo(@PathVariable("id") int id, Model model, @RequestParam(value = "textComment") String textComment) {
         Book book = bookService.findById(id);
         List<Comment> comments = new ArrayList<Comment>();
