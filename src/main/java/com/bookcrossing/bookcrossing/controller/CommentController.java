@@ -54,9 +54,9 @@ public class CommentController {
         comment.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
         comment.setTextComment(textComment);
         Comment saved = commentService.save(comment);
-        comments=commentService.findByBook(book);
+        comments=commentService.findAll();
         model.addAttribute("book", book);
-        model.addAttribute("comments", comments);
+        model.addAttribute("commentList", comments);
         return "bookInfo";
     }
     
