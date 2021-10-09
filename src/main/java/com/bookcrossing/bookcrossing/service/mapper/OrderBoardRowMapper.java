@@ -18,6 +18,7 @@ public class OrderBoardRowMapper implements RowMapper<OrderBoard> {
         OrderBoard order_board = new OrderBoard();
         order_board.setAutor(rs.getString("author"));
         order_board.setName(rs.getString("title"));
+        order_board.setReader(rs.getString("reader"));
         return order_board;
     }
 }
