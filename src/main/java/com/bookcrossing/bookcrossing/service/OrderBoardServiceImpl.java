@@ -39,10 +39,11 @@ public class OrderBoardServiceImpl implements OrderBoardService {
             return null;
         }else{
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            namedParameterJdbcTemplate.update("INSERT INTO order_board (author, title) VALUES (:author, :title)",
+            namedParameterJdbcTemplate.update("INSERT INTO order_board (author, title,reader) VALUES (:author, :title, :reader)",
                     new MapSqlParameterSource()
                             .addValue("author", order_board.getAuthor())
                             .addValue("title", order_board.getName())
+                            .addValue("reader", order_board.getReader())
                     , keyHolder);
             return order_board;
         }
@@ -51,13 +52,13 @@ public class OrderBoardServiceImpl implements OrderBoardService {
     @Override
     public List<OrderBoard> findAll() {
         return namedParameterJdbcTemplate
-                .query("SELECT author, title FROM order_board", order_boardRowMapper);
+                .query("SELECT author, title, reader FROM order_board", order_boardRowMapper);
     }
     
     @Override
     public List<OrderBoard> findOrderBoard(OrderBoard order_board) {
         return namedParameterJdbcTemplate
-                .query("SELECT author, title FROM order_board WHERE UPPER(author) = UPPER(:author)"
+                .query("SELECT author, title,reader FROM order_board WHERE UPPER(author) = UPPER(:author)"
                         + " AND UPPER(title) = UPPER(:title)",
                         new MapSqlParameterSource()
                         .addValue("author", order_board.getAuthor())
