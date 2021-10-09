@@ -43,7 +43,7 @@
                 <tr>
                     <td>
                         ${comment.id_user}   ${comment.date_time}
-                        <p>${comment.textComment}</p>
+
                     </td>
                 </tr>
             </c:forEach>
