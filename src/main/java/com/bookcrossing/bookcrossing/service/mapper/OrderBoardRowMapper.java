@@ -16,9 +16,9 @@ public class OrderBoardRowMapper implements RowMapper<OrderBoard> {
     @Override
     public OrderBoard mapRow(ResultSet rs, int rowNum) throws SQLException {
         OrderBoard order_board = new OrderBoard();
-        order_board.setAutor(rs.getString("author"));
-        order_board.setName(rs.getString("title"));
-        order_board.setReader(rs.getString("reader"));
+        order_board.setAutor(rs.getString("Author"));
+        order_board.setName(rs.getString("Title"));
+        order_board.setReader(rs.getString("Reader"));
         return order_board;
     }
 }
