@@ -12,7 +12,7 @@ import java.sql.Date;
 public class Comment {
     private Integer id_comment;
     private String id_user;
-    private Integer id_book;
+    private int id_book;
     private String textComment;
     private Date date_time;
     
@@ -32,11 +32,11 @@ public class Comment {
         this.id_user=id_user;
     }
     
-    public Integer getId_book(){
+    public int getId_book(){
         return id_book;
     }
     
-    public void setId_book(Integer id_book){
+    public void setId_book(int id_book){
         this.id_book=id_book;
     }
     
