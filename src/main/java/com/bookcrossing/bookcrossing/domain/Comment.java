@@ -29,7 +29,7 @@ public class Comment {
     }
     
     public void setId_user(String id_user){
-        this.id_user=this.id_user;
+        this.id_user=id_user;
     }
     
     public int getId_book(){
