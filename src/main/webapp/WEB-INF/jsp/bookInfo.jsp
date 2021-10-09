@@ -32,7 +32,7 @@
         </div>
 
 
-        <form action="/book-${book.BCID}-info" method="GET">
+        <form action="/book-${book.BCID}-info" method="POST">
             <input type="text" name="textComment" maxlength="1000" required>    
             <button class="send" type="submit">Комментировать</button>
         </form>
