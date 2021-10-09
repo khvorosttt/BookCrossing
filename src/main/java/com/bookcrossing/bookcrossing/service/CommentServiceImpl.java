@@ -37,7 +37,7 @@ public class CommentServiceImpl implements CommentService {
         if (comment.getId_comment() == null) {
             comment.setId_comment(count()+1);
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            namedParameterJdbcTemplate.update("INSERT INTO comment (Id_comment, Id_user, Id_book, textComment,"
+            namedParameterJdbcTemplate.update("INSERT INTO comment (id_comment, id_user, id_book, textComment,"
                     + " date_time) VALUES (:id_comment, :id_user, :id_book, :textComment,"
                     + ":date_time)",
                     new MapSqlParameterSource()
