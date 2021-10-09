@@ -15,6 +15,8 @@ public class Book {
     private Integer BCID;
     private String author;
     private String name;
+    private int genre;
+    private String tags;
     private String reader;
     private int access;
     private boolean status = true;
@@ -23,6 +25,22 @@ public class Book {
     private String street;
     private String house;
 
+    public int getGenre(){
+        return genre;
+    }
+    
+    public void setGenre(int genre){
+        this.genre=genre;
+    }
+    
+    public String getTags(){
+        return tags;
+    }
+    
+    public void setTags(String tags){
+        this.tags=tags;
+    }
+    
     public Integer getBCID() {
         return BCID;
     }
