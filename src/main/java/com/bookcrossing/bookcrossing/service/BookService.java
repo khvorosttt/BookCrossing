@@ -22,6 +22,10 @@ public interface BookService {
     List<Book> findByReader(String readerId);
     
     List<Book> findBook(Book book);
+    
+    List<Book> findByGenre(int genre);
+    
+    List<Book> findByTags(String tag);
 
     int count();
 }
