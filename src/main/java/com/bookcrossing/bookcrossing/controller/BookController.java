@@ -114,7 +114,7 @@ public class BookController {
         Book book = bookService.findById(id);
         model.addAttribute("book", book);
         List<Comment> comments=commentService.findByBook(book);
-        model.addAttribute("comments", comments);
+        model.addAttribute("commentList", comments);
         return "bookInfo";
     }
     
