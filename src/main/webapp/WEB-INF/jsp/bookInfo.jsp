@@ -42,7 +42,7 @@
             <c:forEach var="comment" items="${commentList}">
                 <tr>
                     <td>
-                        ${comment.BCID}   ${book.name}
+                        ${comment.Id_user}   ${book.name}
                         ${book.author}
                     </td>
                 </tr>
