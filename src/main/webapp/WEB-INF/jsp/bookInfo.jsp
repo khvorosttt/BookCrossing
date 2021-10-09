@@ -31,8 +31,9 @@
             <label>Статус: ${book.status}</label>
         </div>
 
+        <input type="text" name="textComment" maxlength="1000" required>
         <form action="/book-${book.BCID}-info" method="POST">
-            <input type="text" name="textComment" maxlength="1000" required>
+            
             <button class="send" type="submit">Комментировать</button>
         </form>
         <table>
