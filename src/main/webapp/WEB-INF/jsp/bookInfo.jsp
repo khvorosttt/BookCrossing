@@ -38,7 +38,7 @@
             <tr>
             <form action="/book-${book.BCID}-info" method="POST">
                 <input type="text" name="textComment" maxlength="1000" required>
-                <a href="/book-${book.BCID}-info">Комментировать</a>
+                <button class="send" type="submit">Комментировать</button>
             </form>
         </tr>
             <c:forEach var="comment" items="${comments}">
