@@ -44,7 +44,6 @@ public class CommentController {
     @PostMapping("/book-{id}-info")
     public String setBookInfo(@PathVariable("id") int id, Model model, @RequestParam(value = "textComment") String textComment) {
         Book book = bookService.findById(id);
-        List<Comment> comments = new ArrayList<Comment>();
         Comment comment = new Comment();
         comment.setId_book(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -54,7 +53,7 @@ public class CommentController {
         comment.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
         comment.setTextComment(textComment);
         Comment saved = commentService.save(comment);
-        comments=commentService.findByBook(book);
+        List<Comment> comments = commentService.findByBook(book);
         model.addAttribute("book", book);
         model.addAttribute("commentList", comments);
         return "bookInfo";
