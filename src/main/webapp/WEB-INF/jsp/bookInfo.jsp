@@ -35,10 +35,12 @@
             <tr>
                 <th>Комментарии</th>
             </tr>
-            <tr><input type="text" name="textComment" maxlength="1000" required>
+            <tr>
             <form action="/book-${book.BCID}-info" method="POST">
-                                <a href="/book-${book.BCID}-info">Комментировать</a>
-                            </form></tr>
+                <input type="text" name="textComment" maxlength="1000" required>
+                <a href="/book-${book.BCID}-info">Комментировать</a>
+            </form>
+        </tr>
             <c:forEach var="comment" items="${comments}">
                 <tr>
                     ${comment.Id_user}   ${comment.date_time}
