@@ -113,7 +113,7 @@ public class BookController {
     public String getBookInfo(@PathVariable("id") int id, Model model) {
         Book book = bookService.findById(id);
         model.addAttribute("book", book);
-        List<Comment> comments=commentService.findByBook(book);
+        List<Comment> comments=commentService.findAll();
         model.addAttribute("commentList", comments);
         return "bookInfo";
     }
