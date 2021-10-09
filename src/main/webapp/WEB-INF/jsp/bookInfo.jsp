@@ -31,20 +31,18 @@
             <label>Статус: ${book.status}</label>
         </div>
 
+        <form action="/book-${book.BCID}-info" method="POST">
+            <input type="text" name="textComment" maxlength="1000" required>
+            <button class="send" type="submit">Комментировать</button>
+        </form>
         <table>
             <tr>
                 <th>Комментарии</th>
             </tr>
-            <tr>
-            <form action="/book-${book.BCID}-info" method="POST">
-                <input type="text" name="textComment" maxlength="1000" required>
-                <button class="send" type="submit">Комментировать</button>
-            </form>
-            </tr>
             <c:forEach var="comment" items="${comments}">
                 <tr>
-                    ${book.BCID}   ${book.BCID}
-                ${book.BCID}
+                    ${comment.getId_user}   ${book.BCID}
+                    ${book.BCID}
                 </tr>
             </c:forEach>
         </table>
