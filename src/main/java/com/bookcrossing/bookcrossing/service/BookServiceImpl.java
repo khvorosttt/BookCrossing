@@ -37,13 +37,15 @@ public class BookServiceImpl implements BookService {
         if (book.getBCID() == null) {
             book.setBCID(count()+1);
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            namedParameterJdbcTemplate.update("INSERT INTO book (bcid, Author, Title,Access, Status, "
-                    + "Reader, Country, City, Street, House) VALUES (:bcid, :author, :title, :access,"
+            namedParameterJdbcTemplate.update("INSERT INTO book (bcid, Author, Title,Genre, Tags, Access, Status, "
+                    + "Reader, Country, City, Street, House) VALUES (:bcid, :author, :title, :genre, :tags, :access,"
                     + ":status, :reader, :country, :city, :street, :house)",
                     new MapSqlParameterSource()
                             .addValue("bcid", book.getBCID())
                             .addValue("author", book.getAuthor())
                             .addValue("title", book.getName())
+                            .addValue("genre", book.getGenre())
+                            .addValue("tags", book.getTags())
                             .addValue("reader", book.getReader())
                             .addValue("access", book.getAccess())
                             .addValue("status", book.getStatus() ? 1 : 0)
@@ -54,12 +56,15 @@ public class BookServiceImpl implements BookService {
                     keyHolder);
         } else {
             namedParameterJdbcTemplate.update("UPDATE book SET author = :author, title = :title,"
-                    + " reader = :reader, access = :access, status = :status, country = :country,"
-                    + " city = :city, street = :street, house = :house WHERE bcid = :bcid",
+                    + "genre = :genre, tags = :tags, reader = :reader, access = :access,"
+                    + " status = :status, country = :country, city = :city, street = :street,"
+                    + " house = :house WHERE bcid = :bcid",
                     new MapSqlParameterSource()
                             .addValue("bcid", book.getBCID())
                             .addValue("author", book.getAuthor())
                             .addValue("title", book.getName())
+                            .addValue("genre", book.getGenre())
+                            .addValue("tags", book.getTags())
                             .addValue("reader", book.getReader())
                             .addValue("access", book.getAccess())
                             .addValue("status", book.getStatus() ? 1 : 0)
@@ -98,7 +103,23 @@ public class BookServiceImpl implements BookService {
                 .query("SELECT * FROM book WHERE reader = :reader",
                         new MapSqlParameterSource().addValue("reader", readerId),
                         bookRowMapper);
-    }     
+    }
+    
+    @Override
+    public List<Book> findByGenre(int genre) {
+        return namedParameterJdbcTemplate
+                .query("SELECT * FROM book WHERE genre = :genre",
+                        new MapSqlParameterSource().addValue("genre", genre),
+                        bookRowMapper);
+    }
+    
+    @Override
+    public List<Book> findByTags(String tag) {
+        return namedParameterJdbcTemplate
+                .query("SELECT * FROM book WHERE tags RLIKE(:tag)",
+                        new MapSqlParameterSource().addValue("tags", tag),
+                        bookRowMapper);
+    }
 
     @Override
     public List<Book> findBook(Book book) {
