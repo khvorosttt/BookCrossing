@@ -21,8 +21,8 @@ import org.springframework.stereotype.Controller;
 public class MessageController {
     @Autowired
     private MessageService messageService;
-    @Autowired
-    private SimpMessagingTemplate messagingTemplate;
+    //@Autowired
+    //private SimpMessagingTemplate messagingTemplate;
     
     /*@MessageMapping("/chat")
     public void processMessage(@Payload Message message) {
