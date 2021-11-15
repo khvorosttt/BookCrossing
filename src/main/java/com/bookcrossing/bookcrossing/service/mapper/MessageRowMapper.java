@@ -9,11 +9,13 @@ import com.bookcrossing.bookcrossing.domain.Message;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 /**
  *
  * @author Lenovo
  */
+@Component
 public class MessageRowMapper implements RowMapper<Message> {
 
     @Override
