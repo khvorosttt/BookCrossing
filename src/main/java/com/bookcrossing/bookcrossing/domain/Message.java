@@ -13,6 +13,7 @@ import java.sql.Date;
  */
 public class Message {
     private Integer id_message;
+    private String chatId;
     private String id_sender;
     private String id_recipient;
     private Date date_time;
@@ -25,6 +26,14 @@ public class Message {
     
     public void setId_message(Integer id_message){
         this.id_message=id_message;
+    }
+    
+    public String getChatId(){
+        return chatId;
+    }
+    
+    public void setChatId(String chatId){
+        this.chatId=chatId;
     }
     
     public String getId_sender(){
