@@ -20,6 +20,7 @@ public class MessageRowMapper implements RowMapper<Message> {
     public Message mapRow(ResultSet rs, int i) throws SQLException {
         Message message=new Message();
         message.setId_message(rs.getInt("id_message"));
+        message.setChatId(rs.getString("chatId"));
         message.setId_sender(rs.getString("id_senger"));
         message.setId_recipient(rs.getString("id_recipient"));
         message.setTextMessage(rs.getString("textMessage"));
