@@ -40,6 +40,7 @@ DROP TABLE IF EXISTS message;
 CREATE TABLE message
 (
     Id_message INT NOT NULL UNIQUE,
+    chatId VARCHAR(22) NOT NULL,
     Id_sender VARCHAR(10) NOT NULL,
     Id_recipient VARCHAR(10) NOT NULL,
     date_time date NOT NULL,
