@@ -19,8 +19,8 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 public class MessageController {
-    @Autowired
-    private MessageService messageService;
+    //@Autowired
+    //private MessageService messageService;
     //@Autowired
     //private SimpMessagingTemplate messagingTemplate;
     
