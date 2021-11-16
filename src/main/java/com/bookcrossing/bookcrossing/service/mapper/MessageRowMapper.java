@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 public class MessageRowMapper implements RowMapper<Message> {
 
     @Override
-    public Message mapRow(ResultSet rs, int i) throws SQLException {
+    public Message mapRow(ResultSet rs, int rowNum) throws SQLException {
         Message message=new Message();
         message.setId_message(rs.getInt("id_message"));
         message.setChatId(rs.getString("chatId"));
