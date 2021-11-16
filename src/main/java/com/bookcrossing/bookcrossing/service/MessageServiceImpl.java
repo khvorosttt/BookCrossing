@@ -13,11 +13,13 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Lenovo
  */
+@Service
 public class MessageServiceImpl implements MessageService {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
