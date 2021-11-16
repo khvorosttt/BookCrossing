@@ -35,11 +35,12 @@ public class MessageServiceImpl implements MessageService {
         if (message.getId_message() == null) {
             message.setId_message(count()+1);
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            namedParameterJdbcTemplate.update("INSERT INTO message (id_message, id_sender, id_recipient, textMessage,"
-                    + " date_time, is_read) VALUES (:id_message, :id_sender, :id_recipient, :textMessage,"
+            namedParameterJdbcTemplate.update("INSERT INTO message (id_message, chatId, id_sender, id_recipient, textMessage,"
+                    + " date_time, is_read) VALUES (:id_message, :chatId, :id_sender, :id_recipient, :textMessage,"
                     + ":date_time, :is_read)",
                     new MapSqlParameterSource()
                             .addValue("id_message", message.getId_message())
+                            .addValue("chatId", message.getChatId())
                             .addValue("id_sender", message.getId_sender())
                             .addValue("id_recipient", message.getId_recipient())
                             .addValue("textMessage", message.getTextMessage())
