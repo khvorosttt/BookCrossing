@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface MessageService {
     
-    Message save(Message message);
+    //Message save(Message message);
 
     //List<Message> findAll();
 
