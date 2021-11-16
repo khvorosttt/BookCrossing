@@ -60,3 +60,14 @@ CREATE TABLE comment
     date_time date NOT NULL,
     PRIMARY KEY (Id_comment)
 );
+
+DROP TABLE IF EXISTS chatRoom;
+
+CREATE TABLE chatRoom
+(
+    Id INT NOT NULL UNIQUE,
+    chatId VARCHAR(22) NOT NULL,
+    senderId VARCHAR(10) NOT NULL,
+    recipientId VARCHAR(10) NOT NULL,
+    PRIMARY KEY (Id)
+);
