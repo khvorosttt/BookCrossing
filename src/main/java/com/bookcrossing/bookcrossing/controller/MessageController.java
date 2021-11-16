@@ -6,12 +6,16 @@
 package com.bookcrossing.bookcrossing.controller;
 
 import com.bookcrossing.bookcrossing.domain.Message;
+import com.bookcrossing.bookcrossing.domain.ChatRoom;
+import com.bookcrossing.bookcrossing.service.ChatRoomService;
 import com.bookcrossing.bookcrossing.service.MessageService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -25,6 +29,8 @@ public class MessageController {
     private MessageService messageService;
     @Autowired
     private SimpMessagingTemplate messagingTemplate;
+    @Autowired
+    private ChatRoomService chatRoomService; 
     
     @MessageMapping("/chat")
     public void processMessage(@Payload Message message) {
@@ -36,12 +42,12 @@ public class MessageController {
         messagingTemplate.convertAndSendToUser(
                 message.getId_recipient(),"/queue/messages",message);
     }
-    /*@GetMapping("/chats")
+    @GetMapping("/chats")
     public String getBookPage(Model model) {
-        List<Messa> books = bookService.findAll();
-        model.addAttribute("bookList", books);
+        List<ChatRoom> chats = chatRoomService.findAll();
+        model.addAttribute("bookList", chats);
         return "book";
-    }*/
+    }
     /*@GetMapping("/messages/{senderId}/{recipientId}")
     public ResponseEntity<?> findChatMessages ( @PathVariable String senderId,
                                                 @PathVariable String recipientId) {
