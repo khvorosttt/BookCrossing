@@ -63,7 +63,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public List<Message> findAll() {
         return namedParameterJdbcTemplate
-                .query("SELECT id_message, id_sender, id_recipient, textMessage, date_time, is_read FROM message", messageRowMapper);
+                .query("SELECT id_message, chatId, id_sender, id_recipient, textMessage, date_time, is_read FROM message", messageRowMapper);
     }
 
     @Override
