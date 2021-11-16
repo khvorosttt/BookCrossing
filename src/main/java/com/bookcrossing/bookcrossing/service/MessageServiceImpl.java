@@ -30,7 +30,7 @@ public class MessageServiceImpl implements MessageService {
         this.messageRowMapper = messageRowMapper;
     }
     
-    @Override
+    /*@Override
     public Message save(Message message) {
         if (message.getId_message() == null) {
             message.setId_message(count()+1);
@@ -58,7 +58,7 @@ public class MessageServiceImpl implements MessageService {
                             .addValue("is_read", message.getIs_read()));
         }
         return message;
-    }
+    }*/
 
     @Override
     public List<Message> findAll() {
