@@ -46,7 +46,7 @@ public class MessageController {
     public String getBookPage(Model model) {
         List<ChatRoom> chats = chatRoomService.findAll();
         model.addAttribute("bookList", chats);
-        return "book";
+        return "chats";
     }
     /*@GetMapping("/messages/{senderId}/{recipientId}")
     public ResponseEntity<?> findChatMessages ( @PathVariable String senderId,
