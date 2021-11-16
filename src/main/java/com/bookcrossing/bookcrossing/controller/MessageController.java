@@ -36,6 +36,12 @@ public class MessageController {
         messagingTemplate.convertAndSendToUser(
                 message.getId_recipient(),"/queue/messages",message);
     }
+    @GetMapping("/chats")
+    public String getBookPage(Model model) {
+        List<Messa> books = bookService.findAll();
+        model.addAttribute("bookList", books);
+        return "book";
+    }
     /*@GetMapping("/messages/{senderId}/{recipientId}")
     public ResponseEntity<?> findChatMessages ( @PathVariable String senderId,
                                                 @PathVariable String recipientId) {
