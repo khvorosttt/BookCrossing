@@ -14,15 +14,15 @@ import java.util.List;
  */
 public interface MessageService {
     
-    //Message save(Message message);
+    Message save(Message message);
 
-    List<Message> findAll();
+    //List<Message> findAll();
 
-    List<Message> findBySender(Message message);
+    //List<Message> findBySender(Message message);
     
-    List<Message> findBySenderRecipient(Message message);
+    //List<Message> findBySenderRecipient(Message message);
     
-    void delete(Message message);
+    //void delete(Message message);
     
     int count();
 }
