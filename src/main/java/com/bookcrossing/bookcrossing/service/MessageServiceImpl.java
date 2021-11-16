@@ -30,7 +30,7 @@ public class MessageServiceImpl implements MessageService {
         this.messageRowMapper = messageRowMapper;
     }
     
-    /*@Override
+    @Override
     public Message save(Message message) {
         if (message.getId_message() == null) {
             message.setId_message(count()+1);
@@ -58,9 +58,9 @@ public class MessageServiceImpl implements MessageService {
                             .addValue("is_read", message.getIs_read()));
         }
         return message;
-    }*/
+    }
 
-    @Override
+    /*@Override
     public List<Message> findAll() {
         return namedParameterJdbcTemplate
                 .query("SELECT id_message, chatId, id_sender, id_recipient, textMessage, date_time, is_read FROM message", messageRowMapper);
@@ -88,7 +88,7 @@ public class MessageServiceImpl implements MessageService {
         namedParameterJdbcTemplate.update("DELETE FROM message WHERE id_message = :id_message",
                 new MapSqlParameterSource()
                         .addValue("id_message", message.getId_message()));
-    }
+    }*/
 
     @Override
     public int count() {
