@@ -32,7 +32,7 @@ public class MessageController {
     @Autowired
     private ChatRoomService chatRoomService; 
     
-    @MessageMapping("/chat")
+    //@MessageMapping("/chat")
     public void processMessage(@Payload Message message) {
         String chatId=message.getId_sender()+"_"+message.getId_recipient();
         message.setChatId(chatId);
