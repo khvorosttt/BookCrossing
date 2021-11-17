@@ -77,7 +77,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
             }
         }
         return namedParameterJdbcTemplate
-                .query("SELECT * FROM chatRoom WHERE chatId = :chatId1",
+                .query("SELECT * FROM chatRoom WHERE chatId = :chatId",
                         new MapSqlParameterSource().addValue("chatId", chatId1),
                         chatRoomRowMapper);
     }
