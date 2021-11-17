@@ -28,3 +28,5 @@ INSERT INTO comment (Id_comment, Id_user, Id_book, textComment, date_time) VALUE
 
 INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (1, '0000000001_0000000002', '0000000001', '0000000002');
 INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (2, '0000000002_0000000001', '0000000002', '0000000001');
+
+INSERT INTO message (Id_message, chatId, Id_sender, Id_recipient, date_time, textMessage, Is_read) VALUES (1, '0000000001_0000000002','0000000001','0000000002',CURRENT_DATE,'Привет!', 0);
