@@ -19,5 +19,6 @@ public interface ChatRoomService {
     List<ChatRoom> findBySenderId(String senderId);
     
     List<ChatRoom> findAll();
+    
     int count();
 }
