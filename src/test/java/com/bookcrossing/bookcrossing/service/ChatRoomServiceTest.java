@@ -48,7 +48,6 @@ public class ChatRoomServiceTest {
         assertNotNull(storedChats);
         Chat storedChat=storedChats.get(storedChats.size()-1);
         // verify
-        Chat storedComment = chatRoomService.findAll().get(chatRoomService.count()-2);
         assertEquals(chatRoom.getId(), storedChat.getId());
         assertEquals(chatRoom.getChatId(), storedChat.getChatId());
         assertEquals(chatRoom.getSenderId(), storedChat.getSenderId());
