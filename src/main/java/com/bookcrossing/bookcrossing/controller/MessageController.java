@@ -7,13 +7,17 @@ package com.bookcrossing.bookcrossing.controller;
 
 import com.bookcrossing.bookcrossing.domain.Message;
 import com.bookcrossing.bookcrossing.domain.ChatRoom;
+import com.bookcrossing.bookcrossing.domain.Reader;
 import com.bookcrossing.bookcrossing.service.ChatRoomService;
 import com.bookcrossing.bookcrossing.service.MessageService;
+import com.bookcrossing.bookcrossing.service.ReaderService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,8 +35,10 @@ public class MessageController {
     private SimpMessagingTemplate messagingTemplate;
     @Autowired
     private ChatRoomService chatRoomService; 
+    @Autowired
+    private ReaderService readerService;
     
-    //@MessageMapping("/chat")
+    @MessageMapping("/chat")
     public void processMessage(@Payload Message message) {
         String chatId=message.getId_sender()+"_"+message.getId_recipient();
         message.setChatId(chatId);
@@ -51,7 +57,12 @@ public class MessageController {
     @GetMapping("/messages/{senderId}/{recipientId}")
     public String findChatMessages ( @PathVariable String senderId,
                                                 @PathVariable String recipientId) {
-        return "index";
+        User user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Reader reader = readerService.findByLogin(user.getUsername());
+        if(senderId.equals(reader.getId())){
+            return "index";
+        }
+        return "redirect:/";
     }
     /*@GetMapping("/messages/{senderId}/{recipientId}")
     public ResponseEntity<?> findChatMessages ( @PathVariable String senderId,
