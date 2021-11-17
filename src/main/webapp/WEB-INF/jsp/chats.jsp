@@ -33,7 +33,7 @@
         <table>
             <c:forEach var="chat" items="${chatList}">
                 <tr>
-                    <form action="/messages/${chat.senderId}/${chat.recipientId}"><td>${chat.recipientId}</td></form>
+                    <a href="/messages/${chat.senderId}/${chat.recipientId}"><td>${chat.recipientId}</td></a>
                 </tr>
             </c:forEach>
         </table>
