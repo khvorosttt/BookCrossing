@@ -42,16 +42,38 @@ public class MessageController {
         messagingTemplate.convertAndSendToUser(
                 message.getId_recipient(),"/queue/messages",message);
     }
-    @GetMapping("/chats")
+    @GetMapping("/messages")
     public String getBookPage(Model model) {
         List<ChatRoom> chats = chatRoomService.findAll();
-        model.addAttribute("bookList", chats);
+        model.addAttribute("chatList", chats);
         return "chats";
+    }
+    @GetMapping("/messages/{senderId}/{recipientId}")
+    public String findChatMessages ( @PathVariable String senderId,
+                                                @PathVariable String recipientId) {
+        return "index";
     }
     /*@GetMapping("/messages/{senderId}/{recipientId}")
     public ResponseEntity<?> findChatMessages ( @PathVariable String senderId,
                                                 @PathVariable String recipientId) {
         return ResponseEntity
                 .ok(chatMessageService.findChatMessages(senderId, recipientId));
+    }*/
+    /*@MessageMapping("/chat.sendMessage")
+    @SendTo("/topic/public")
+    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
+        return chatMessage;
+    }
+    @MessageMapping("/chat.addUser")
+    @SendTo("/topic/public")
+    public ChatMessage addUser(@Payload ChatMessage chatMessage, 
+                               SimpMessageHeaderAccessor headerAccessor) {
+        // Add username in web socket session
+        headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+        return chatMessage;
+    }
+    @GetMapping("/chat")
+    public String getChat() {
+        return "index";
     }*/
 }
