@@ -21,6 +21,4 @@ public interface ChatRoomService {
     List<Chat> findAll();
     
     int count();
-    
-    Chat save();
 }
