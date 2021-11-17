@@ -33,7 +33,7 @@
         <table>
             <c:forEach var="chat" items="${chatList}">
                 <tr>
-                    <a href="/messages/${chat.senderId}/${chat.recipientId}"><td>${chat.recipientId}</td></a>
+                    <td><a href="/messages/${chat.senderId}/${chat.recipientId}">${chat.recipientId}</a></td>
                 </tr>
             </c:forEach>
         </table>
