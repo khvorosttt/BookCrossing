@@ -20,7 +20,7 @@ public class ChatRoomRowMapper implements RowMapper<ChatRoom> {
     @Override
     public ChatRoom mapRow(ResultSet rs, int rowNum) throws SQLException {
         ChatRoom chatRoom = new ChatRoom();
-        chatRoom.setId(rs.getInt("id"));
+        chatRoom.setId(rs.getInt("Id"));
         chatRoom.setChatId(rs.getString("chatId"));
         chatRoom.setSenderId(rs.getString("senderId"));
         chatRoom.setRecipientId(rs.getString("recipientId"));
