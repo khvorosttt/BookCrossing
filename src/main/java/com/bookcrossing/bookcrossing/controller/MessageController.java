@@ -50,7 +50,9 @@ public class MessageController {
     }
     @GetMapping("/messages")
     public String getChatRoomPage(Model model) {
-        List<ChatRoom> chats = chatRoomService.findAll();
+        User user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Reader reader = readerService.findByLogin(user.getUsername());
+        List<ChatRoom> chats = chatRoomService.findBySenderId(reader.getId());
         model.addAttribute("chatList", chats);
         return "chats";
     }
