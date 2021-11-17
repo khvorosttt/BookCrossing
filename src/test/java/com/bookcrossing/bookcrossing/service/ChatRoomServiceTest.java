@@ -22,29 +22,6 @@ import org.junit.jupiter.api.Test;
 public class ChatRoomServiceTest {
     @Autowired
     ChatRoomService chatRoomService;
-    
-    
-    
-    
-    /*@Test
-    void ShouldAddChatRoom() {
-        int countBefore = chatRoomService.count();
-
-        // add new book
-        Chat chatRoom = new Chat();
-        chatRoom.setId(0);
-        chatRoom.setSenderId("0000000000");
-        chatRoom.setRecipientId("0000000001");
-        chatRoom.setChatId("0000000000_0000000001");
-        chatRoomService.save();
-        // verify
-        int countAfter = chatRoomService.count();
-        assertTrue(countBefore == countAfter - 1);
-        Chat storedComment = chatRoomService.findAll().get(0);
-        assertEquals(chatRoom.getChatId(), storedComment.getChatId());
-        assertEquals(chatRoom.getSenderId(), storedComment.getSenderId());
-        assertEquals(chatRoom.getRecipientId(), storedComment.getRecipientId());
-    }*/
     @Test
     void shouldFindAll() {
         List<Chat> chatRooms = chatRoomService.findAll();
@@ -54,20 +31,27 @@ public class ChatRoomServiceTest {
     @Test
     void ShouldAddChatRoom() {
         int countBefore = chatRoomService.count();
-
-        // add new book
-        //Chat chatRoom = new Chat();
-        //chatRoom.setSenderId("0000000000");
-        //chatRoom.setRecipientId("0000000001");
-        //chatRoom.setChatId("0000000000_0000000001");
         Chat chatRoom = chatRoomService.findByChatId("0000000000", "0000000001");
         // verify
         int countAfter = chatRoomService.count();
         assertTrue(countBefore == countAfter - 2);
-        Chat storedComment = chatRoomService.findAll().get(chatRoomService.count()-2);
-        assertEquals(chatRoom.getChatId(), storedComment.getChatId());
-        assertEquals(chatRoom.getSenderId(), storedComment.getSenderId());
-        assertEquals(chatRoom.getRecipientId(), storedComment.getRecipientId());
+        Chat storedChat = chatRoomService.findAll().get(chatRoomService.count()-2);
+        assertEquals(chatRoom.getChatId(), storedChat.getChatId());
+        assertEquals(chatRoom.getSenderId(), storedChat.getSenderId());
+        assertEquals(chatRoom.getRecipientId(), storedChat.getRecipientId());
     }
-    
+    @Test
+    void ShouldFindBySenderId() {
+        List<Chat> chats=chatRoomService.findAll();
+        Chat chatRoom=chats.get(chatRoomService.count()-1);
+        List<Chat> storedChats=chatRoomService.findBySenderId(chatRoom.getSenderId());
+        assertNotNull(storedChats);
+        Chat storedChat=storedChats.get(storedChats.size()-1);
+        // verify
+        Chat storedComment = chatRoomService.findAll().get(chatRoomService.count()-2);
+        assertEquals(chatRoom.getId(), storedChat.getId());
+        assertEquals(chatRoom.getChatId(), storedChat.getChatId());
+        assertEquals(chatRoom.getSenderId(), storedChat.getSenderId());
+        assertEquals(chatRoom.getRecipientId(), storedChat.getRecipientId());
+    }
 }
