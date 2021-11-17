@@ -5,8 +5,8 @@
  */
 package com.bookcrossing.bookcrossing.controller;
 
+import com.bookcrossing.bookcrossing.domain.Chat;
 import com.bookcrossing.bookcrossing.domain.Message;
-import com.bookcrossing.bookcrossing.domain.ChatRoom;
 import com.bookcrossing.bookcrossing.domain.Reader;
 import com.bookcrossing.bookcrossing.service.ChatRoomService;
 import com.bookcrossing.bookcrossing.service.MessageService;
@@ -52,7 +52,7 @@ public class MessageController {
     public String getChatRoomPage(Model model) {
         User user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Reader reader = readerService.findByLogin(user.getUsername());
-        List<ChatRoom> chats = chatRoomService.findBySenderId(reader.getId());
+        List<Chat> chats = chatRoomService.findBySenderId(reader.getId());
         model.addAttribute("chatList", chats);
         return "chats";
     }
@@ -62,7 +62,7 @@ public class MessageController {
         User user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Reader reader = readerService.findByLogin(user.getUsername());
         if(senderId.equals(reader.getId())){
-            List<ChatRoom> cr=chatRoomService.findByChatId(senderId, recipientId);
+            List<Chat> cr=chatRoomService.findByChatId(senderId, recipientId);
             return "index";
         }
         return "redirect:/";
