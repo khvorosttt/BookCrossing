@@ -40,9 +40,9 @@ public class ChatRoomServiceImpl implements ChatRoomService{
         if(chat == null){
             List<ChatRoom> chats=findAll();
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            if(chats.isEmpty()){
+            if(chats == null){
                 namedParameterJdbcTemplate.update("INSERT INTO chatRoom (id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
-                        + " :senderId, :recipientId)",
+                        + ":senderId, :recipientId)",
                     new MapSqlParameterSource()
                             .addValue("id",0)
                             .addValue("chatId", chatId1)
@@ -50,7 +50,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
                             .addValue("recipientId", recipientId),
                     keyHolder);
                 namedParameterJdbcTemplate.update("INSERT INTO chatRoom (id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
-                        + " :senderId, :recipientId)",
+                        + ":senderId, :recipientId)",
                     new MapSqlParameterSource()
                             .addValue("id",1)
                             .addValue("chatId", chatId2)
