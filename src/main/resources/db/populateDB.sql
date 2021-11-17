@@ -25,3 +25,6 @@ INSERT INTO order_board (Author, Title, Reader) VALUES ('Пушкин А.С.', '
 INSERT INTO order_board (Author, Title, Reader) VALUES ('Толстой Л.Н.', 'Война и мир', '0000000001');
 
 INSERT INTO comment (Id_comment, Id_user, Id_book, textComment, date_time) VALUES (1, '0000000002', 1, 'Классная книга',CURRENT_DATE);
+
+INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (1, '0000000001_0000000002', '0000000001', '0000000002');
+INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (2, '0000000002_0000000001', '0000000002', '0000000001');
