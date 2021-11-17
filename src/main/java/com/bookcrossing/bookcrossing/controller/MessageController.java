@@ -62,7 +62,7 @@ public class MessageController {
         User user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Reader reader = readerService.findByLogin(user.getUsername());
         if(senderId.equals(reader.getId())){
-            List<Chat> cr=chatRoomService.findByChatId(senderId, recipientId);
+            Chat cr=chatRoomService.findByChatId(senderId, recipientId);
             return "index";
         }
         return "redirect:/";
