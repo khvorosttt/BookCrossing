@@ -25,4 +25,6 @@ public interface MessageService {
     void delete(Message message);
     
     int count();
+    
+    Message findByChatId(Message message);
 }
