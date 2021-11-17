@@ -40,7 +40,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
         if(chat == null){
             List<ChatRoom> chats=findAll();
             KeyHolder keyHolder = new GeneratedKeyHolder();
-            if(chats.size()==0){
+            if(chats.isEmpty()){
                 namedParameterJdbcTemplate.update("INSERT INTO chatRoom (id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
                         + " :senderId, :recipientId)",
                     new MapSqlParameterSource()
@@ -77,9 +77,9 @@ public class ChatRoomServiceImpl implements ChatRoomService{
             }
         }
         return namedParameterJdbcTemplate
-                .query("SELECT * FROM chatRoom WHERE chatId = :chatId1 OR chatId=:chatId2",
-                        new MapSqlParameterSource().addValue("chatId", chatId1)
-                        .addValue("chatId2", chatId2),
+                .query("SELECT * FROM chatRoom WHERE chatId = :chatId1",
+                        new MapSqlParameterSource().addValue("chatId", chatId1),
+                        //.addValue("chatId2", chatId2),
                         chatRoomRowMapper);
     }
 
