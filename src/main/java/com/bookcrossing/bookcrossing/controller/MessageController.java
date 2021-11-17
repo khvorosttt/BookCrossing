@@ -49,7 +49,7 @@ public class MessageController {
                 message.getId_recipient(),"/queue/messages",message);
     }
     @GetMapping("/messages")
-    public String getBookPage(Model model) {
+    public String getChatRoomPage(Model model) {
         List<ChatRoom> chats = chatRoomService.findAll();
         model.addAttribute("chatList", chats);
         return "chats";
