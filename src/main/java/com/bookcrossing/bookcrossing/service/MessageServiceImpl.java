@@ -24,6 +24,8 @@ public class MessageServiceImpl implements MessageService {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     MessageRowMapper messageRowMapper;
+    @Autowired
+    private ChatRoomService chatRoomService;
     
     @Autowired
     public MessageServiceImpl(NamedParameterJdbcTemplate namedParameterJdbcTemplate,
@@ -37,6 +39,7 @@ public class MessageServiceImpl implements MessageService {
         if (message.getId_message() == null) {
             message.setId_message(count()+1);
             KeyHolder keyHolder = new GeneratedKeyHolder();
+            chatRoomService.findByChatId(message.getId_sender(), message.getId_recipient());
             namedParameterJdbcTemplate.update("INSERT INTO message (id_message, chatId, id_sender, id_recipient, textMessage,"
                     + " date_time, is_read) VALUES (:id_message, :chatId, :id_sender, :id_recipient, :textMessage,"
                     + ":date_time, :is_read)",
