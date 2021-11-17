@@ -68,7 +68,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public List<Message> findAll() {
         return namedParameterJdbcTemplate
-                .query("SELECT id_message, chatId, id_sender, id_recipient, textMessage, date_time, is_read FROM message", messageRowMapper);
+                .query("SELECT * FROM message", messageRowMapper);
     }
 
     @Override
@@ -101,6 +101,14 @@ public class MessageServiceImpl implements MessageService {
                 .queryForObject("SELECT count(*) FROM message",
                         new MapSqlParameterSource(),
                         Integer.class);
+    }
+
+    @Override
+    public Message findByChatId(Message message) {
+        return namedParameterJdbcTemplate
+                .queryForObject("SELECT * FROM message WHERE chatId = :chatId",
+                        new MapSqlParameterSource().addValue("chatId", message.getChatId()),
+                        messageRowMapper);
     }
     
 }
