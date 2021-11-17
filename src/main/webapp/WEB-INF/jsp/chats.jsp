@@ -33,7 +33,7 @@
         <table>
             <c:forEach var="chat" items="${chatList}">
                 <tr>
-                    <form><td>${chat.id_resipient}</td></form>
+                    <form><td>${chat.recipientId}</td></form>
                 </tr>
             </c:forEach>
         </table>
