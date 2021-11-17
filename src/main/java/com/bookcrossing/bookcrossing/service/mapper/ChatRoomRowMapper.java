@@ -5,7 +5,7 @@
  */
 package com.bookcrossing.bookcrossing.service.mapper;
 
-import com.bookcrossing.bookcrossing.domain.ChatRoom;
+import com.bookcrossing.bookcrossing.domain.Chat;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,10 +16,10 @@ import org.springframework.stereotype.Component;
  * @author Lenovo
  */
 @Component
-public class ChatRoomRowMapper implements RowMapper<ChatRoom> {
-    @Override
-    public ChatRoom mapRow(ResultSet rs, int rowNum) throws SQLException {
-        ChatRoom chatRoom = new ChatRoom();
+public class ChatRoomRowMapper implements RowMapper<Chat> {
+   @Override
+    public Chat mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Chat chatRoom = new Chat();
         chatRoom.setId(rs.getInt("Id"));
         chatRoom.setChatId(rs.getString("chatId"));
         chatRoom.setSenderId(rs.getString("senderId"));
