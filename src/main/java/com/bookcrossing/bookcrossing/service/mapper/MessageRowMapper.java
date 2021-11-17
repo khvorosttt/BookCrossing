@@ -23,10 +23,11 @@ public class MessageRowMapper implements RowMapper<Message> {
         Message message=new Message();
         message.setId_message(rs.getInt("id_message"));
         message.setChatId(rs.getString("chatId"));
-        message.setId_sender(rs.getString("id_senger"));
+        message.setId_sender(rs.getString("id_sender"));
         message.setId_recipient(rs.getString("id_recipient"));
         message.setTextMessage(rs.getString("textMessage"));
         message.setDate_Time(rs.getDate("date_time"));
+        message.setIs_read(Boolean.parseBoolean(rs.getString("is_read")));
         return message;
     }
     
