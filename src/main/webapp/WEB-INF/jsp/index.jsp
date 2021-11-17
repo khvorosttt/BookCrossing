@@ -11,24 +11,6 @@
   </head>
   <style><%@ include file='style.css'%></style>
   <body>
-    <header>
-        <nav>
-            <ul><sec:authorize access="isAnonymous()">
-                    <li><a href="/login">
-                            Авторизация</a></li>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <li><a href="/my-profile">Мой профиль</a></li>
-                </sec:authorize>
-                    <li><a href="/" class="CurrentPage">Библиотека</a></li>
-                    <li><a href="/find-book">Поиск книги</a></li>
-                    <li><a href="/order-board">Доска заказов</a></li>
-                    <sec:authorize access="isAuthenticated()">
-                    <li><a href="/logout">Выйти</a></li>
-                    </sec:authorize>
-            </ul>
-        </nav>
-    </header>
     <div id="username-page">
         <div class="username-page-container">
             <h1 class="title">Type your username</h1>
