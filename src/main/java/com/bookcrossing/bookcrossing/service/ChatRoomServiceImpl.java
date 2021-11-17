@@ -41,7 +41,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
             List<ChatRoom> chats=findAll();
             KeyHolder keyHolder = new GeneratedKeyHolder();
             if(chats == null){
-                namedParameterJdbcTemplate.update("INSERT INTO chatRoom (id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
+                namedParameterJdbcTemplate.update("INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
                         + ":senderId, :recipientId)",
                     new MapSqlParameterSource()
                             .addValue("id",0)
@@ -49,7 +49,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
                             .addValue("senderId", senderId)
                             .addValue("recipientId", recipientId),
                     keyHolder);
-                namedParameterJdbcTemplate.update("INSERT INTO chatRoom (id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
+                namedParameterJdbcTemplate.update("INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
                         + ":senderId, :recipientId)",
                     new MapSqlParameterSource()
                             .addValue("id",1)
@@ -58,7 +58,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
                             .addValue("recipientId", senderId),
                     keyHolder);
             }else{
-                namedParameterJdbcTemplate.update("INSERT INTO chatRoom (id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
+                namedParameterJdbcTemplate.update("INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
                         + " :senderId, :recipientId)",
                     new MapSqlParameterSource()
                             .addValue("id",chats.get(chats.size()-1).getId()+1)
@@ -66,7 +66,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
                             .addValue("senderId", senderId)
                             .addValue("recipientId", recipientId),
                     keyHolder);
-                namedParameterJdbcTemplate.update("INSERT INTO chatRoom (id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
+                namedParameterJdbcTemplate.update("INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
                         + " :senderId, :recipientId)",
                     new MapSqlParameterSource()
                             .addValue("id",chats.get(chats.size()-1).getId()+2)
