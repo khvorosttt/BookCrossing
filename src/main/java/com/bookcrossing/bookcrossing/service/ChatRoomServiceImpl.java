@@ -91,24 +91,4 @@ public class ChatRoomServiceImpl implements ChatRoomService {
         return namedParameterJdbcTemplate
                 .query("SELECT * FROM chatRoom", chatRoomRowMapper);
     }
-
-    @Override
-    public Chat save() {
-        Chat chat = new Chat();
-        chat.setId(0);
-        chat.setChatId("0000000000_0000000001");
-        chat.setSenderId("0000000000");
-        chat.setRecipientId("0000000001");
-        KeyHolder keyHolder = new GeneratedKeyHolder();
-        namedParameterJdbcTemplate.update("INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
-                + ":senderId, :recipientId)",
-                new MapSqlParameterSource()
-                        .addValue("id", chat.getId())
-                        .addValue("chatId", chat.getChatId())
-                        .addValue("senderId", chat.getSenderId())
-                        .addValue("recipientId", chat.getRecipientId()),
-                keyHolder);
-        return chat;
-    }
-
 }
