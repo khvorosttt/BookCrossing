@@ -5,7 +5,7 @@
  */
 package com.bookcrossing.bookcrossing.service;
 
-import com.bookcrossing.bookcrossing.domain.ChatRoom;
+import com.bookcrossing.bookcrossing.domain.Chat;
 import java.util.List;
 
 /**
@@ -14,11 +14,13 @@ import java.util.List;
  */
 public interface ChatRoomService {
     
-    List<ChatRoom> findByChatId(String senderId, String recipientId);
+    Chat findByChatId(String senderId, String recipientId);
     
-    List<ChatRoom> findBySenderId(String senderId);
+    List<Chat> findBySenderId(String senderId);
     
-    List<ChatRoom> findAll();
+    List<Chat> findAll();
     
     int count();
+    
+    Chat save();
 }
