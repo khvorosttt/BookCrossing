@@ -33,7 +33,7 @@
         <table>
             <c:forEach var="chat" items="${chatList}">
                 <tr>
-                    <form action="/edit-${book.BCID}" method="POST"><td>${chat.id_resipient}</td></form>
+                    <form><td>${chat.id_resipient}</td></form>
                 </tr>
             </c:forEach>
         </table>
