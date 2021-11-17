@@ -5,7 +5,7 @@
  */
 package com.bookcrossing.bookcrossing.service;
 
-import com.bookcrossing.bookcrossing.domain.ChatRoom;
+import com.bookcrossing.bookcrossing.domain.Chat;
 import com.bookcrossing.bookcrossing.service.mapper.ChatRoomRowMapper;
 import java.util.List;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
  * @author Lenovo
  */
 @Service
-public class ChatRoomServiceImpl implements ChatRoomService{
+public class ChatRoomServiceImpl implements ChatRoomService {
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
     private final ChatRoomRowMapper chatRoomRowMapper;
@@ -28,62 +28,50 @@ public class ChatRoomServiceImpl implements ChatRoomService{
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
         this.chatRoomRowMapper = chatRoomRowMapper;
     }
-    
+
     @Override
-    public List<ChatRoom> findByChatId(String senderId, String recipientId) {
-        String chatId1=senderId+"_"+recipientId;
-        String chatId2=recipientId+"_"+senderId;
-        ChatRoom chat=namedParameterJdbcTemplate
-                .queryForObject("SELECT * FROM chatRoom WHERE chatId = :chatId",
-                        new MapSqlParameterSource().addValue("chatId", chatId1),
-                        chatRoomRowMapper);
-        if(chat == null){
-            List<ChatRoom> chats=findAll();
-            KeyHolder keyHolder = new GeneratedKeyHolder();
-            if(chats == null){
-                namedParameterJdbcTemplate.update("INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
-                        + ":senderId, :recipientId)",
-                    new MapSqlParameterSource()
-                            .addValue("id",0)
-                            .addValue("chatId", chatId1)
-                            .addValue("senderId", senderId)
-                            .addValue("recipientId", recipientId),
-                    keyHolder);
-                namedParameterJdbcTemplate.update("INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
-                        + ":senderId, :recipientId)",
-                    new MapSqlParameterSource()
-                            .addValue("id",1)
-                            .addValue("chatId", chatId2)
-                            .addValue("senderId", recipientId)
-                            .addValue("recipientId", senderId),
-                    keyHolder);
-            }else{
-                namedParameterJdbcTemplate.update("INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
-                        + " :senderId, :recipientId)",
-                    new MapSqlParameterSource()
-                            .addValue("id",chats.get(chats.size()-1).getId()+1)
-                            .addValue("chatId", chatId1)
-                            .addValue("senderId", senderId)
-                            .addValue("recipientId", recipientId),
-                    keyHolder);
-                namedParameterJdbcTemplate.update("INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
-                        + " :senderId, :recipientId)",
-                    new MapSqlParameterSource()
-                            .addValue("id",chats.get(chats.size()-1).getId()+2)
-                            .addValue("chatId", chatId2)
-                            .addValue("senderId", recipientId)
-                            .addValue("recipientId", senderId),
-                    keyHolder);
-            }
-        }
-        return namedParameterJdbcTemplate
+    public Chat findByChatId(String senderId, String recipientId) {
+        List<Chat> chats = findAll();
+        String chatId1 = senderId + "_" + recipientId;
+        String chatId2 = recipientId + "_" + senderId;
+        Chat chat1= new Chat();
+        chat1.setId(chats.get(chats.size()-1).getId()+1);
+        chat1.setChatId(chatId1);
+        chat1.setSenderId(senderId);
+        chat1.setRecipientId(recipientId);
+        Chat chat2= new Chat();
+        chat2.setId(chats.get(chats.size()-1).getId()+2);
+        chat2.setChatId(chatId2);
+        chat2.setSenderId(recipientId);
+        chat2.setRecipientId(senderId);
+        List<Chat> chat = namedParameterJdbcTemplate
                 .query("SELECT * FROM chatRoom WHERE chatId = :chatId",
                         new MapSqlParameterSource().addValue("chatId", chatId1),
                         chatRoomRowMapper);
+        if (chat.isEmpty()) {
+            KeyHolder keyHolder = new GeneratedKeyHolder();
+            namedParameterJdbcTemplate.update("INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
+                    + " :senderId, :recipientId)",
+                    new MapSqlParameterSource()
+                            .addValue("id",chat1.getId() )
+                            .addValue("chatId", chat1.getChatId())
+                            .addValue("senderId", chat1.getSenderId())
+                            .addValue("recipientId", chat1.getRecipientId()),
+                    keyHolder);
+            namedParameterJdbcTemplate.update("INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
+                    + " :senderId, :recipientId)",
+                    new MapSqlParameterSource()
+                            .addValue("id",chat2.getId())
+                            .addValue("chatId", chat2.getChatId())
+                            .addValue("senderId", chat2.getSenderId())
+                            .addValue("recipientId", chat2.getRecipientId()),
+                    keyHolder);
+        }
+        return chat1;
     }
 
     @Override
-    public List<ChatRoom> findBySenderId(String senderId) {
+    public List<Chat> findBySenderId(String senderId) {
         return namedParameterJdbcTemplate
                 .query("SELECT * FROM chatRoom WHERE senderId = :senderId",
                         new MapSqlParameterSource().addValue("senderId", senderId),
@@ -99,9 +87,28 @@ public class ChatRoomServiceImpl implements ChatRoomService{
     }
 
     @Override
-    public List<ChatRoom> findAll() {
+    public List<Chat> findAll() {
         return namedParameterJdbcTemplate
                 .query("SELECT * FROM chatRoom", chatRoomRowMapper);
     }
-    
+
+    @Override
+    public Chat save() {
+        Chat chat = new Chat();
+        chat.setId(0);
+        chat.setChatId("0000000000_0000000001");
+        chat.setSenderId("0000000000");
+        chat.setRecipientId("0000000001");
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        namedParameterJdbcTemplate.update("INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
+                + ":senderId, :recipientId)",
+                new MapSqlParameterSource()
+                        .addValue("id", chat.getId())
+                        .addValue("chatId", chat.getChatId())
+                        .addValue("senderId", chat.getSenderId())
+                        .addValue("recipientId", chat.getRecipientId()),
+                keyHolder);
+        return chat;
+    }
+
 }
