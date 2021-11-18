@@ -156,7 +156,7 @@
                 return colors[index];
             }
 
-            chatPage.addEventListener('onload', connect, true)
+            window.addEventListener('onload', connect, true)
             messageForm.addEventListener('submit', sendMessage, true)</script>
         <style><%@ include file='main.css'%></style>
     </body>
