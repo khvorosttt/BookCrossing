@@ -11,9 +11,9 @@
     </head>
     <style><%@ include file='style.css'%></style>
     <body>
-        
+
         <input class="hidden" id="name" value="${sender.name}"/>
-        <div id="chat-page" class="hidden">
+        <div id="chat-page">
             <div class="chat-container">
                 <div class="chat-header">
                     <h2>Spring WebSocket Chat Demo</h2>
@@ -23,7 +23,7 @@
                 </div>
                 <ul id="messageArea">
                     <c:forEach var="message" items="${messageList}">
-                        <li>${message.textMessage}</li>
+                        <li id="saveMessage">${message.textMessage}</li>
                         </c:forEach>
                 </ul>
                 <form id="messageForm" name="messageForm" nameForm="messageForm">
@@ -56,17 +56,24 @@
             ];
 
             function connect(event) {
-                //username = document.querySelector('#name').value.trim();
+                var socket = new SockJS('/ws');
+                stompClient = Stomp.over(socket);
 
-                if (username) {
-                    //usernamePage.classList.add('hidden');
-                    chatPage.classList.remove('hidden');
+                stompClient.connect({}, onConnected, onError);
+                var messageElement = document.querySelector('#saveMessage');
+                messageElement.classList.add('chat-message');
 
-                    var socket = new SockJS('/ws');
-                    stompClient = Stomp.over(socket);
+                var avatarElement = document.createElement('i');
+                var avatarText = document.createTextNode(message.sender[0]);
+                avatarElement.appendChild(avatarText);
+                avatarElement.style['background-color'] = getAvatarColor(message.sender);
 
-                    stompClient.connect({}, onConnected, onError);
-                }
+                messageElement.appendChild(avatarElement);
+
+                var usernameElement = document.createElement('span');
+                var usernameText = document.createTextNode(message.sender);
+                usernameElement.appendChild(usernameText);
+                messageElement.appendChild(usernameElement);
                 event.preventDefault();
             }
 
@@ -156,7 +163,7 @@
                 return colors[index];
             }
 
-            window.onload=connect;
+            window.onload = connect;
             messageForm.addEventListener('submit', sendMessage, true)</script>
         <style><%@ include file='main.css'%></style>
     </body>
