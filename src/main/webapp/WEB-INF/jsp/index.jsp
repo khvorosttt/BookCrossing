@@ -31,7 +31,8 @@
     vertical-align: middle;
     font-size: 18px;
     line-height: 42px;
-    color: red;
+    color: #fff;
+    background-color: red;
     text-align: center;
     border-radius: 50%;
     font-style: normal;
