@@ -25,10 +25,10 @@
                     <c:forEach var="message" items="${messageList}">
                         <li id="saveMessage"><i><c:choose>
                                     <c:when test="${message.Id_sender == reader.name}">
-                                        ${reader.name}[0]
+                                        ${reader.name}
                                     </c:when>
                                     <c:otherwise>
-                                        ${recipient.name}[0]
+                                        ${recipient.name}
                                     </c:otherwise>
                                 </c:choose>${reader.name}</i>${message.textMessage}</li>
                             </c:forEach>
