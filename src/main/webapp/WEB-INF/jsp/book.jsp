@@ -45,10 +45,7 @@
                 <th>Название</th>
                 <th>Читатель</th>
                 <th>Доступ</th>
-                <th>Статус</th>
-                <th></th>
-            </tr>
-            <c:forEach var="book" items="${bookList}">
+                <th>Статус</th><c:forEach var="book" items="${bookList}">
                 <tr>
                     <td>${book.BCID}</td>
                     <td>${book.author}</td>
@@ -64,6 +61,9 @@
                         <a href="/book-${book.BCID}-info">Просмотреть</a></td>
                 </tr>
             </c:forEach>
+                <th></th>
+            </tr>
+            
         </table>
     </section>
 </body>
