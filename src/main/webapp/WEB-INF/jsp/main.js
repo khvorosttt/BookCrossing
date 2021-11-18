@@ -15,46 +15,44 @@ var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
-//username = document.querySelector('#name').value.trim();
+var socket = new SockJS('/ws');
+stompClient = Stomp.over(socket);
 
-    //if(username) {
-        //usernamePage.classList.add('hidden');
-        chatPage.classList.remove('hidden');
-
-        var socket = new SockJS('/ws');
-        stompClient = Stomp.over(socket);
-
-        //stompClient.connect({}, onConnected, onError);
-        stompClient.subscribe('/topic/public', onMessageReceived);
-    //}
+//stompClient.connect({}, onConnected, onError);
+stompClient.subscribe('/topic/public', onMessageReceived);
+stompClient.send("/app/chat.addUser",
+ {},
+ JSON.stringify({sender: 'username', type: 'JOIN'})
+ )
+//}
 /*function connect(event) {
-    username = document.querySelector('#name').value.trim();
-
-    if(username) {
-        usernamePage.classList.add('hidden');
-        chatPage.classList.remove('hidden');
-
-        var socket = new SockJS('/ws');
-        stompClient = Stomp.over(socket);
-
-        stompClient.connect({}, onConnected, onError);
-    }
-    event.preventDefault();
-}*/
+ username = document.querySelector('#name').value.trim();
+ 
+ if(username) {
+ usernamePage.classList.add('hidden');
+ chatPage.classList.remove('hidden');
+ 
+ var socket = new SockJS('/ws');
+ stompClient = Stomp.over(socket);
+ 
+ stompClient.connect({}, onConnected, onError);
+ }
+ event.preventDefault();
+ }*/
 
 
 /*function onConnected() {
-    // Subscribe to the Public Topic
-    stompClient.subscribe('/topic/public', onMessageReceived);
-
-    // Tell your username to the server
-    stompClient.send("/app/chat.addUser",
-        {},
-        JSON.stringify({sender: username, type: 'JOIN'})
-    )
-
-    connectingElement.classList.add('hidden');
-}*/
+ // Subscribe to the Public Topic
+ stompClient.subscribe('/topic/public', onMessageReceived);
+ 
+ // Tell your username to the server
+ stompClient.send("/app/chat.addUser",
+ {},
+ JSON.stringify({sender: username, type: 'JOIN'})
+ )
+ 
+ connectingElement.classList.add('hidden');
+ }*/
 
 
 function onError(error) {
@@ -66,7 +64,7 @@ function onError(error) {
 function sendMessage(event) {
     var messageContent = messageInput.value.trim();
 
-    if(messageContent && stompClient) {
+    if (messageContent && stompClient) {
         var chatMessage = {
             sender: 'username',
             content: messageInput.value,
@@ -85,7 +83,7 @@ function onMessageReceived(payload) {
 
     var messageElement = document.createElement('li');
 
-    if(message.type === 'JOIN') {
+    if (message.type === 'JOIN') {
         messageElement.classList.add('event-message');
         message.content = message.sender + ' joined!';
     } else if (message.type === 'LEAVE') {
