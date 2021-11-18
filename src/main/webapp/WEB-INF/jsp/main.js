@@ -15,17 +15,18 @@ var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
-username = document.querySelector('#name').value.trim();
+//username = document.querySelector('#name').value.trim();
 
-    if(username) {
-        usernamePage.classList.add('hidden');
+    //if(username) {
+        //usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
 
         var socket = new SockJS('/ws');
         stompClient = Stomp.over(socket);
 
-        stompClient.connect({}, onConnected, onError);
-    }
+        //stompClient.connect({}, onConnected, onError);
+        stompClient.subscribe('/topic/public', onMessageReceived);
+    //}
 /*function connect(event) {
     username = document.querySelector('#name').value.trim();
 
@@ -42,7 +43,7 @@ username = document.querySelector('#name').value.trim();
 }*/
 
 
-function onConnected() {
+/*function onConnected() {
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
 
@@ -53,7 +54,7 @@ function onConnected() {
     )
 
     connectingElement.classList.add('hidden');
-}
+}*/
 
 
 function onError(error) {
