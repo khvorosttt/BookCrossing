@@ -71,6 +71,8 @@
                     var usernameText = document.createTextNode(a.Id_sender);
                     usernameElement.appendChild(usernameText);
                     messageElement.appendChild(usernameElement);
+                    messageArea.appendChild(messageElement);
+                    messageArea.scrollTop = messageArea.scrollHeight;
                 }
                 var socket = new SockJS('/ws');
                 stompClient = Stomp.over(socket);
