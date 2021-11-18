@@ -23,7 +23,7 @@
                 </div>
                 <ul id="messageArea">
                     <c:forEach var="message" items="${messageList}">
-                        <li id="saveMessage"><i style.color="red">A</i>${message.textMessage}</li>
+                        <li id="saveMessage"><i class="chat-message">A</i>${message.textMessage}</li>
                             </c:forEach>
                 </ul>
                 <form id="messageForm" name="messageForm" nameForm="messageForm">
