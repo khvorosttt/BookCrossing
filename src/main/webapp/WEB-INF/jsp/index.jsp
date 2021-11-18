@@ -23,7 +23,7 @@
                 </div>
                 <ul id="messageArea">
                     <c:forEach var="message" items="${messageList}">
-                        <li id="saveMessage"><c:choose><c:when test="${"${message.Id_sender}"=="${sender.id}"}"><i style="position: absolute;
+                        <li id="saveMessage"><c:choose><c:when test="${${message.Id_sender}==${sender.id}}"><i style="position: absolute;
                                                 width: 42px;
                                                 height: 42px;
                                                 overflow: hidden;
