@@ -24,7 +24,7 @@
                 <ul id="messageArea">
                     <c:forEach var="message" items="${messageList}">
                         <li id="saveMessage"><i><c:choose>
-                                    <c:when test="${message.Id_sender == reader.name}">
+                                    <c:when test="${message.Id_sender} == ${reader.name}">
                                         ${reader.name}
                                     </c:when>
                                     <c:otherwise>
