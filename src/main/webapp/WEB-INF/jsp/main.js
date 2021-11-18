@@ -68,7 +68,7 @@ function sendMessage(event) {
 
     if(messageContent && stompClient) {
         var chatMessage = {
-            sender: username,
+            sender: 'username',
             content: messageInput.value,
             type: 'CHAT'
         };
