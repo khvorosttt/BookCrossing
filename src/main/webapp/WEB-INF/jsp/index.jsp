@@ -11,9 +11,6 @@
   </head>
   <style><%@ include file='style.css'%></style>
   <body>
-    <noscript>
-      <h2>Sorry! Your browser doesn't support Javascript</h2>
-    </noscript>
     <div id="username-page">
         <div class="username-page-container">
             <h1 class="title">Type your username</h1>
@@ -36,6 +33,11 @@
             <div class="connecting">
                 Connecting...
             </div>
+            <ul>
+                <c:forEach var="message" items="${messageList}">
+                    <li>${message.textMessage}</li>
+            </c:forEach>
+            </ul>
             <ul id="messageArea">
 
             </ul>
