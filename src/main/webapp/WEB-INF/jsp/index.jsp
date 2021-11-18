@@ -16,14 +16,14 @@
         <div id="chat-page">
             <div class="chat-container">
                 <div class="chat-header">
-                    <h2>Spring WebSocket Chat Demo</h2>
+                    <h2>${recipient.name}</h2>
                 </div>
                 <div class="connecting">
                     Connecting...
                 </div>
                 <ul id="messageArea">
                     <c:forEach var="message" items="${messageList}">
-                        <li id="saveMessage"><c:choose><c:when test="${1==1}"><i style="position: absolute;
+                        <li id="saveMessage"><c:choose><c:when test="${message.Id_sender.toString()==sender.id.toString()}"><i style="position: absolute;
                                                 width: 42px;
                                                 height: 42px;
                                                 overflow: hidden;
