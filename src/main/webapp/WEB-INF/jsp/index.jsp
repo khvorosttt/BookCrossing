@@ -11,6 +11,9 @@
   </head>
   <style><%@ include file='style.css'%></style>
   <body>
+    <noscript>
+      <h2>Sorry! Your browser doesn't support Javascript</h2>
+    </noscript>
     <div id="username-page">
         <div class="username-page-container">
             <h1 class="title">Type your username</h1>
