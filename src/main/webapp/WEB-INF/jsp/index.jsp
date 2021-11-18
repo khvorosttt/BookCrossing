@@ -33,13 +33,10 @@
             <div class="connecting">
                 Connecting...
             </div>
-            <ul>
+            <ul id="messageArea">
                 <c:forEach var="message" items="${messageList}">
                     <li>${message.textMessage}</li>
-            </c:forEach>
-            </ul>
-            <ul id="messageArea">
-
+                </c:forEach>
             </ul>
             <form id="messageForm" name="messageForm" nameForm="messageForm">
                 <div class="form-group">
