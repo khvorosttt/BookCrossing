@@ -15,7 +15,7 @@
             <div class="username-page-container">
                 <h1 class="title">Type your username</h1>
                 <form id="usernameForm" name="usernameForm">
-
+                    
                     <div class="form-group">
                         <button type="submit" class="accent username-submit">Start Chatting</button>
                     </div>
@@ -59,21 +59,14 @@
 
             var stompClient = null;
             var username = document.querySelector('#name').value.trim();
-            usernamePage.classList.add('hidden');
-            chatPage.classList.remove('hidden');
 
-            var socket = new SockJS('/ws');
-            stompClient = Stomp.over(socket);
-
-            stompClient.connect({}, onConnected, onError);
-            event.preventDefault();
             var colors = [
                 '#2196F3', '#32c787', '#00BCD4', '#ff5652',
                 '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
             ];
 
-            /*function connect(event) {
-                username = document.querySelector('#name').value.trim();
+            function connect(event) {
+                //username = document.querySelector('#name').value.trim();
 
                 if (username) {
                     usernamePage.classList.add('hidden');
@@ -85,7 +78,7 @@
                     stompClient.connect({}, onConnected, onError);
                 }
                 event.preventDefault();
-            }*/
+            }
 
 
             function onConnected() {
@@ -173,7 +166,7 @@
                 return colors[index];
             }
 
-            usernameForm.addEventListener('submit', connect, true)
+            usernameForm.addEventListener('DOMContentLoaded', connect, true)
             messageForm.addEventListener('submit', sendMessage, true)</script>
         <style><%@ include file='main.css'%></style>
     </body>
