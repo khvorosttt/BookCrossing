@@ -58,11 +58,15 @@ public class MessageController {
     }
     @GetMapping("/messages/{senderId}/{recipientId}")
     public String findChatMessages ( @PathVariable String senderId,
-                                                @PathVariable String recipientId) {
+                                                @PathVariable String recipientId, Model model) {
         User user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Reader reader = readerService.findByLogin(user.getUsername());
         if(senderId.equals(reader.getId())){
-            Chat cr=chatRoomService.findByChatId(senderId, recipientId);
+            Message message=new Message();
+            message.setId_sender(chatRoomService.findByChatId(senderId, recipientId).getSenderId());
+            message.setId_recipient(chatRoomService.findByChatId(senderId, recipientId).getRecipientId());
+            List<Message> messages=messageService.findBySenderRecipient(message);
+            model.addAttribute("messageList",messages);
             return "index";
         }
         return "redirect:/";
