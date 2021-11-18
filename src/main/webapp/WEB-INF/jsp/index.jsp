@@ -156,7 +156,7 @@
                 return colors[index];
             }
 
-            window.addEventListener('onload', connect, true)
+            window.onload=connect;
             messageForm.addEventListener('submit', sendMessage, true)</script>
         <style><%@ include file='main.css'%></style>
     </body>
