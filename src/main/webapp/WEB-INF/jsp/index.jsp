@@ -68,7 +68,7 @@
             ];
 
             function connect(event) {
-                username = document.querySelector('#name').value.trim();
+                username = ${sender.name}//document.querySelector('#name').value.trim();
 
                 if (username) {
                     usernamePage.classList.add('hidden');
