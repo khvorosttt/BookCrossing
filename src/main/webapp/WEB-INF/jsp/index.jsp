@@ -9,6 +9,7 @@
         <title>${recipient.name}</title>
         <link rel="stylesheet" href="/css/main.css" />
     </head>
+    <style><%@ include file='main.css'%></style>
     <body>
 
         <input class="hidden" id="name" value="${sender.name}"/>
@@ -22,7 +23,7 @@
                 </div>
                 <ul id="messageArea">
                     <c:forEach var="message" items="${messageList}">
-                        <li id="saveMessage"><c:choose><c:when test="${1==1}"><i style="position: absolute;
+                        <li id="saveMessage"><c:choose><c:when test="${'${message.Id_sender}'=='${sender.id}'}"><i style="position: absolute;
                                                 width: 42px;
                                                 height: 42px;
                                                 overflow: hidden;
@@ -178,6 +179,6 @@
 
             window.onload = connect;
             messageForm.addEventListener('submit', sendMessage, true)</script>
-        <style><%@ include file='main.css'%></style>
+        
     </body>
 </html>
