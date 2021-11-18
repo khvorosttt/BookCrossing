@@ -22,7 +22,7 @@
                 </form>
             </div>
         </div>
-        <p class="hidden" id="name" value="${sender.name}"></p>
+        <input class="hidden" id="name" value="${sender.name}"/>
         <div id="chat-page" class="hidden">
             <div class="chat-container">
                 <div class="chat-header">
