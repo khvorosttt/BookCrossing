@@ -12,21 +12,21 @@
     <style><%@ include file='style.css'%></style>
     <style>
         .d1 i {
-    position: absolute;
-    width: 42px;
-    height: 42px;
-    overflow: hidden;
-    left: 10px;
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 18px;
-    line-height: 42px;
-    color: #fff;
-    text-align: center;
-    border-radius: 50%;
-    font-style: normal;
-    text-transform: uppercase;
-}
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            overflow: hidden;
+            left: 10px;
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 18px;
+            line-height: 42px;
+            color: #fff;
+            text-align: center;
+            border-radius: 50%;
+            font-style: normal;
+            text-transform: uppercase;
+        }
     </style>
     <body>
 
@@ -41,7 +41,7 @@
                 </div>
                 <ul id="messageArea">
                     <c:forEach var="message" items="${messageList}">
-                        <li id="saveMessage"><i class="d1">A</i>${message.textMessage}</li>
+                        <li id="saveMessage">${message.textMessage}</li>
                         </c:forEach>
                 </ul>
                 <form id="messageForm" name="messageForm" nameForm="messageForm">
@@ -73,6 +73,20 @@
                 '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
             ];
 
+            var messageElement = document.querySelector('#saveMessage');
+            messageElement.classList.add('chat-message');
+
+            var avatarElement = document.createElement('i');
+            var avatarText = document.createTextNode(sender.name[0]);
+            avatarElement.appendChild(avatarText);
+            avatarElement.style['background-color'] = getAvatarColor(sender.name);
+
+            messageElement.appendChild(avatarElement);
+
+            var usernameElement = document.createElement('span');
+            var usernameText = document.createTextNode(sender.name);
+            usernameElement.appendChild(usernameText);
+            messageElement.appendChild(usernameElement);
             function connect(event) {
                 var socket = new SockJS('/ws');
                 stompClient = Stomp.over(socket);
