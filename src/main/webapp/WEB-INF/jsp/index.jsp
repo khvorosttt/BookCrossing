@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-        <title>Spring Boot WebSocket Chat Application | CalliCoder</title>
+        <title>${recipient.name}</title>
         <link rel="stylesheet" href="/css/main.css" />
     </head>
     <style><%@ include file='style.css'%></style>
@@ -68,9 +68,9 @@
             ];
 
             function connect(event) {
-                username = ${sender.name}//document.querySelector('#name').value.trim();
+                username = document.querySelector('#name').value.trim();
 
-                //if (username) {
+                if (username) {
                     usernamePage.classList.add('hidden');
                     chatPage.classList.remove('hidden');
 
@@ -78,7 +78,7 @@
                     stompClient = Stomp.over(socket);
 
                     stompClient.connect({}, onConnected, onError);
-                //}
+                }
                 event.preventDefault();
             }
 
