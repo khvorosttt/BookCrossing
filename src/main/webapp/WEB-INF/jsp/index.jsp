@@ -70,7 +70,7 @@
             function connect(event) {
                 username = ${sender.name}//document.querySelector('#name').value.trim();
 
-                if (username) {
+                //if (username) {
                     usernamePage.classList.add('hidden');
                     chatPage.classList.remove('hidden');
 
@@ -78,7 +78,7 @@
                     stompClient = Stomp.over(socket);
 
                     stompClient.connect({}, onConnected, onError);
-                }
+                //}
                 event.preventDefault();
             }
 
