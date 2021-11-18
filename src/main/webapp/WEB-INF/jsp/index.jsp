@@ -10,6 +10,24 @@
         <link rel="stylesheet" href="/css/main.css" />
     </head>
     <style><%@ include file='style.css'%></style>
+    <style>
+        i {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    overflow: hidden;
+    left: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    line-height: 42px;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    font-style: normal;
+    text-transform: uppercase;
+}
+    </style>
     <body>
 
         <input class="hidden" id="name" value="${sender.name}"/>
@@ -23,7 +41,7 @@
                 </div>
                 <ul id="messageArea">
                     <c:forEach var="message" items="${messageList}">
-                        <li id="saveMessage"><i id="chat-page" class="chat-message">A</i>${message.textMessage}</li>
+                        <li id="saveMessage"><i>A</i>${message.textMessage}</li>
                             </c:forEach>
                 </ul>
                 <form id="messageForm" name="messageForm" nameForm="messageForm">
