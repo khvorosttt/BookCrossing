@@ -23,8 +23,8 @@
                 </div>
                 <ul id="messageArea">
                     <c:forEach var="message" items="${messageList}">
-                        <li id="saveMessage"><i><c:if test="${message.Id_sender}==${sender.id}">${sender.name}</c:if>
-                                        <c:if test="${message.Id_sender}==${recipient.id}">${recipient.name}</c:if>
+                        <li id="saveMessage"><i><c:if test="${message.Id_sender}.equals(${sender.id})">${sender.name}</c:if>
+                                        <c:if test="${message.Id_sender}.equals(${recipient.id})">${recipient.name}</c:if>
                                     </i>${message.textMessage}</li>
                             </c:forEach>
                 </ul>
