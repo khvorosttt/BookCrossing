@@ -49,18 +49,7 @@
 
             var stompClient = null;
             var username = document.querySelector('#name').value.trim();
-
-            var colors = [
-                '#2196F3', '#32c787', '#00BCD4', '#ff5652',
-                '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
-            ];
-
-            function connect(event) {
-                var socket = new SockJS('/ws');
-                stompClient = Stomp.over(socket);
-
-                stompClient.connect({}, onConnected, onError);
-                var messageElement = document.querySelector('#saveMessage');
+            var messageElement = document.querySelector('#saveMessage');
                 messageElement.classList.add('chat-message');
 
                 var avatarElement = document.createElement('i');
@@ -74,6 +63,30 @@
                 var usernameText = document.createTextNode(message.sender);
                 usernameElement.appendChild(usernameText);
                 messageElement.appendChild(usernameElement);
+            var colors = [
+                '#2196F3', '#32c787', '#00BCD4', '#ff5652',
+                '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
+            ];
+
+            function connect(event) {
+                var socket = new SockJS('/ws');
+                stompClient = Stomp.over(socket);
+
+                stompClient.connect({}, onConnected, onError);
+                /*var messageElement = document.querySelector('#saveMessage');
+                messageElement.classList.add('chat-message');
+
+                var avatarElement = document.createElement('i');
+                var avatarText = document.createTextNode(message.sender[0]);
+                avatarElement.appendChild(avatarText);
+                avatarElement.style['background-color'] = getAvatarColor(message.sender);
+
+                messageElement.appendChild(avatarElement);
+
+                var usernameElement = document.createElement('span');
+                var usernameText = document.createTextNode(message.sender);
+                usernameElement.appendChild(usernameText);
+                messageElement.appendChild(usernameElement);*/
                 event.preventDefault();
             }
 
