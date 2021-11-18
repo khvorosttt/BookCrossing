@@ -11,7 +11,7 @@
     </head>
     <style><%@ include file='style.css'%></style>
     <style>
-        i {
+        .d1 i {
     position: absolute;
     width: 42px;
     height: 42px;
@@ -41,8 +41,8 @@
                 </div>
                 <ul id="messageArea">
                     <c:forEach var="message" items="${messageList}">
-                        <li id="saveMessage"><i>A</i>${message.textMessage}</li>
-                            </c:forEach>
+                        <li id="saveMessage"><i class="d1">A</i>${message.textMessage}</li>
+                        </c:forEach>
                 </ul>
                 <form id="messageForm" name="messageForm" nameForm="messageForm">
                     <div class="form-group">
