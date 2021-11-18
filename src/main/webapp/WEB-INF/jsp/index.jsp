@@ -22,21 +22,21 @@
                 </div>
                 <ul id="messageArea">
                     <c:forEach var="message" items="${messageList}">
-                        <li id="saveMessage"><i style="position: absolute;
-    width: 42px;
-    height: 42px;
-    overflow: hidden;
-    left: 10px;
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 18px;
-    line-height: 42px;
-    color: #fff;
-    background-color: red;
-    text-align: center;
-    border-radius: 50%;
-    font-style: normal;
-    text-transform: uppercase;">A</i>${message.textMessage}</li>
+                        <li id="saveMessage"><c:choose><c:when test="${message.Id_sender==sender.id}"><i style="position: absolute;
+                                                width: 42px;
+                                                height: 42px;
+                                                overflow: hidden;
+                                                left: 10px;
+                                                display: inline-block;
+                                                vertical-align: middle;
+                                                font-size: 18px;
+                                                line-height: 42px;
+                                                color: #fff;
+                                                background-color: red;
+                                                text-align: center;
+                                                border-radius: 50%;
+                                                font-style: normal;
+                                                text-transform: uppercase;">${sender.name}</i></c:when></c:choose>${message.textMessage}</li>
                         </c:forEach>
                 </ul>
                 <form id="messageForm" name="messageForm" nameForm="messageForm">
