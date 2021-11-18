@@ -23,7 +23,7 @@
                 </div>
                 <ul id="messageArea">
                     <c:forEach var="message" items="${messageList}">
-                        <li id="saveMessage"><c:choose><c:when test="${message.Id_sender=='0000000001'}"><i style="position: absolute;
+                        <li id="saveMessage"><c:if test="${message.Id_sender}==${sender.id}"><i style="position: absolute;
                                                 width: 42px;
                                                 height: 42px;
                                                 overflow: hidden;
@@ -37,7 +37,7 @@
                                                 text-align: center;
                                                 border-radius: 50%;
                                                 font-style: normal;
-                                                text-transform: uppercase;">${sender.name}</i></c:when></c:choose>${message.textMessage}</li>
+                                                text-transform: uppercase;">${sender.name}</i></c:if>${message.textMessage}</li>
                         </c:forEach>
                 </ul>
                 <form id="messageForm" name="messageForm" nameForm="messageForm">
