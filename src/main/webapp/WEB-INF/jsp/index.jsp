@@ -11,7 +11,21 @@
   </head>
   <style><%@ include file='style.css'%></style>
   <body>
-    <div id="chat-page">
+    <div id="username-page">
+        <div class="username-page-container">
+            <h1 class="title">Type your username</h1>
+            <form id="usernameForm" name="usernameForm">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="accent username-submit">Start Chatting</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="chat-page" class="hidden">
         <div class="chat-container">
             <div class="chat-header">
                 <h2>Spring WebSocket Chat Demo</h2>
@@ -20,9 +34,7 @@
                 Connecting...
             </div>
             <ul id="messageArea">
-                <c:forEach var="message" items="${messageList}">
-                    <li>${message.textMessage}</li>
-                </c:forEach>
+
             </ul>
             <form id="messageForm" name="messageForm" nameForm="messageForm">
                 <div class="form-group">
