@@ -67,6 +67,8 @@ public class MessageController {
             message.setId_recipient(chatRoomService.findByChatId(senderId, recipientId).getRecipientId());
             List<Message> messages=messageService.findBySenderRecipient(message);
             model.addAttribute("messageList",messages);
+            model.addAttribute("sender",readerService.findById(senderId));
+            model.addAttribute("recipient",readerService.findById(recipientId));
             return "index";
         }
         return "redirect:/";
