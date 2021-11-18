@@ -11,7 +11,7 @@
   </head>
   <style><%@ include file='style.css'%></style>
   <body>
-    <div id="chat-page" class="hidden">
+    <div id="chat-page">
         <div class="chat-container">
             <div class="chat-header">
                 <h2>Spring WebSocket Chat Demo</h2>
