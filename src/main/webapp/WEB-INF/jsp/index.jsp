@@ -11,17 +11,7 @@
     </head>
     <style><%@ include file='style.css'%></style>
     <body>
-        <div id="username-page">
-            <div class="username-page-container">
-                <h1 class="title">Type your username</h1>
-                <form id="usernameForm" name="usernameForm">
-                    
-                    <div class="form-group">
-                        <button type="submit" class="accent username-submit">Start Chatting</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+        
         <input class="hidden" id="name" value="${sender.name}"/>
         <div id="chat-page" class="hidden">
             <div class="chat-container">
@@ -69,7 +59,7 @@
                 //username = document.querySelector('#name').value.trim();
 
                 if (username) {
-                    usernamePage.classList.add('hidden');
+                    //usernamePage.classList.add('hidden');
                     chatPage.classList.remove('hidden');
 
                     var socket = new SockJS('/ws');
