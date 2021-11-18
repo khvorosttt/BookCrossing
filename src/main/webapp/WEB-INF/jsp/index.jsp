@@ -156,7 +156,7 @@
                 return colors[index];
             }
 
-            usernameForm.addEventListener('DOMContentLoaded', connect, true)
+            chatPage.addEventListener('DOMContentLoaded', connect, true)
             messageForm.addEventListener('submit', sendMessage, true)</script>
         <style><%@ include file='main.css'%></style>
     </body>
