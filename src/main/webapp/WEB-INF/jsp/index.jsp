@@ -60,7 +60,7 @@
                 stompClient = Stomp.over(socket);
 
                 stompClient.connect({}, onConnected, onError);
-                var saveMessages = document.querySelector('#saveMessage');
+                var saveMessages = document.querySelector('#saveMessage').values();
                 saveMessages.forEach(function(a){
                     var messageElement = document.createElement('li');
                     messageElement.classList.add('chat-message');
