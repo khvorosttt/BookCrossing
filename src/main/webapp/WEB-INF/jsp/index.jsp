@@ -65,14 +65,14 @@
                     var messageElement = document.createElement('li');
                     messageElement.classList.add('chat-message');
                     var avatarElement = document.createElement('i');
-                    var avatarText = document.createTextNode(a.Id_sender[0]);
+                    var avatarText = document.createTextNode("R");
                     avatarElement.appendChild(avatarText);
-                    avatarElement.style['background-color'] = getAvatarColor(a.Id_sender);
+                    avatarElement.style['background-color'] = getAvatarColor("a.Id_sender");
 
                     messageElement.appendChild(avatarElement);
 
                     var usernameElement = document.createElement('span');
-                    var usernameText = document.createTextNode(a.Id_sender);
+                    var usernameText = document.createTextNode("a.Id_sender");
                     usernameElement.appendChild(usernameText);
                     messageElement.appendChild(usernameElement);
                     messageArea.appendChild(messageElement);
