@@ -40,24 +40,28 @@ public class MessageServiceImpl implements MessageService {
             message.setId_message(count()+1);
             KeyHolder keyHolder = new GeneratedKeyHolder();
             chatRoomService.findByChatId(message.getId_sender(), message.getId_recipient());
-            namedParameterJdbcTemplate.update("INSERT INTO message (id_message, chatId, id_sender, id_recipient, textMessage,"
-                    + " date_time, is_read) VALUES (:id_message, :chatId, :id_sender, :id_recipient, :textMessage,"
+            namedParameterJdbcTemplate.update("INSERT INTO message (id_message, chatId, id_sender, id_recipient, sender, recipient, textMessage,"
+                    + " date_time, is_read) VALUES (:id_message, :chatId, :id_sender, :id_recipient, :sender, :recipient, :textMessage,"
                     + ":date_time, :is_read)",
                     new MapSqlParameterSource()
                             .addValue("id_message", message.getId_message())
                             .addValue("chatId", message.getChatId())
                             .addValue("id_sender", message.getId_sender())
                             .addValue("id_recipient", message.getId_recipient())
+                            .addValue("sender", message.getSender())
+                            .addValue("recipient", message.getRecipient())
                             .addValue("textMessage", message.getTextMessage())
                             .addValue("date_time", message.getDate_Time())
                             .addValue("is_read", message.getIs_read()),
                     keyHolder);
         } else {
-            namedParameterJdbcTemplate.update("UPDATE message SET id_sender = :id_sender,"
+            namedParameterJdbcTemplate.update("UPDATE message SET id_sender = :id_sender, sender=:sender, recipient=:recipient,"
                     + "id_recipient = :id_recipient, textMessage = :textMessage, date_time = :date_time, is_read = :is_read",
                     new MapSqlParameterSource()
                             .addValue("id_sender", message.getId_sender())
                             .addValue("id_recipient", message.getId_recipient())
+                            .addValue("sender", message.getSender())
+                            .addValue("recipient", message.getRecipient())
                             .addValue("textMessage", message.getTextMessage())
                             .addValue("date_time", message.getDate_Time())
                             .addValue("is_read", message.getIs_read()));
