@@ -86,7 +86,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public List<Message> findBySenderRecipient(Message message) {
         return namedParameterJdbcTemplate
-                .query("SELECT * FROM message WHERE id_sender = :id_sender AND id_recipient=:id_recipient",
+                .query("SELECT * FROM message WHERE id_sender = :id_sender AND id_recipient=:id_recipient OR id_sender = :id_recipient AND id_recipient=:id_sender",
                         new MapSqlParameterSource().addValue("id_sender", message.getId_sender())
                         .addValue("id_recipient", message.getId_recipient()),
                         messageRowMapper);
