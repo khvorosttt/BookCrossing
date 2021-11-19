@@ -59,8 +59,8 @@
                 var socket = new SockJS('/ws');
                 stompClient = Stomp.over(socket);
 
-                
-                var saveMessages = document.querySelector('#saveMessage').values();
+                stompClient.connect({}, onConnected, onError);
+                var saveMessages = document.querySelector('#saveMessage');
                 saveMessages.forEach(function(a){
                     var messageElement = document.createElement('li');
                     messageElement.classList.add('chat-message');
@@ -78,7 +78,6 @@
                     messageArea.appendChild(messageElement);
                     messageArea.scrollTop = messageArea.scrollHeight;
                 });
-                stompClient.connect({}, onConnected, onError);
                 event.preventDefault();
             }
 
