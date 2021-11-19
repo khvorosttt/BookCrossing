@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,8 +43,9 @@ public class BookController {
     @GetMapping("/")
     public String getBookPage(Model model) {
         List<Book> books = bookService.findAll();
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(user.isEnabled()){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(!(authentication instanceof AnonymousAuthenticationToken)){
+            User user = (User) authentication.getPrincipal();
             Reader reader = readerService.findByLogin(user.getUsername());
         
         model.addAttribute("reader", reader);
