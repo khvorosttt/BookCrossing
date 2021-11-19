@@ -86,6 +86,11 @@
                 stompClient.subscribe('/topic/public', onMessageReceived);
 
                 // Tell your username to the server
+                stompClient.send("/app/chat.addUser",
+                        {},
+                        JSON.stringify({sender: username, type: 'JOIN'})
+                        )
+
                 connectingElement.classList.add('hidden');
             }
 
@@ -117,11 +122,22 @@
                 var message = JSON.parse(payload.body);
 
                 var messageElement = document.createElement('li');
-                messageElement.classList.add('chat-message');
-                var usernameElement = document.createElement('span');
-                var usernameText = document.createTextNode(message.sender);
-                usernameElement.appendChild(usernameText);
-                messageElement.appendChild(usernameElement);
+
+                if (message.type === 'JOIN') {
+                    messageElement.classList.add('event-message');
+                    message.content = message.sender + ' joined!';
+                } else if (message.type === 'LEAVE') {
+                    messageElement.classList.add('event-message');
+                    message.content = message.sender + ' left!';
+                } else {
+                    messageElement.classList.add('chat-message');
+
+                    var usernameElement = document.createElement('span');
+                    var usernameText = document.createTextNode(message.sender);
+                    usernameElement.appendChild(usernameText);
+                    messageElement.appendChild(usernameElement);
+                }
+
                 var textElement = document.createElement('p');
                 var messageText = document.createTextNode(message.content);
                 textElement.appendChild(messageText);
