@@ -41,6 +41,9 @@ public class BookController {
     @GetMapping("/")
     public String getBookPage(Model model) {
         List<Book> books = bookService.findAll();
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Reader reader = readerService.findByLogin(user.getUsername());
+        model.addAttribute("reader", reader);
         model.addAttribute("bookList", books);
         return "book";
     }
