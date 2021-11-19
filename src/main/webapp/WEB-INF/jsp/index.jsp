@@ -58,7 +58,7 @@
             function connect(event) {
                 var socket = new SockJS('/ws');
                 stompClient = Stomp.over(socket);
-
+                stompClient.connect({}, onConnected, onError);
                 
                 var saveMessages = document.querySelectorAll('#saveMessage');
                 for (var item in saveMessages) {
@@ -79,8 +79,8 @@
                     messageElement.appendChild(usernameElement);
                     messageArea.appendChild(messageElement);
                     messageArea.scrollTop = messageArea.scrollHeight;
-                });
-                stompClient.connect({}, onConnected, onError);
+                }
+                
                 event.preventDefault();
             }
 
