@@ -12,23 +12,23 @@
     <style><%@ include file='main.css'%></style>
     <body>
         <header>
-        <nav>
-            <ul><sec:authorize access="isAnonymous()">
-                    <li><a href="/login">
-                            Авторизация</a></li>
-                </sec:authorize>
-                <sec:authorize access="isAuthenticated()">
-                    <li><a href="/my-profile">Мой профиль</a></li>
-                </sec:authorize>
+            <nav>
+                <ul><sec:authorize access="isAnonymous()">
+                        <li><a href="/login">
+                                Авторизация</a></li>
+                            </sec:authorize>
+                            <sec:authorize access="isAuthenticated()">
+                        <li><a href="/my-profile">Мой профиль</a></li>
+                        </sec:authorize>
                     <li><a href="/" class="CurrentPage">Библиотека</a></li>
                     <li><a href="/find-book">Поиск книги</a></li>
                     <li><a href="/order-board">Доска заказов</a></li>
-                    <sec:authorize access="isAuthenticated()">
-                    <li><a href="/logout">Выйти</a></li>
-                    </sec:authorize>
-            </ul>
-        </nav>
-    </header>
+                        <sec:authorize access="isAuthenticated()">
+                        <li><a href="/logout">Выйти</a></li>
+                        </sec:authorize>
+                </ul>
+            </nav>
+        </header>
         <input class="hidden" id="name" value="${sender.name}"/>
         <div id="chat-page">
             <div class="chat-container">
@@ -41,7 +41,7 @@
                 <ul id="messageArea">
                     <c:forEach var="message" items="${messageList}">
                         <li class="event-message" style="padding-left: 68px; color:black;"><p><b>${message.sender}</b></p><p>${message.textMessage}</p></li>
-                    </c:forEach>
+                                </c:forEach>
                 </ul>
                 <form id="messageForm" name="messageForm" nameForm="messageForm">
                     <div class="form-group">
@@ -71,12 +71,12 @@
                 '#2196F3', '#32c787', '#00BCD4', '#ff5652',
                 '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
             ];
-            
+
             function connect(event) {
                 var socket = new SockJS('/ws');
                 stompClient = Stomp.over(socket);
                 stompClient.connect({}, onConnected, onError);
-                
+
                 event.preventDefault();
             }
 
@@ -86,11 +86,6 @@
                 stompClient.subscribe('/topic/public', onMessageReceived);
 
                 // Tell your username to the server
-                stompClient.send("/app/chat.addUser",
-                        {},
-                        JSON.stringify({sender: username, type: 'JOIN'})
-                        )
-
                 connectingElement.classList.add('hidden');
             }
 
@@ -122,29 +117,11 @@
                 var message = JSON.parse(payload.body);
 
                 var messageElement = document.createElement('li');
-
-                if (message.type === 'JOIN') {
-                    messageElement.classList.add('event-message');
-                    message.content = message.sender + ' joined!';
-                } else if (message.type === 'LEAVE') {
-                    messageElement.classList.add('event-message');
-                    message.content = message.sender + ' left!';
-                } else {
-                    messageElement.classList.add('chat-message');
-
-                    //var avatarElement = document.createElement('i');
-                    //var avatarText = document.createTextNode(message.sender[0]);
-                    //avatarElement.appendChild(avatarText);
-                    //avatarElement.style['background-color'] = getAvatarColor(message.sender);
-
-                    //messageElement.appendChild(avatarElement);
-
-                    var usernameElement = document.createElement('span');
-                    var usernameText = document.createTextNode(message.sender);
-                    usernameElement.appendChild(usernameText);
-                    messageElement.appendChild(usernameElement);
-                }
-
+                messageElement.classList.add('chat-message');
+                var usernameElement = document.createElement('span');
+                var usernameText = document.createTextNode(message.sender);
+                usernameElement.appendChild(usernameText);
+                messageElement.appendChild(usernameElement);
                 var textElement = document.createElement('p');
                 var messageText = document.createTextNode(message.content);
                 textElement.appendChild(messageText);
@@ -153,17 +130,6 @@
 
                 messageArea.appendChild(messageElement);
                 messageArea.scrollTop = messageArea.scrollHeight;
-            }
-
-
-            function getAvatarColor(messageSender) {
-                var hash = 0;
-                for (var i = 0; i < messageSender.length; i++) {
-                    hash = 31 * hash + messageSender.charCodeAt(i);
-                }
-
-                var index = Math.abs(hash % colors.length);
-                return colors[index];
             }
 
             window.onload = connect;
