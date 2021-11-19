@@ -25,6 +25,8 @@ public class MessageRowMapper implements RowMapper<Message> {
         message.setChatId(rs.getString("chatId"));
         message.setId_sender(rs.getString("id_sender"));
         message.setId_recipient(rs.getString("id_recipient"));
+        message.setSender(rs.getString("sender"));
+        message.setRecipient(rs.getString("recipient"));
         message.setTextMessage(rs.getString("textMessage"));
         message.setDate_Time(rs.getDate("date_time"));
         message.setIs_read(Boolean.parseBoolean(rs.getString("is_read")));
