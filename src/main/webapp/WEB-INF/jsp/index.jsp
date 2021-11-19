@@ -56,8 +56,12 @@
             ];
 
             function connect(event) {
+                var socket = new SockJS('/ws');
+                stompClient = Stomp.over(socket);
+
+                stompClient.connect({}, onConnected, onError);
                 var saveMessages = document.querySelector('#saveMessage');
-                for (var a in saveMessages) {
+                saveMessages.forEach(function(a){
                     var messageElement = document.createElement('li');
                     messageElement.classList.add('chat-message');
                     var avatarElement = document.createElement('i');
@@ -73,11 +77,7 @@
                     messageElement.appendChild(usernameElement);
                     messageArea.appendChild(messageElement);
                     messageArea.scrollTop = messageArea.scrollHeight;
-                }
-                var socket = new SockJS('/ws');
-                stompClient = Stomp.over(socket);
-
-                stompClient.connect({}, onConnected, onError);
+                });
                 event.preventDefault();
             }
 
