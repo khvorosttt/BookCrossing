@@ -42,7 +42,7 @@ public class BookController {
     public String getBookPage(Model model) {
         List<Book> books = bookService.findAll();
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(!user.isAccountNonLocked()){
+        if(user.isEnabled()){
             Reader reader = readerService.findByLogin(user.getUsername());
         
         model.addAttribute("reader", reader);
