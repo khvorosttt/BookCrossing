@@ -61,7 +61,7 @@
 
                 stompClient.connect({}, onConnected, onError);
                 var saveMessages = document.querySelector('#saveMessage');
-                saveMessages.forEach(function(a){
+                saveMessages.forEach(function(a,i,saveMessages){
                     var messageElement = document.createElement('li');
                     messageElement.classList.add('chat-message');
                     var avatarElement = document.createElement('i');
