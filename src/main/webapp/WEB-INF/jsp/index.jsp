@@ -23,7 +23,7 @@
                 </div>
                 <ul id="messageArea">
                     <c:forEach var="message" items="${messageList}">
-                        <li class="event-message"><span style="text-align: left;">${message.sender}</span><p style="text-align: left;">${message.textMessage}</p></li>
+                        <li class="event-message" style="padding: 10px 20px;"><p style="text-align: left;"><b>${message.sender}</b></p><p style="text-align: left;">${message.textMessage}</p></li>
                     </c:forEach>
                 </ul>
                 <form id="messageForm" name="messageForm" nameForm="messageForm">
