@@ -53,7 +53,7 @@
                     <td>${book.BCID}</td>
                     <td>${book.author}</td>
                     <td>${book.name}</td>
-                    <td>${book.reader}</td>
+                    <td><a href="/messages/${reader.id}/${book.reader}">${book.reader}</a></td>
                     <td>${book.access}</td>
                     <td>${book.status}</td>
                     <td><sec:authorize access="isAuthenticated()">
