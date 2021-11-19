@@ -16,6 +16,8 @@ public class Message {
     private String chatId;
     private String id_sender;
     private String id_recipient;
+    private String sender;
+    private String recipient;
     private Date date_time;
     private String textMessage;
     private boolean is_read;
@@ -50,6 +52,22 @@ public class Message {
     
     public void setId_recipient(String id_recipient){
         this.id_recipient=id_recipient;
+    }
+    
+    public String getSender(){
+        return sender;
+    }
+    
+    public void setSender(String sender){
+        this.sender=sender;
+    }
+    
+    public String getRecipient(){
+        return recipient;
+    }
+    
+    public void setRecipient(String recipient){
+        this.recipient=recipient;
     }
     
     public Date getDate_Time(){
