@@ -155,12 +155,11 @@ button.accent {
 
 #chat-page .event-message {
     width: 100%;
-    text-align: center;
     clear: both;
 }
 
 #chat-page .event-message p {
-    color: #777;
+    color: black;
     font-size: 14px;
     word-wrap: break-word;
 }
