@@ -54,12 +54,8 @@
                 '#2196F3', '#32c787', '#00BCD4', '#ff5652',
                 '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
             ];
-
-            function connect(event) {
-                var socket = new SockJS('/ws');
-                stompClient = Stomp.over(socket);
-                stompClient.connect({}, onConnected, onError);
-                
+            document.addEventListener("DOMContentLoaded", db,true);
+            function db(){
                 var saveMessages = document.querySelectorAll('#saveMessage');
                 for (var item in saveMessages) {
     
@@ -80,6 +76,13 @@
                     messageArea.appendChild(messageElement);
                     messageArea.scrollTop = messageArea.scrollHeight;
                 }
+            }
+            function connect(event) {
+                var socket = new SockJS('/ws');
+                stompClient = Stomp.over(socket);
+                stompClient.connect({}, onConnected, onError);
+                
+                
                 
                 event.preventDefault();
             }
