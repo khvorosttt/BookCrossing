@@ -23,7 +23,7 @@
                 </div>
                 <ul id="messageArea">
                     <c:forEach var="message" items="${messageList}">
-                        <input class="hidden" id="saveMessage" value="${message}"/>
+                        <li class="hidden" id="saveMessage" value="${message}"></li>
                     </c:forEach>
                 </ul>
                 <form id="messageForm" name="messageForm" nameForm="messageForm">
