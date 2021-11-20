@@ -92,6 +92,7 @@ public class MessageController {
         message.setIs_read(0);
         messageService.save(message);
         messagingTemplate.convertAndSend("/messages/"+message.getId_sender()+"/"+message.getId_recipient(), message);
+        messagingTemplate.convertAndSend("/messages/"+message.getId_recipient()+"/"+message.getId_sender(), message);
     }
     /*
     @MessageMapping("/chat.sendMessage")
