@@ -115,9 +115,9 @@
                         textMessage : messageInput.value,
                         //type: 'CHAT'
                     };
-                    var address="/app/messages/"+senderId+"/"+recipientId+".sendMessage";
-                    stompClient.send(address.toString(), {}, JSON.stringify(chatMessage));
-                    //stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+                    //var address="/app/messages/"+senderId+"/"+recipientId+".sendMessage";
+                    //stompClient.send(address.toString(), {}, JSON.stringify(chatMessage));
+                    stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
                     messageInput.value = '';
                 }
                 event.preventDefault();
