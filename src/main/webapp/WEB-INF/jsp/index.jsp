@@ -70,7 +70,7 @@
             var username = document.querySelector('#name').value.trim();
             var senderId = document.querySelector('#senderId').value.trim();
             var recipientId = document.querySelector('#recipientId').value.trim();
-            
+
             var colors = [
                 '#2196F3', '#32c787', '#00BCD4', '#ff5652',
                 '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
@@ -87,10 +87,9 @@
 
             function onConnected() {
                 // Subscribe to the Public Topic
-                alert('/topic/messages/'+senderId+'/'+recipientId);
-                var address='/messages/'+senderId+'/'+recipientId;
+                alert('/topic/messages/' + senderId + '/' + recipientId);
+                var address = '/messages/' + senderId + '/' + recipientId;
                 stompClient.subscribe(address, onMessageReceived);
-                //stompClient.subscribe('/topic/public', onMessageReceived);
                 // Tell your username to the server
                 stompClient.send("/app/chat.addUser",
                         {},
@@ -109,18 +108,16 @@
 
             function sendMessage(event) {
                 var messageContent = messageInput.value.trim();
-                
+
                 if (messageContent && stompClient) {
                     var chatMessage = {
                         sender: username,
-                        chatId : senderId+"_"+recipientId,
-                        id_sender : senderId,
-                        id_recipient : recipientId,
-                        textMessage : messageInput.value,
+                        chatId: senderId + "_" + recipientId,
+                        id_sender: senderId,
+                        id_recipient: recipientId,
+                        textMessage: messageInput.value,
                         //type: 'CHAT'
                     };
-                    //var address="/app/messages/"+senderId+"/"+recipientId+".sendMessage";
-                    //stompClient.send(address.toString(), {}, JSON.stringify(chatMessage));
                     stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
                     messageInput.value = '';
                 }
@@ -132,21 +129,12 @@
                 var message = JSON.parse(payload.body);
 
                 var messageElement = document.createElement('li');
+                messageElement.classList.add('chat-message');
 
-                /*if (message.type === 'JOIN') {
-                    messageElement.classList.add('event-message');
-                    message.content = message.sender + ' joined!';
-                } else if (message.type === 'LEAVE') {
-                    messageElement.classList.add('event-message');
-                    message.content = message.sender + ' left!';
-                } else {*/
-                    messageElement.classList.add('chat-message');
-
-                    var usernameElement = document.createElement('span');
-                    var usernameText = document.createTextNode(message.sender);
-                    usernameElement.appendChild(usernameText);
-                    messageElement.appendChild(usernameElement);
-                //}
+                var usernameElement = document.createElement('span');
+                var usernameText = document.createTextNode(message.sender);
+                usernameElement.appendChild(usernameText);
+                messageElement.appendChild(usernameElement);
 
                 var textElement = document.createElement('p');
                 var messageText = document.createTextNode(message.textMessage);
