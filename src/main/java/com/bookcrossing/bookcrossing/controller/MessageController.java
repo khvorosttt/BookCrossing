@@ -90,7 +90,7 @@ public class MessageController {
         //message.setSender(sender.getName());
         message.setRecipient(recipient.getName());
         message.setIs_read(false);
-        messageService.save(message);
+        //messageService.save(message);
         messagingTemplate.convertAndSend("/messages/"+message.getId_sender()+"/"+message.getId_recipient(), message);
     }
     /*
