@@ -44,11 +44,11 @@ public class BookController {
     public String getBookPage(Model model) {
         List<Book> books = bookService.findAll();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(!(authentication instanceof AnonymousAuthenticationToken)){
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
             User user = (User) authentication.getPrincipal();
             Reader reader = readerService.findByLogin(user.getUsername());
-        
-        model.addAttribute("reader", reader);
+
+            model.addAttribute("reader", reader);
         }
         model.addAttribute("bookList", books);
         return "book";
@@ -59,12 +59,12 @@ public class BookController {
         Book book = bookService.findById(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Reader reader = readerService.findByLogin(user.getUsername());
-        if(book.getStatus()){
+        if (book.getStatus()) {
             book.setReader(reader.getId());
             book.setStatus(false);
             bookService.save(book);
         }
-        return "redirect:/"; 
+        return "redirect:/";
     }
 
     @GetMapping("/add-new-book")
@@ -84,8 +84,8 @@ public class BookController {
         book.setCountry(country.trim());
         book.setCity(city.trim());
         book.setStreet(street.trim());
-        if(!house.isEmpty()&&house.charAt(0)=='-'){
-            house=house.substring(1);
+        if (!house.isEmpty() && house.charAt(0) == '-') {
+            house = house.substring(1);
         }
         book.setHouse(house.trim());
         book.setAccess(access);
@@ -122,11 +122,11 @@ public class BookController {
     public String getBookInfo(@PathVariable("id") int id, Model model) {
         Book book = bookService.findById(id);
         model.addAttribute("book", book);
-        List<Comment> comments=commentService.findByBook(book);
+        List<Comment> comments = commentService.findByBook(book);
         model.addAttribute("commentList", comments);
         return "bookInfo";
     }
-    
+
     @RequestMapping("/delete-{id}-from-profile")
     public String deleteBookFromProfile(@PathVariable(value = "id") int id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -139,7 +139,7 @@ public class BookController {
         }
         return "redirect:/my-profile";
     }
-    
+
     @RequestMapping("/delete-{id}-from-library")
     public String deleteBookFromLibrary(@PathVariable(value = "id") int id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -150,7 +150,6 @@ public class BookController {
         }
         return "redirect:/my-profile";
     }
-    
 
     @GetMapping("/edit-{id}")
     public String getBookEdit(@PathVariable("id") int id, Model model) {
@@ -178,8 +177,8 @@ public class BookController {
         book.setCountry(country.trim());
         book.setCity(city.trim());
         book.setStreet(street.trim());
-        if(house.isEmpty()&&house.charAt(0)=='-'){
-            house=house.substring(1);
+        if (house.isEmpty() && house.charAt(0) == '-') {
+            house = house.substring(1);
         }
         book.setHouse(house.trim());
         book.setAccess(access);
