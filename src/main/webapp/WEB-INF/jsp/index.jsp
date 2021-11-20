@@ -115,7 +115,8 @@
                         //type: 'CHAT'
                     };
 
-                    stompClient.send("/messages/"+senderId+"/"+recipientId+".sendMessage", {}, JSON.stringify(chatMessage));
+                    stompClient.send("/app/messages/"+senderId+"/"+recipientId+".sendMessage", {}, JSON.stringify(chatMessage));
+                    
                     messageInput.value = '';
                 }
                 event.preventDefault();
