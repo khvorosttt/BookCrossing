@@ -76,7 +76,7 @@ public class MessageController {
         }
         return "redirect:/";
     }
-    @MessageMapping("/messages/{senderId}/{recipientId}")
+    @MessageMapping("/messages/{senderId}/{recipientId}.sendMessage")
     public void sendMessage(@DestinationVariable String senderId,
                                                 @DestinationVariable String recipientId, @Payload Message message) {
         message.setChatId(senderId+"_"+recipientId);
@@ -88,7 +88,7 @@ public class MessageController {
         message.setSender(sender.getName());
         message.setRecipient(recipient.getName());
         messageService.save(message);
-        messagingTemplate.convertAndSend("/messages/"+senderId+"/"+recipientId, message);
+        messagingTemplate.convertAndSend("/"+senderId+"/"+recipientId, message);
         //messagingTemplate.convertAndSend("/chat.sendMessage", message);
         //return message;/chat.sendMessage
     }
