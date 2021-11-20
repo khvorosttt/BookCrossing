@@ -88,7 +88,7 @@
             function onConnected() {
                 // Subscribe to the Public Topic
                 alert('/topic/messages/'+senderId+'/'+recipientId);
-                var address='/topic/messages/'+senderId+'/'+recipientId;
+                var address='/messages/'+senderId+'/'+recipientId;
                 stompClient.subscribe(address, onMessageReceived);
                 //stompClient.subscribe('/topic/public', onMessageReceived);
                 // Tell your username to the server
