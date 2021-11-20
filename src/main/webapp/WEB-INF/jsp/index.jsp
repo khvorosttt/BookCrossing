@@ -87,8 +87,8 @@
 
             function onConnected() {
                 // Subscribe to the Public Topic
-                stompClient.subscribe('/messages/'+senderId+'/'+recipientId, onMessageReceived);
-
+                //stompClient.subscribe('/messages/'+senderId+'/'+recipientId, onMessageReceived);
+                stompClient.subscribe('/topic/public', onMessageReceived);
                 // Tell your username to the server
                 stompClient.send("/app/chat.addUser",
                         {},
@@ -115,8 +115,8 @@
                         //type: 'CHAT'
                     };
 
-                    stompClient.send("/app/"+senderId+"/"+recipientId+".sendMessage", {}, JSON.stringify(chatMessage));
-                    //stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+                    //stompClient.send("/app/messages/"+senderId+"/"+recipientId+".sendMessage", {}, JSON.stringify(chatMessage));
+                    stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
                     messageInput.value = '';
                 }
                 event.preventDefault();
