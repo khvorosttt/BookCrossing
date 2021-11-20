@@ -60,7 +60,7 @@ public class MessageController {
         return "chats";
     }
     @GetMapping("/messages/{senderId}/{recipientId}")
-    public String findChatMessages ( @PathVariable String senderId,
+    public String findChatMessages (@PathVariable String senderId,
                                                 @PathVariable String recipientId, Model model) {
         User user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Reader reader = readerService.findByLogin(user.getUsername());
@@ -77,9 +77,8 @@ public class MessageController {
         return "redirect:/";
     }
     @MessageMapping("/messages/{senderId}/{recipientId}.sendMessage")
-    @SendTo("/messages/{senderId}/{recipientId}")
-    public Message sendMessage(@DestinationVariable String senderId,
-                                                @DestinationVariable String recipientId, @Payload Message message) {
+    public void sendMessage(@PathVariable String senderId,
+                                                @PathVariable String recipientId, @Payload Message message) {
         message.setChatId(senderId+"_"+recipientId);
         message.setId_sender(senderId);
         message.setId_recipient(recipientId);
@@ -89,7 +88,8 @@ public class MessageController {
         message.setSender(sender.getName());
         message.setRecipient(recipient.getName());
         messageService.save(message);
-        return message;
+        messagingTemplate.convertAndSend("/messages/"+senderId+"/"+recipientId+".sendMessage", message);
+        //return message;
     }
     /*
     @MessageMapping("/chat.sendMessage")
