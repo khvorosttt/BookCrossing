@@ -88,9 +88,9 @@
             function onConnected() {
                 // Subscribe to the Public Topic
                 alert('/messages/'+senderId+'/'+recipientId);
-                var address='/messages/'+senderId+'/'+recipientId;
-                stompClient.subscribe(address, onMessageReceived);
-                //stompClient.subscribe('/topic/public', onMessageReceived);
+                //var address='/messages/'+senderId+'/'+recipientId;
+                //stompClient.subscribe(address, onMessageReceived);
+                stompClient.subscribe('/topic/public', onMessageReceived);
                 // Tell your username to the server
                 stompClient.send("/app/chat.addUser",
                         {},
