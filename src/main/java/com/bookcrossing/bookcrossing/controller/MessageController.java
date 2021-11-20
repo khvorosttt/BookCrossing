@@ -14,6 +14,7 @@ import com.bookcrossing.bookcrossing.service.ReaderService;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -77,8 +78,8 @@ public class MessageController {
     }
     @MessageMapping("/messages/{senderId}/{recipientId}.sendMessage")
     @SendTo("/messages/{senderId}/{recipientId}")
-    public Message sendMessage(@PathVariable String senderId,
-                                                @PathVariable String recipientId, @Payload Message message) {
+    public Message sendMessage(@DestinationVariable String senderId,
+                                                @DestinationVariable String recipientId, @Payload Message message) {
         message.setChatId(senderId+"_"+recipientId);
         message.setId_sender(senderId);
         message.setId_recipient(recipientId);
