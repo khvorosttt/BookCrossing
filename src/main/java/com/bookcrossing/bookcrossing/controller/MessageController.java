@@ -78,7 +78,7 @@ public class MessageController {
     }
     @MessageMapping("/messages/{senderId}/{recipientId}.sendMessage")
     @SendTo("/topic/public")
-    public void sendMessage(@DestinationVariable String senderId,
+    public Message sendMessage(@DestinationVariable String senderId,
                                                 @DestinationVariable String recipientId, @Payload Message message) {
         message.setChatId(senderId+"_"+recipientId);
         message.setId_sender(senderId);
@@ -89,6 +89,7 @@ public class MessageController {
         message.setSender(sender.getName());
         message.setRecipient(recipient.getName());
         messageService.save(message);
+        return message;
         //messagingTemplate.convertAndSend("/"+senderId+"/"+recipientId, message);
         //messagingTemplate.convertAndSend("/public", message);
         //return message;/chat.sendMessage
