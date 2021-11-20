@@ -84,16 +84,13 @@ public class MessageController {
         //message.setChatId(senderId+"_"+recipientId);
         //message.setId_sender(senderId);
         //message.setId_recipient(recipientId);
-        //message.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
+        message.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
         //Reader sender = readerService.findByLogin(senderId);
-        //Reader recipient = readerService.findById(recipientId);
+        Reader recipient = readerService.findById(message.getId_recipient());
         //message.setSender(sender.getName());
-        //message.setRecipient(recipient.getName());
-        //messageService.save(message);
-        //return message;
-        //messagingTemplate.convertAndSend("/topic/public", message);
+        message.setRecipient(recipient.getName());
+        messageService.save(message);
         messagingTemplate.convertAndSend("/messages/"+message.getId_sender()+"/"+message.getId_recipient(), message);
-        //return message;/chat.sendMessage
     }
     /*
     @MessageMapping("/chat.sendMessage")
