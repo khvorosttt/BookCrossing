@@ -76,7 +76,7 @@ public class MessageController {
         }
         return "redirect:/";
     }
-    @MessageMapping("/messages/{senderId}/{recipientId}.sendMessage")
+    @MessageMapping("/messages/{senderId}/{recipientId}")
     public void sendMessage(@DestinationVariable String senderId,
                                                 @DestinationVariable String recipientId, @Payload Message message) {
         message.setChatId(senderId+"_"+recipientId);
