@@ -29,7 +29,7 @@ public class MessageRowMapper implements RowMapper<Message> {
         message.setRecipient(rs.getString("recipient"));
         message.setTextMessage(rs.getString("textMessage"));
         message.setDate_Time(rs.getDate("date_time"));
-        message.setIs_read(Boolean.parseBoolean(rs.getString("is_read")));
+        message.setIs_read(rs.getInt("is_read"));
         return message;
     }
     
