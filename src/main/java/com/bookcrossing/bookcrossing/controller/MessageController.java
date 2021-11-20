@@ -88,8 +88,9 @@ public class MessageController {
         message.setSender(sender.getName());
         message.setRecipient(recipient.getName());
         messageService.save(message);
-        messagingTemplate.convertAndSend("/app/messages/"+senderId+"/"+recipientId+".sendMessage", message);
-        //return message;
+        //messagingTemplate.convertAndSend("/app/messages/"+senderId+"/"+recipientId+".sendMessage", message);
+        messagingTemplate.convertAndSend("/chat.sendMessage", message);
+        //return message;/chat.sendMessage
     }
     /*
     @MessageMapping("/chat.sendMessage")
