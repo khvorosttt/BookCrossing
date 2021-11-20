@@ -92,7 +92,7 @@ public class MessageController {
         //messageService.save(message);
         //return message;
         //messagingTemplate.convertAndSend("/topic/public", message);
-        messagingTemplate.convertAndSend("/messages/"+message.getId_sender()+"/"+message.getId_recipient(), message);
+        messagingTemplate.convertAndSend("/messages/0000000001/0000000002", message);
         //return message;/chat.sendMessage
     }
     /*
