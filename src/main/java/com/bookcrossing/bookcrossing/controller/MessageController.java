@@ -76,7 +76,8 @@ public class MessageController {
         }
         return "redirect:/";
     }
-    @MessageMapping("/messages/{senderId}/{recipientId}.sendMessage")
+    //@MessageMapping("/messages/{senderId}/{recipientId}.sendMessage")
+    @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public Message sendMessage(@DestinationVariable String senderId,
                                                 @DestinationVariable String recipientId, @Payload Message message) {
