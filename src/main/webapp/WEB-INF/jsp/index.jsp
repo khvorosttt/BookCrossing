@@ -89,7 +89,7 @@
                 // Subscribe to the Public Topic
                 alert('/messages/'+senderId+'/'+recipientId);
                 var address='/messages/'+senderId+'/'+recipientId;
-                stompClient.subscribe('/messages/0000000001/0000000002', onMessageReceived);
+                stompClient.subscribe(address, onMessageReceived);
                 //stompClient.subscribe('/topic/public', onMessageReceived);
                 // Tell your username to the server
                 stompClient.send("/app/chat.addUser",
