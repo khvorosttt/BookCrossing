@@ -79,17 +79,17 @@ public class MessageController {
     //@MessageMapping("/messages/{senderId}/{recipientId}.sendMessage")
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
-    public Message sendMessage(@DestinationVariable String senderId,
-                                                @DestinationVariable String recipientId, @Payload Message message) {
-        message.setChatId(senderId+"_"+recipientId);
-        message.setId_sender(senderId);
-        message.setId_recipient(recipientId);
-        message.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
-        Reader sender = readerService.findByLogin(senderId);
-        Reader recipient = readerService.findById(recipientId);
-        message.setSender(sender.getName());
-        message.setRecipient(recipient.getName());
-        messageService.save(message);
+    public Message sendMessage(/*@DestinationVariable String senderId,
+                                                @DestinationVariable String recipientId, */@Payload Message message) {
+        //message.setChatId(senderId+"_"+recipientId);
+        //message.setId_sender(senderId);
+        //message.setId_recipient(recipientId);
+        //message.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
+        //Reader sender = readerService.findByLogin(senderId);
+        //Reader recipient = readerService.findById(recipientId);
+        //message.setSender(sender.getName());
+        //message.setRecipient(recipient.getName());
+        //messageService.save(message);
         return message;
         //messagingTemplate.convertAndSend("/"+senderId+"/"+recipientId, message);
         //messagingTemplate.convertAndSend("/public", message);
