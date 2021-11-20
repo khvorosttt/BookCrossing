@@ -89,7 +89,7 @@ public class MessageController {
         Reader recipient = readerService.findById(message.getId_recipient());
         //message.setSender(sender.getName());
         message.setRecipient(recipient.getName());
-        message.setIs_read(0);
+        message.setIs_read(false);
         messageService.save(message);
         messagingTemplate.convertAndSend("/messages/"+message.getId_sender()+"/"+message.getId_recipient(), message);
     }
