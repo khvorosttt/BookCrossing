@@ -77,7 +77,7 @@ public class MessageServiceTest {
         message.setId_recipient("0000000001");
         message.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
         message.setTextMessage("Hello, world!");
-        message.setIs_read(false);
+        message.setIs_read(0);
         message = messageService.save(message);
         // verify
         int countAfter = messageService.count();
@@ -102,7 +102,7 @@ public class MessageServiceTest {
         message.setId_recipient("0000000001");
         message.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
         message.setTextMessage("Hello, sample world!");
-        message.setIs_read(false);
+        message.setIs_read(0);
         message = messageService.save(message);
         // verify
         int countBefore = messageService.count();
