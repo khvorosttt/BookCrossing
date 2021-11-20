@@ -108,15 +108,15 @@
 
             function sendMessage(event) {
                 var messageContent = messageInput.value.trim();
-
+                
                 if (messageContent && stompClient) {
                     var chatMessage = {
                         sender: username,
                         textMessage : messageInput.value,
                         //type: 'CHAT'
                     };
-
-                    stompClient.send("/app/messages/"+senderId+"/"+recipientId+".sendMessage", {}, JSON.stringify(chatMessage));
+                    var address="/app/messages/"+senderId+"/"+recipientId+".sendMessage";
+                    stompClient.send(address, {}, JSON.stringify(chatMessage));
                     //stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
                     messageInput.value = '';
                 }
