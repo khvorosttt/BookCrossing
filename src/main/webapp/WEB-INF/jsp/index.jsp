@@ -30,6 +30,8 @@
             </nav>
         </header>
         <input class="hidden" id="name" value="${sender.name}"/>
+        <input class="hidden" id="senderId" value="${sender.id}"/>
+        <input class="hidden" id="recipientId" value="${recipient.id}"/>
         <div id="chat-page">
             <div class="chat-container">
                 <div class="chat-header">
@@ -66,7 +68,9 @@
 
             var stompClient = null;
             var username = document.querySelector('#name').value.trim();
-
+            var senderId = document.querySelector('#senderId').value.trim();
+            var recipientId = document.querySelector('#recipientId').value.trim();
+            
             var colors = [
                 '#2196F3', '#32c787', '#00BCD4', '#ff5652',
                 '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
@@ -83,7 +87,7 @@
 
             function onConnected() {
                 // Subscribe to the Public Topic
-                stompClient.subscribe('/topic/public', onMessageReceived);
+                stompClient.subscribe('/messages/'+senderId+'/'+recipientId, onMessageReceived);
 
                 // Tell your username to the server
                 stompClient.send("/app/chat.addUser",
@@ -107,11 +111,11 @@
                 if (messageContent && stompClient) {
                     var chatMessage = {
                         sender: username,
-                        content: messageInput.value,
-                        type: 'CHAT'
+                        textMessage: messageInput.value,
+                        //type: 'CHAT'
                     };
 
-                    stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(chatMessage));
+                    stompClient.send("/messages/"+senderId+"/"+recipientId+".sendMessage", {}, JSON.stringify(chatMessage));
                     messageInput.value = '';
                 }
                 event.preventDefault();
@@ -123,20 +127,20 @@
 
                 var messageElement = document.createElement('li');
 
-                if (message.type === 'JOIN') {
+                /*if (message.type === 'JOIN') {
                     messageElement.classList.add('event-message');
                     message.content = message.sender + ' joined!';
                 } else if (message.type === 'LEAVE') {
                     messageElement.classList.add('event-message');
                     message.content = message.sender + ' left!';
-                } else {
+                } else {*/
                     messageElement.classList.add('chat-message');
 
                     var usernameElement = document.createElement('span');
                     var usernameText = document.createTextNode(message.sender);
                     usernameElement.appendChild(usernameText);
                     messageElement.appendChild(usernameElement);
-                }
+                //}
 
                 var textElement = document.createElement('p');
                 var messageText = document.createTextNode(message.content);
