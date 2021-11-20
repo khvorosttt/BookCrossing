@@ -12,6 +12,7 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -20,8 +21,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ChatController {
     @MessageMapping("/chat.sendMessage")
-    @SendTo("/topic/public")
-    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
+    @SendTo("/topic/{senderId}/{recipientId}")
+    public ChatMessage sendMessage(@PathVariable String senderId,
+                                                @PathVariable String recipientId, @Payload ChatMessage chatMessage) {
         return chatMessage;
     }
     @MessageMapping("/chat.addUser")
