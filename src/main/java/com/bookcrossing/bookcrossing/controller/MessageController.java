@@ -91,8 +91,8 @@ public class MessageController {
         //message.setRecipient(recipient.getName());
         //messageService.save(message);
         //return message;
-        //messagingTemplate.convertAndSend("/topic/public", message);
-        messagingTemplate.convertAndSend("/messages/0000000001/0000000002", message);
+        messagingTemplate.convertAndSend("/topic/public", message);
+        //messagingTemplate.convertAndSend("/messages/"+message.getId_sender()+"/"+message.getId_recipient(), message);
         //return message;/chat.sendMessage
     }
     /*
