@@ -11,10 +11,12 @@ import com.bookcrossing.bookcrossing.domain.Reader;
 import com.bookcrossing.bookcrossing.service.ChatRoomService;
 import com.bookcrossing.bookcrossing.service.MessageService;
 import com.bookcrossing.bookcrossing.service.ReaderService;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -72,6 +74,21 @@ public class MessageController {
             return "index";
         }
         return "redirect:/";
+    }
+    @MessageMapping("/messages/{senderId}/{recipientId}.sendMessage")
+    @SendTo("/messages/{senderId}/{recipientId}")
+    public Message sendMessage(@PathVariable String senderId,
+                                                @PathVariable String recipientId, @Payload Message message) {
+        message.setChatId(senderId+"_"+recipientId);
+        message.setId_sender(senderId);
+        message.setId_recipient(recipientId);
+        message.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
+        Reader sender = readerService.findByLogin(senderId);
+        Reader recipient = readerService.findById(recipientId);
+        message.setSender(sender.getName());
+        message.setRecipient(recipient.getName());
+        messageService.save(message);
+        return message;
     }
     /*
     @MessageMapping("/chat.sendMessage")
