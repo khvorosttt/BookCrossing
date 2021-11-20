@@ -112,6 +112,9 @@
                 if (messageContent && stompClient) {
                     var chatMessage = {
                         sender: username,
+                        chatId : senderId+"_"+recipientId,
+                        id_sender : senderId,
+                        id_recipient : recipientId,
                         textMessage : messageInput.value,
                         //type: 'CHAT'
                     };
@@ -145,7 +148,7 @@
                 //}
 
                 var textElement = document.createElement('p');
-                var messageText = document.createTextNode(message.content);
+                var messageText = document.createTextNode(message.textMessage);
                 textElement.appendChild(messageText);
 
                 messageElement.appendChild(textElement);
