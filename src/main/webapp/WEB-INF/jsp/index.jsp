@@ -111,7 +111,7 @@
                 if (messageContent && stompClient) {
                     var chatMessage = {
                         sender: username,
-                        textMessage: messageInput.value,
+                        content : messageInput.value,
                         //type: 'CHAT'
                     };
 
