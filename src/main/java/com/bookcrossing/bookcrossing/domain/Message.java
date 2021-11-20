@@ -20,7 +20,7 @@ public class Message {
     private String recipient;
     private Date date_time;
     private String textMessage;
-    private boolean is_read;
+    private Integer is_read;
     
     public Integer getId_message(){
         return id_message;
@@ -86,11 +86,11 @@ public class Message {
         this.textMessage=textMessage;
     }
     
-    public boolean getIs_read(){
+    public Integer getIs_read(){
         return is_read;
     }
     
-    public void setIs_read(boolean is_read){
+    public void setIs_read(Integer is_read){
         this.is_read=is_read;
     }
 }
