@@ -49,8 +49,8 @@
                 <form id="messageForm" name="messageForm" nameForm="messageForm">
                     <div class="form-group">
                         <div class="input-group clearfix">
-                            <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
-                            <button type="submit" class="primary">Send</button>
+                            <input type="text" id="message" placeholder="Напишите сообщение..." autocomplete="off" class="form-control"/>
+                            <button type="submit" class="primary">Отправить</button>
                         </div>
                     </div>
                 </form>
