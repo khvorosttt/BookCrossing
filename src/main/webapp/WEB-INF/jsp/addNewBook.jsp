@@ -18,6 +18,7 @@
         <nav>
             <ul>                
                 <li><a href="/my-profile">Мой профиль</a></li>
+                <li><a href="/messages">Сообщения</a></li>
                 <li><a href="/">Библиотека</a></li>
                 <li><a href="/find-book">Поиск книги</a></li>
                 <li><a href="/order-board">Доска заказов</a></li>
