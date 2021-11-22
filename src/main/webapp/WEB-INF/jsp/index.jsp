@@ -20,7 +20,8 @@
                             <sec:authorize access="isAuthenticated()">
                         <li><a href="/my-profile">Мой профиль</a></li>
                         </sec:authorize>
-                    <li><a href="/" class="CurrentPage">Библиотека</a></li>
+                    <li><a href="/messages" class="CurrentPage">Сообщения</a></li>
+                    <li><a href="/">Библиотека</a></li>
                     <li><a href="/find-book">Поиск книги</a></li>
                     <li><a href="/order-board">Доска заказов</a></li>
                         <sec:authorize access="isAuthenticated()">
