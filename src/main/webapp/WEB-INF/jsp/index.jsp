@@ -91,8 +91,8 @@
                 var address1 = '/messages/' + senderId + '/' + recipientId;
                 var address2 = '/messages/' + recipientId + '/' + senderId;
                 var adress='/messages/' + senderId + '_' + recipientId;
-                stompClient.subscribe(address1, onMessageReceived);
-                stompClient.subscribe(address2, onMessageReceived);
+                stompClient.subscribe(address1).subscribe(address1) => onMessageReceived;
+                //stompClient.subscribe(address2, onMessageReceived);
                 // Tell your username to the server
                 stompClient.send("/app/chat.addUser",
                         {},
