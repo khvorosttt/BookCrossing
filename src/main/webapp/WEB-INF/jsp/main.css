@@ -6,6 +6,12 @@ html,body {
     height: 100%;
     overflow: hidden;
 }
+ul {
+    background-color: grey;
+}
+li {
+    display: inline-block;
+}
 body {
     margin: 0;
     padding: 0;
