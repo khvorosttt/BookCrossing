@@ -35,7 +35,7 @@ body {
 }
 
 .form-control {
-    width: 90%;
+    width: 80%;
     min-height: 38px;
     font-size: 15px;
     border: 1px solid #c8c8c8;
@@ -88,7 +88,7 @@ button {
     border-radius: 2px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    min-height: 42px;
+    min-height: 50px;
 }
 
 button.default {
@@ -115,7 +115,7 @@ button.accent {
 }
 
 .chat-container {
-    max-width: 900px;
+    min-width: 900px;
     margin-left: auto;
     margin-right: auto;
     background-color: #fff;
