@@ -88,7 +88,7 @@ button {
     border-radius: 2px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    min-height: 45px;
+    min-height: 42px;
 }
 
 button.default {
@@ -115,7 +115,7 @@ button.accent {
 }
 
 .chat-container {
-    min-width: 900px;
+    min-width: 800px;
     margin-left: auto;
     margin-right: auto;
     background-color: #fff;
