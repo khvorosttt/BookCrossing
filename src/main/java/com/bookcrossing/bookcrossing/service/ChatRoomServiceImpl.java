@@ -48,8 +48,8 @@ public class ChatRoomServiceImpl implements ChatRoomService {
                 .query("SELECT * FROM chatRoom WHERE chatId = :chatId",
                         new MapSqlParameterSource().addValue("chatId", chatId1),
                         chatRoomRowMapper);
+        KeyHolder keyHolder = new GeneratedKeyHolder();
         if (chat.isEmpty()) {
-            KeyHolder keyHolder = new GeneratedKeyHolder();
             namedParameterJdbcTemplate.update("INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
                     + " :senderId, :recipientId)",
                     new MapSqlParameterSource()
@@ -58,6 +58,12 @@ public class ChatRoomServiceImpl implements ChatRoomService {
                             .addValue("senderId", chat1.getSenderId())
                             .addValue("recipientId", chat1.getRecipientId()),
                     keyHolder);
+        }
+        chat = namedParameterJdbcTemplate
+                .query("SELECT * FROM chatRoom WHERE chatId = :chatId",
+                        new MapSqlParameterSource().addValue("chatId", chatId2),
+                        chatRoomRowMapper);
+        if (chat.isEmpty()) {
             namedParameterJdbcTemplate.update("INSERT INTO chatRoom (Id, chatId, senderId, recipientId) VALUES (:id, :chatId,"
                     + " :senderId, :recipientId)",
                     new MapSqlParameterSource()
