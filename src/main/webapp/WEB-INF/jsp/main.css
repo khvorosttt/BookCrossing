@@ -35,7 +35,7 @@ body {
 }
 
 .form-control {
-    width: 80%;
+    width: 90%;
     min-height: 38px;
     font-size: 15px;
     border: 1px solid #c8c8c8;
@@ -88,7 +88,7 @@ button {
     border-radius: 2px;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    min-height: 50px;
+    min-height: 45px;
 }
 
 button.default {
