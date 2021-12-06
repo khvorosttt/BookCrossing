@@ -31,10 +31,11 @@ public class OrderBoardServiceImpl implements OrderBoardService {
     @Override
     public OrderBoard save(OrderBoard order_board) {
         if(namedParameterJdbcTemplate
-                .query("SELECT author, title FROM order_board WHERE author = :author AND title= :title",
+                .query("SELECT author, title, Reader FROM order_board WHERE author = :author AND title= :title AND Reader=:Reader",
                         new MapSqlParameterSource()
                         .addValue("author", order_board.getAuthor())
-                        .addValue("title", order_board.getName()),
+                        .addValue("title", order_board.getName())
+                        .addValue("Reader", order_board.getReader()),
                         order_boardRowMapper).size()>0){
             return null;
         }else{
