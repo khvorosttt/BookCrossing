@@ -44,6 +44,8 @@ public class MessageServiceTest {
         assertEquals(message.getChatId(), storedMessage.getChatId());
         assertEquals(message.getId_sender(), storedMessage.getId_sender());
         assertEquals(message.getId_recipient(), storedMessage.getId_recipient());
+        assertEquals(message.getSender(), storedMessage.getSender());
+        assertEquals(message.getRecipient(), storedMessage.getRecipient());
         assertEquals(message.getDate_Time(), storedMessage.getDate_Time());
         assertEquals(message.getTextMessage(), storedMessage.getTextMessage());
         assertEquals(message.getIs_read(), storedMessage.getIs_read());
@@ -61,6 +63,8 @@ public class MessageServiceTest {
         assertEquals(message.getChatId(), storedMessage.getChatId());
         assertEquals(message.getId_sender(), storedMessage.getId_sender());
         assertEquals(message.getId_recipient(), storedMessage.getId_recipient());
+        assertEquals(message.getSender(), storedMessage.getSender());
+        assertEquals(message.getRecipient(), storedMessage.getRecipient());
         assertEquals(message.getDate_Time(), storedMessage.getDate_Time());
         assertEquals(message.getTextMessage(), storedMessage.getTextMessage());
         assertEquals(message.getIs_read(), storedMessage.getIs_read());
@@ -75,6 +79,8 @@ public class MessageServiceTest {
         message.setChatId("0000000000_0000000001");
         message.setId_sender("0000000000");
         message.setId_recipient("0000000001");
+        message.setSender("reader1");
+        message.setRecipient("reader2");
         message.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
         message.setTextMessage("Hello, world!");
         message.setIs_read(0);
@@ -87,6 +93,8 @@ public class MessageServiceTest {
         assertEquals(message.getChatId(), storedMessage.getChatId());
         assertEquals(message.getId_sender(), storedMessage.getId_sender());
         assertEquals(message.getId_recipient(), storedMessage.getId_recipient());
+        assertEquals(message.getSender(), storedMessage.getSender());
+        assertEquals(message.getRecipient(), storedMessage.getRecipient());
         assertEquals(message.getDate_Time(), storedMessage.getDate_Time());
         assertEquals(message.getTextMessage(), storedMessage.getTextMessage());
         assertEquals(message.getIs_read(), storedMessage.getIs_read());
@@ -100,6 +108,8 @@ public class MessageServiceTest {
         message.setChatId("0000000000_0000000001");
         message.setId_sender("0000000000");
         message.setId_recipient("0000000001");
+        message.setSender("reader1");
+        message.setRecipient("reader2");
         message.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
         message.setTextMessage("Hello, sample world!");
         message.setIs_read(0);
