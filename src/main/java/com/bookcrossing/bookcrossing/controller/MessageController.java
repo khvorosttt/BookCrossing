@@ -51,6 +51,7 @@ public class MessageController {
         messagingTemplate.convertAndSendToUser(
                 message.getId_recipient(),"/queue/messages",message);
     }
+    
     @GetMapping("/messages")
     public String getChatRoomPage(Model model) {
         User user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -59,6 +60,7 @@ public class MessageController {
         model.addAttribute("chatList", chats);
         return "chats";
     }
+    
     @GetMapping("/messages/{senderId}/{recipientId}")
     public String findChatMessages (@PathVariable String senderId,
                                                 @PathVariable String recipientId, Model model) {
@@ -76,64 +78,15 @@ public class MessageController {
         }
         return "redirect:/";
     }
-    //@MessageMapping("/messages/{senderId}/{recipientId}.sendMessage")
+
     @MessageMapping("/chat.sendMessage")
-    //@SendTo("/topic/public")
-    public void sendMessage(/*@DestinationVariable String senderId,
-                                                @DestinationVariable String recipientId, */@Payload Message message) {
-        //message.setChatId(senderId+"_"+recipientId);
-        //message.setId_sender(senderId);
-        //message.setId_recipient(recipientId);
+    public void sendMessage(@Payload Message message) {
         message.setDate_Time((java.sql.Date.valueOf(LocalDate.now())));
-        //Reader sender = readerService.findByLogin(senderId);
         Reader recipient = readerService.findById(message.getId_recipient());
-        //message.setSender(sender.getName());
         message.setRecipient(recipient.getName());
         message.setIs_read(0);
         messageService.save(message);
         messagingTemplate.convertAndSend("/messages/"+message.getId_sender()+"/"+message.getId_recipient(), message);
         messagingTemplate.convertAndSend("/messages/"+message.getId_recipient()+"/"+message.getId_sender(), message);
     }
-    /*
-    @MessageMapping("/chat.sendMessage")
-    @SendTo("/topic/public")
-    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
-        return chatMessage;
-    }
-    @MessageMapping("/chat.addUser")
-    @SendTo("/topic/public")
-    public ChatMessage addUser(@Payload ChatMessage chatMessage, 
-                               SimpMessageHeaderAccessor headerAccessor) {
-        // Add username in web socket session
-        headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-        return chatMessage;
-    }
-    @GetMapping("/chat")
-    public String getChat() {
-        return "index";
-    }
-    */
-    /*@GetMapping("/messages/{senderId}/{recipientId}")
-    public ResponseEntity<?> findChatMessages ( @PathVariable String senderId,
-                                                @PathVariable String recipientId) {
-        return ResponseEntity
-                .ok(chatMessageService.findChatMessages(senderId, recipientId));
-    }*/
-    /*@MessageMapping("/chat.sendMessage")
-    @SendTo("/topic/public")
-    public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
-        return chatMessage;
-    }
-    @MessageMapping("/chat.addUser")
-    @SendTo("/topic/public")
-    public ChatMessage addUser(@Payload ChatMessage chatMessage, 
-                               SimpMessageHeaderAccessor headerAccessor) {
-        // Add username in web socket session
-        headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-        return chatMessage;
-    }
-    @GetMapping("/chat")
-    public String getChat() {
-        return "index";
-    }*/
 }
