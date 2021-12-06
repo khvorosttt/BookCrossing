@@ -44,7 +44,7 @@ CREATE TABLE message
     Id_sender VARCHAR(10) NOT NULL,
     Id_recipient VARCHAR(10) NOT NULL,
     sender VARCHAR(22) NOT NULL,
-    recipient VARCHAR(22) NOT NULL
+    recipient VARCHAR(22) NOT NULL,
     date_time date NOT NULL,
     textMessage VARCHAR(500) NOT NULL,
     Is_read INT NOT NULL,
