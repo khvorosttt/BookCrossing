@@ -26,6 +26,7 @@ public class OrderBoardServiceTest {
         OrderBoard order_board= new OrderBoard();
         order_board.setAutor("Sample author");
         order_board.setName("Sample title");
+        order_board.setReader("0000000001");
         order_board=order_boardService.save(order_board);
         int countAfter = order_boardService.count();
         assertTrue(countBefore == countAfter - 1);
@@ -60,6 +61,7 @@ public class OrderBoardServiceTest {
         assertTrue(order_boards.size()>0);
         assertEquals(firstOrderBoard.getAuthor(), order_boards.get(0).getAuthor());
         assertEquals(firstOrderBoard.getName(), order_boards.get(0).getName());
+        assertEquals(firstOrderBoard.getReader(), order_boards.get(0).getReader());
     }
     
     @Test
@@ -74,7 +76,8 @@ public class OrderBoardServiceTest {
         // create sample book
         OrderBoard order_board = new OrderBoard();
         order_board.setAutor("Sample author");
-        order_board.setName("Sample name");        
+        order_board.setName("Sample name");  
+        order_board.setReader("0000000001");
         order_board = order_boardService.save(order_board);
         int countBefore = order_boardService.count();
         // delete book
